@@ -11,4 +11,4 @@ This is the team project repo for CalcConnect, a CS2103T 2526S1 Team Project.<br
 * `CalcConnect` is a contact management application designed specifically for MA1521 tutors to efficiently organize and manage student information.
 * Building upon AB3, `CalcConnect` enables tutors to store and update student details such as names, phone numbers, emails, and tutorial tags.
 * The application supports adding, deleting, editing, and searching for students within the contact list.
-* For comprehensive documentation, refer to the **[CalcConnect Product Website](https://ay2526s1-cs2103t-f08b-4.github.io/tp/)**.
+* For comprehensive documentation, refer to the **[CalcConnect Product Website](https://ay2526s1-cs2103t-f08b-4.github.io/tp/)**. 
