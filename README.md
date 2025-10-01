@@ -1,7 +1,10 @@
 [![Java CI](https://github.com/AY2526S1-CS2103T-F08B-4/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2526S1-CS2103T-F08B-4/tp/actions/workflows/gradle.yml)
+
 ![Ui](docs/images/Ui.png)
 
 # CalcConnect
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 This is the team project repo for CalcConnect, a CS2103T 2526S1 Team Project.<br>
 Everything below has not been updated.<br><br>
   Example usages:
