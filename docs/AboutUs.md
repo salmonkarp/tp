@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation 
 
-### Jean Doe
+### Ronith Saju
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ronithsaju.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/ronithsaju)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code quality
 
 ### Marcus Leong
 
