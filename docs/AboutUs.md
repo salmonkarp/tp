@@ -19,41 +19,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Gary Axel Muliyono
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/salmonkarp.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/salmonkarp)]
+[[portfolio](team/salmonkarp.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling and Tracking
 
-### Jean Doe
+### Leifsen Law
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/barneylaw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BarneyLaw)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation 
 
-### James Doe
+### Ronith Saju
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ronithsaju.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/ronithsaju)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
+
+### Marcus Leong
+
+<img src="images/marcusleonghk.png" width="200px">
+
+[[github](http://github.com/marcusleonghk)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
