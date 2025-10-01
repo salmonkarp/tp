@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Leifsen Law
 
-<img src="images/leifsenlaw.png" width="200px">
+<img src="images/barneylaw.png" width="200px">
 
 [[github](http://github.com/BarneyLaw)] [[portfolio](team/johndoe.md)]
 
