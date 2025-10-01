@@ -262,27 +262,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* MA1521 tutors/lecturers
+* has a need to manage a significant number of student contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provides Teaching Assistants with a streamlined, CLI-based management tool that gives them quick and organized access to their assigned students, including profile details, and performance records. TAs can record marks, manage assignments and track attendance without leaving the CLI environment, thus saving time and reducing friction.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                                            | So that...​                                                                                    |
+|----------|--------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | MA1521 TA using the app for the first time | view the list of available basic commands and their general purpose                     | I can start exploring the app's functionalities                                                |
+| `* *`    | MA1521 TA                                  | find a specific student's contact details from their name only                          | I save time searching students in my tutorial group one-by-one                                 |
+| `* *`    | MA1521 TA                                  | mark the attendance of my students                                                      | the students attendance grade can be calculated                                                |
+| `* *`    | MA1521 TA                                  | get all my students' emails/phone numbers to my clipboard in one command                | I can instantly paste said details into another application (e.g. email)                       |
+| `* *`    | MA1521 TA                                  | sort the list of students I have based on alphabetical order                            | I can obtain specific orderings for admin tasks                                                |
+| `* *`    | MA1521 TA                                  | sort the list of students I have based on overall marks                                 | I can identify a general grade trend as well as students I need to assist more during teaching |
+| `* *`    | New MA1521 TA                              | have convenient access to the contact of my Profs / Admin                               | I am able to contact and ask them for guidance / support                                       |
+| `* * *`  | MA1521 TA                                  | view each student's specific credentials                                                | I can verify their identity and manage group assignments                                       |
+| `* *`    | Concerned MA1521 TA                        | generate a table or graphical summary of the student perfomance across the whole module | I can identify trends and intervene early when needed                                          |
+| `* *`    | MA1521 TA                                  | view the students I have in each of the multiple classes I conduct                      | I know who are in each of my tutorial groups                                                   |
+| `* * *`  | MA1521 TA                                  | assign student grades for assignments and exams                                         | I can keep track of the student grades                                                         |
+| `* * *`  | MA1521 TA                                  | create student profiles                                                                 | I can add students to my tutorial                                                              |
+| `* * *`  | MA1521 TA                                  | delete student profiles                                                                 | I can remove students from my tutorial                                                         |
+| `* *`    | MA1521 TA                                  | update student profile                                                                  | I can edit the records of my students                                                          |
+| `* *`    | MA1521 TA using the app for the first time | see how I use a specific command (arguments, format, etc.)                              | I can use a command properly                                                                   |
+
 
 *{More to be added}*
 
@@ -327,6 +339,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Public contact detail**: A contact detail that is meant to be shared with others
+* **Tutor**: A teaching assistant who conducts tutorials for MA1521
+* **Professor**: A professor who teaches MA1521, and oversees the tutors and the course management
+* **Student**: A student who is enrolled in MA1521, and attends tutorials conducted by tutors
+* **Assignment**: A piece of coursework that students need to submit for grading
+* **Attendance**: The state of being present in a certain tutorial session
 
 --------------------------------------------------------------------------------------------------------------------
 
