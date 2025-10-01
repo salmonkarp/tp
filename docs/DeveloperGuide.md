@@ -339,6 +339,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Public contact detail**: A contact detail that is meant to be shared with others
+* **Tutor**: A teaching assistant who conducts tutorials for MA1521
+* **Professor**: A professor who teaches MA1521, and oversees the tutors and the course management
+* **Student**: A student who is enrolled in MA1521, and attends tutorials conducted by tutors
+* **Assignment**: A piece of coursework that students need to submit for grading
+* **Attendance**: The state of being present in a certain tutorial session
 
 --------------------------------------------------------------------------------------------------------------------
 
