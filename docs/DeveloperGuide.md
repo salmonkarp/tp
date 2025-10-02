@@ -294,7 +294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | MA1521 TA                                  | get all my students' emails/phone numbers to my clipboard in one command                 | instantly paste said details into another application (e.g. email)                       |
 | `*`      | MA1521 TA                                  | sort the list of students I have based on alphabetical order                             | obtain specific orderings for admin tasks                                                |
 | `*`      | MA1521 TA                                  | sort the list of students I have based on overall marks                                  | identify a general grade trend as well as students I need to assist more during teaching |
-| `*`      | New MA1521 TA                              | have convenient access to the contact of my Profs / Admin                                | be able to contact and ask them for guidance / support                                   |
+| `*`      | New MA1521 TA                              | have convenient access to the contact of my Professors                                   | be able to contact and ask them for guidance / support                                   |
 | `*`      | Concerned MA1521 TA                        | generate a table or graphical summary of the student performance across the whole module | identify trends and intervene early when needed                                          |
 | `*`      | Hardworking MA1521 TA                      | filter students by performance band                                                      | tailor my teaching strategies to specific cohorts                                        |
 | `*`      | MA1521 TA                                  | view a summary of grades for an assignment                                               | find out the overall performance of my class                                             |
@@ -311,8 +311,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | MA1521 TA using the app for the first time | see if my command is wrong without clearing out the command if i typed it wrongly        | edit my command instead of retyping it                                                   |
 | `*`      | MA1521 TA user either new or experienced   | see a preview of the command before executing the command                                | edit the command if the information is wrong                                             |
 | `*`      | TA who likes using CLI                     | press up/down arrow to traverse through sent command history                             | easily repeat similar commands without copying and pasting every single time             |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -345,22 +343,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  The software should work on any _mainstream OS_ platforms (Constraint-Platform-Independent). 
+2.  The software should work on a computer that has version `17` of Java (Constraint-Java-Version). 
+3.  The software should work without requiring an installer (Constraint-Portable). 
+4.  The software should not depend on your own remote server (Constraint-No-Remote-Server). 
+5.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 1. resolutions 1280x720 and higher, and, 2. for screen scales 150% (Constraint-Screen-Resolution).
+6.  The software should be able to be packaged into a single JAR file (Constraint-Single-File).
+7.  The data should be stored locally and should be in a human editable text file (Constraint-Human-Editable-File).
+8.  The file size of the product should not exceed 100MB (Constraint-File-Size).
+9.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+10. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+11. The system should respond within two seconds for common operations such as querying, finding or sorting a large number of students (potentially hundreds). 
+12. The system should be usable by a novice who has never been a Teaching Assistant before.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Public contact detail**: A contact detail that is meant to be shared with others
-* **Tutor**: A teaching assistant who conducts tutorials for MA1521
+* **MA1521**: Calculus for Computing course, containing typically hundreds of Y1 NUS students
+* **TA / Tutor**: A teaching assistant who conducts tutorials for MA1521
 * **Professor**: A professor who teaches MA1521, and oversees the tutors and the course management
 * **Student**: A student who is enrolled in MA1521, and attends tutorials conducted by tutors
 * **Assignment**: A piece of coursework that students need to submit for grading
 * **Attendance**: The state of being present in a certain tutorial session
+* **Student Credentials**: A student’s name, NUS student number, email address, tutorial group number, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
