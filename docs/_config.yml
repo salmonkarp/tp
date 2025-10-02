@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "CalcConnect"
 theme: minima
 
 header_pages:
@@ -8,7 +8,8 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+url: "https://ay2526s1-cs2103t-f08b-4.github.io"
+repository: "AY2526S1-CS2103T-F08B-4/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

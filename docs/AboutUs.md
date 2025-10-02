@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/leumu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/leumu)]
 [[portfolio](team/johndoe.md)]
 
@@ -37,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/BarneyLaw)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Documentation 
+* Responsibilities: Documentation
 
 ### Ronith Saju
 
