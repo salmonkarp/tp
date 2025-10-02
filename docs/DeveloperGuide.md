@@ -316,32 +316,196 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CalcConnect` and the **Actor** is the `MA1521 TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Get Help**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests a list of all commands.
+2.  CalcConnect displays all commands able to be used by the user.
 
     Use case ends.
 
-**Extensions**
+**Use case: UC02 - Add Student**
 
-* 2a. The list is empty.
+**MSS:**
+1.  TA requests to add a student.
+2.  CalcConnect adds the student.
+3.  CalcConnect displays the updated student list.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions:**
+* 1a. The typed command is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 1a1. CalcConnect shows an appropriate error message and the correct format.
+
+      Use case ends.
+
+**Use case: UC03 - Delete Student**
+
+**MSS:**
+
+1.  TA requests to list students.
+2.  CalcConnect shows a list of students.
+3.  TA requests to delete a specific student in the list.
+4.  CalcConnect deletes the student.
+5.  CalcConnect displays the updated student list.
+
+    Use case ends.
+
+**Extensions:**
+
+* 2a. The student list is empty.
+
+    * 2a1. CalcConnect alerts the user that the student list is empty.
+
+      Use case ends.
+
+* 3a. The given student index is invalid.
+
+    * 3a1. CalcConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC04 - Assign Grade to Student**
+
+**MSS:**
+
+1.  TA requests to assign a grade for an assessment for a student.
+2.  CalcConnect sets the grade for the assessment to the student.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The student list is empty.
+
+    * 1a1. CalcConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The given index, grade or assessment name is invalid.
+
+    * 1b1. CalcConnect shows an appropriate error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - View Student Credentials**
+
+**MSS:**
+
+1.  TA requests to view credentials of a student.
+2.  CalcConnect displays the credentials of the student.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The student list is empty.
+
+    * 1a1. CalcConnect shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - Exit Application**
+
+**MSS:**
+
+1.  TA requests to exit the application.
+2.  CalcConnect stops execution and closes.
+
+    Use case ends.
+
+**Use case: UC07 - Assign Tutorial Group to Student**
+
+**MSS:**
+
+1.  TA requests to assign a tutorial group to a student.
+2.  CalcConnect assigns the tutorial group to the student.
+3.  CalcConnect displays the updated student list.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The student list is empty.
+
+    * 1a1. CalcConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The given index or tutorial group name is invalid.
+
+    * 1b1. CalcConnect shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC08 - View all students in a Tutorial Group**
+
+**MSS:**
+
+1.  TA requests to view all students in a particular tutorial group.
+2.  CalcConnect lists out all the students in the tutorial group.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The given tutorial group name is invalid.
+
+    * 1a1. CalcConnect shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The tutorial group has no students.
+
+    * 1b1. CalcConnect alerts the user that the tutorial group is empty.
+
+      Use case ends.
+
+**Use case: UC09 - Mark Attendance**
+
+**MSS:**
+
+1.  TA <ins>view all students in a tutorial group (UC08)</ins>.
+2.  TA marks attendance of the students present.
+3.  CalcConnect shows all the students present and absent in the tutorial group.
+
+    Use case ends.
+
+**Extensions:**
+
+* 2a. The tutorial group has no students.
+
+    * 2a1. CalcConnect shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given student index(es) is/are invalid.
+
+    * 2b1. CalcConnect shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC10 - Edit Student Credentials**
+
+**MSS:**
+
+1.  TA requests to edit a student’s credentials.
+2.  CalcConnect updates the student’s credentials.
+3.  CalcConnect shows the updated student list.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The given student index is invalid.
+
+    * 1a1. CalcConnect shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
