@@ -14,19 +14,19 @@ public class TeleHandleTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new TeleHandle(invalidAddress));
+    public void constructor_invalidTeleHandle_throwsIllegalArgumentException() {
+        String invalidTeleHandle = "";
+        assertThrows(IllegalArgumentException.class, () -> new TeleHandle(invalidTeleHandle));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidTeleHandle() {
+        // null teleHandle
         assertThrows(NullPointerException.class, () -> TeleHandle.isValidTeleHandle(null));
 
-        // invalid addresses
+        // invalid teleHandles
+        assertFalse(TeleHandle.isValidTeleHandle("david")); // missing '@' prefix
         assertFalse(TeleHandle.isValidTeleHandle("")); // empty string
-        assertFalse(TeleHandle.isValidTeleHandle(" ")); // spaces only
 
         // valid teleHandles
         assertTrue(TeleHandle.isValidTeleHandle("@david"));
@@ -36,10 +36,10 @@ public class TeleHandleTest {
 
     @Test
     public void equals() {
-        TeleHandle teleHandle = new TeleHandle("Valid TeleHandle");
+        TeleHandle teleHandle = new TeleHandle("@valid");
 
         // same values -> returns true
-        assertTrue(teleHandle.equals(new TeleHandle("Valid TeleHandle")));
+        assertTrue(teleHandle.equals(new TeleHandle("@valid")));
 
         // same object -> returns true
         assertTrue(teleHandle.equals(teleHandle));
@@ -51,6 +51,6 @@ public class TeleHandleTest {
         assertFalse(teleHandle.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(teleHandle.equals(new TeleHandle("Other Valid TeleHandle")));
+        assertFalse(teleHandle.equals(new TeleHandle("@otherValid")));
     }
 }
