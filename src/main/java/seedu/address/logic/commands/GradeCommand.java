@@ -27,16 +27,6 @@ public class GradeCommand extends Command {
     private final String grade;
 
     /**
-     * Creates a GradeCommand to grade the person at the specified {@code index}
-     * with the specified {@code grade}.
-     * This constructor is used for testing only.
-     */
-    public GradeCommand() {
-        index = null;
-        grade = null;
-    }
-
-    /**
      * @param index of the person in the filtered person list to assign the grade to
      * @param grade of the person to be assigned to
      */
