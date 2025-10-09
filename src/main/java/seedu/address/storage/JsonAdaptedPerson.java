@@ -110,7 +110,7 @@ class JsonAdaptedPerson {
 
         if (grade == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, "Grade"));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
         if (!Grade.isValidGradeConstructor(grade)) {
             throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);

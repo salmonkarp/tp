@@ -26,7 +26,7 @@ public class SampleDataUtil {
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new TeleHandle("@bernice"),
-                new Grade("0.50"),
+                new Grade("0.00"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new TeleHandle("@charlotte"),
