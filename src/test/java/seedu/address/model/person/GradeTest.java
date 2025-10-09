@@ -15,7 +15,7 @@ public class GradeTest {
 
     @Test
     public void constructor_invalidGrade_throwsIllegalArgumentException() {
-        String invalidGrade = "-5.00";
+        String invalidGrade = "";
         assertThrows(IllegalArgumentException.class, () -> new Grade(invalidGrade));
     }
 
