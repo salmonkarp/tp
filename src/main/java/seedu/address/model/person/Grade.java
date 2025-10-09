@@ -5,31 +5,31 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's grade in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidGradeConstructor(String)}
  */
 public class Grade {
 
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS_CONSTRUCT =
             "Grade should be a number between 0.00 and 100.00, with exactly 2 decimal places.";
 
     /**
      * Strict validation for constructor, exactly 2 decimal places for standardization.
      * Matches 0.00 to 99.99 or exactly 100.00
      */
-    public static final String VALIDATION_REGEX = "^(100\\.00|\\d{1,2}\\.\\d{2})$";
+    public static final String VALIDATION_REGEX_CONSTRUCT = "^(100\\.00|\\d{1,2}\\.\\d{2})$";
 
-    public final String value;
+    public final String grade;
 
     /**
      * Constructs a {@code Grade}.
      *
-     * @param value A valid grade number with exactly 2 decimal places.
+     * @param grade A valid grade number with exactly 2 decimal places.
      */
-    public Grade(String value) {
-        requireNonNull(value);
-        checkArgument(isValidGrade(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+    public Grade(String grade) {
+        requireNonNull(grade);
+        checkArgument(isValidGradeConstructor(grade), MESSAGE_CONSTRAINTS_CONSTRUCT);
+        this.grade = grade;
     }
 
     /**
@@ -39,13 +39,13 @@ public class Grade {
      * @param test the grade string to validate
      * @return true if string is a valid grade
      */
-    public static boolean isValidGrade(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidGradeConstructor(String test) {
+        return test.matches(VALIDATION_REGEX_CONSTRUCT);
     }
 
     @Override
     public String toString() {
-        return this.value;
+        return this.grade;
     }
 
     @Override
@@ -60,12 +60,12 @@ public class Grade {
         }
 
         Grade otherGrade = (Grade) other;
-        return value.equals(otherGrade.value);
+        return grade.equals(otherGrade.grade);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return grade.hashCode();
     }
 
 }
