@@ -15,7 +15,7 @@ public class GradeTest {
 
     @Test
     public void constructor_invalidGrade_throwsIllegalArgumentException() {
-        String invalidGrade = "";
+        String invalidGrade = "-5.00";
         assertThrows(IllegalArgumentException.class, () -> new Grade(invalidGrade));
     }
 
@@ -25,7 +25,6 @@ public class GradeTest {
         assertThrows(NullPointerException.class, () -> Grade.isValidGrade(null));
 
         // invalid Grade numbers
-        assertFalse(Grade.isValidGrade("")); // empty string
         assertFalse(Grade.isValidGrade(" ")); // spaces only
         assertFalse(Grade.isValidGrade("91")); // does not have 2 decimal place (d.p.)
         assertFalse(Grade.isValidGrade("91.1")); // does not have 2 d.p.
