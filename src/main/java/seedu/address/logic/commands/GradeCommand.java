@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.person.Grade;
 
 /**
  * Assigns a grade to an existing person in the address book.
@@ -21,16 +22,14 @@ public class GradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "g/87.50";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Grade: %2$s";
-
     private final Index index;
-    private final String grade;
+    private final Grade grade;
 
     /**
      * @param index of the person in the filtered person list to assign the grade to
      * @param grade of the person to be assigned to
      */
-    public GradeCommand(Index index, String grade) {
+    public GradeCommand(Index index, Grade grade) {
         requireAllNonNull(index, grade);
 
         this.index = index;
