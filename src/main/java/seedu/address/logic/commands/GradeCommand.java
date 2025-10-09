@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Grade;
 
@@ -12,6 +13,8 @@ import seedu.address.model.person.Grade;
 public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
+
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Grade: %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns the grade to the person identified "
@@ -37,8 +40,8 @@ public class GradeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult("Hello from grade");
+    public CommandResult execute(Model model) throws CommandException {
+        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), grade));
     }
 
     @Override
