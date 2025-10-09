@@ -5,11 +5,16 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.VBox?>
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" maxHeight="500">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -18,27 +23,103 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
+      <ScrollPane fitToWidth="true">
+        <VBox spacing="10" fx:id="helpMessageContainer">
+            <Label
+              text="CalcConnect Help"
+              fx:id="titleLabel"
+            />
+            <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <TextFlow>
+                <Label text="n/Name" id="sampleCommandLabel"/>
+                <Text text=" - The name of the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
+                <Text text=" - student's personal phone number" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="e/EMAIL" id="sampleCommandLabel"/>
+                <Text text=" - student's email address" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="u/TELE_HANDLE" id="sampleCommandLabel"/>
+                <Text text=" - student's telegram handle(e.g. @JohnDoe)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+            <Label text="Available commands:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+            <Label text="1. add: Adds a person to the address book." id="commandListLabel" />
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="add n/NAME p/PHONE_NUMBER e/EMAIL u/TELE_HANDLE [t/TAG]..." id="sampleCommandLabel"/>
+            </TextFlow>
+            <Label text="2. delete: Deletes a person from the address book." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="delete INDEX" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="3. edit: Edits an existing person in the address book." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELE_HANDLE] [t/TAG]..." id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="4. find: Finds persons by name(first name or full/partial name)." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="find KEYWORD [MORE_KEYWORDS]" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="5. list: Lists all persons." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="list" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="6. help: Shows program usage instructions." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="help" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="7. clear: Clears all entries from the address book(use with caution)." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="clear" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="8. grade: places a numerical grade for a student" id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="grade" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label text="9. exit: Exits the application." id="commandListLabel"/>
+            <TextFlow>
+              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Label text="exit" id="sampleCommandLabel"/>
+            </TextFlow>
+
+            <Label fx:id="helpMessage" text="Label">
+              <HBox.margin>
+                <Insets right="5.0" />
+              </HBox.margin>
+            </Label>
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </Button>
+          <opaqueInsets>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          </opaqueInsets>
+          <padding>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          </padding>
+        </VBox>
+      </ScrollPane>
     </Scene>
   </scene>
 </fx:root>

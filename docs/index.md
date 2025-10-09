@@ -4,8 +4,7 @@ title: CalcConnect
 ---
 
 [![Java CI](https://github.com/AY2526S1-CS2103T-F08B-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-F08B-4/tp/actions/workflows/gradle.yml)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
-
+[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F08B-4/tp/branch/master/graph/badge.svg?token=Y6K3KX1YM2)](https://codecov.io/gh/AY2526S1-CS2103T-F08B-4/tp)
 ![Ui](images/Ui.png)
 
 **CalcConnect is a contact management application designed specifically for MA1521 tutors to efficiently organize and manage student information.**
