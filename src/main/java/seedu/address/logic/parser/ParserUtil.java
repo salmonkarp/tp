@@ -129,8 +129,8 @@ public class ParserUtil {
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
-        if (!Grade.isValidGrade(trimmedGrade)) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        if (!Grade.isValidGradeConstructor(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
         }
         return new Grade(trimmedGrade);
     }

@@ -112,8 +112,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, "Grade"));
         }
-        if (!Grade.isValidGrade(grade)) {
-            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS);
+        if (!Grade.isValidGradeConstructor(grade)) {
+            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
         }
         final Grade modelGrade = new Grade(grade);
 

@@ -144,7 +144,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 INVALID_GRADE,
                 VALID_TAGS);
-        String expectedMessage = Grade.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Grade.MESSAGE_CONSTRAINTS_CONSTRUCT;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
