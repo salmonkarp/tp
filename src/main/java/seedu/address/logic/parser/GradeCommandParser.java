@@ -27,16 +27,18 @@ public class GradeCommandParser {
                 PREFIX_GRADE);
 
         Index index;
+        Grade grade;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse(""));
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeCommand.MESSAGE_USAGE), ive);
         }
 
-        String grade = argMultimap.getValue(PREFIX_GRADE).orElse("");
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GRADE);
 
-        return new GradeCommand(index, new Grade(grade));
+        return new GradeCommand(index, grade);
     }
 
 }
