@@ -20,11 +20,12 @@ public class GradeTest {
     }
 
     @Test
-    public void isValidGradeConstructorConstructor() {
+    public void isValidGradeConstructor() {
         // null Grade number
         assertThrows(NullPointerException.class, () -> Grade.isValidGradeConstructor(null));
 
         // invalid Grade numbers
+        assertFalse(Grade.isValidGradeConstructor("")); // empty string
         assertFalse(Grade.isValidGradeConstructor(" ")); // spaces only
         assertFalse(Grade.isValidGradeConstructor("91")); // does not have 2 decimal place (d.p.)
         assertFalse(Grade.isValidGradeConstructor("91.1")); // does not have 2 d.p.
