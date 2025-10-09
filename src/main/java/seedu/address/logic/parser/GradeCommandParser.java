@@ -32,7 +32,7 @@ public class GradeCommandParser {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
             Float convertedGrade = gradeString.isEmpty() ? Float.NaN : Float.parseFloat(gradeString);
-            String convertedGradeString = convertedGrade.isNaN() ? "" : String.format("%.2f", convertedGrade);
+            String convertedGradeString = convertedGrade.isNaN() ? "0.00" : String.format("%.2f", convertedGrade);
             grade = ParserUtil.parseGrade(convertedGradeString);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
