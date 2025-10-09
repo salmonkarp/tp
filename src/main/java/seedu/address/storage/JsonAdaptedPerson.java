@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String teleHandle;
+    private final String grade;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +38,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("teleHandle") String teleHandle,
+                             @JsonProperty("grade") String grade,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
+        this.grade = grade;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         teleHandle = source.getTeleHandle().value;
+        grade = source.getGrade().value;
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -103,8 +108,17 @@ class JsonAdaptedPerson {
         }
         final TeleHandle modelTeleHandle = new TeleHandle(teleHandle);
 
+        if (grade == null) {
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, "Grade"));
+        }
+        if (!Grade.isValidGradeConstructor(grade)) {
+            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
+        }
+        final Grade modelGrade = new Grade(grade);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTeleHandle, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelTeleHandle, modelGrade, modelTags);
     }
 
 }
