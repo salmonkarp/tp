@@ -27,16 +27,21 @@ public class GradeCommandParser implements Parser<GradeCommand> {
                 PREFIX_GRADE);
 
         Index index;
+        Grade grade;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+            String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
+            Float convertedGrade = gradeString.isEmpty() ? Float.NaN : Float.parseFloat(gradeString);
+            String convertedGradeString = convertedGrade.isNaN() ? "0.00" : String.format("%.2f", convertedGrade);
+            grade = ParserUtil.parseGrade(convertedGradeString);
+        } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeCommand.MESSAGE_USAGE), ive);
         }
 
-        String grade = argMultimap.getValue(PREFIX_GRADE).orElse("");
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GRADE);
 
-        return new GradeCommand(index, new Grade(grade));
+        return new GradeCommand(index, grade);
     }
 
 }

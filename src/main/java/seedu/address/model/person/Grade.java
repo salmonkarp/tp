@@ -19,17 +19,17 @@ public class Grade {
      */
     public static final String VALIDATION_REGEX_CONSTRUCT = "^(100\\.00|\\d{1,2}\\.\\d{2})$";
 
-    public final String grade;
+    public final String value;
 
     /**
      * Constructs a {@code Grade}.
      *
-     * @param grade A valid grade number with exactly 2 decimal places.
+     * @param value A valid grade number with exactly 2 decimal places.
      */
-    public Grade(String grade) {
-        requireNonNull(grade);
-        checkArgument(isValidGradeConstructor(grade), MESSAGE_CONSTRAINTS_CONSTRUCT);
-        this.grade = grade;
+    public Grade(String value) {
+        requireNonNull(value);
+        checkArgument(isValidGradeConstructor(value), MESSAGE_CONSTRAINTS_CONSTRUCT);
+        this.value = value;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Grade {
 
     @Override
     public String toString() {
-        return this.grade;
+        return this.value;
     }
 
     @Override
@@ -60,12 +60,12 @@ public class Grade {
         }
 
         Grade otherGrade = (Grade) other;
-        return grade.equals(otherGrade.grade);
+        return value.equals(otherGrade.value);
     }
 
     @Override
     public int hashCode() {
-        return grade.hashCode();
+        return value.hashCode();
     }
 
 }

@@ -83,7 +83,7 @@ public class AddressBookParserTest {
     public void parseCommand_grade() throws Exception {
         final Grade grade = new Grade("78.50");
         GradeCommand command = (GradeCommand) parser.parseCommand(GradeCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_GRADE + grade.grade);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_GRADE + grade.value);
         assertEquals(new GradeCommand(INDEX_FIRST_PERSON, grade), command);
     }
 

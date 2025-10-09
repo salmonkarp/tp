@@ -4,11 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "teleHandle": "@alice",
+    "grade": "0.00",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "grade": "0.00",
     "teleHandle": "@alice"
   } ]
 }

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.GradeCommand.MESSAGE_ARGUMENTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -19,14 +17,6 @@ import seedu.address.model.person.Grade;
 
 public class GradeCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute() {
-        final Grade grade = new Grade("85.00");
-
-        assertCommandFailure(new GradeCommand(INDEX_FIRST_PERSON, grade), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), grade));
-    }
 
     @Test
     public void equals() {

@@ -17,3 +17,28 @@
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
+
+#titleLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #A7AEB4;
+}
+
+#commandListLabel {
+    -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ACADAC;
+}
+
+#sampleCommandLabel {
+    'Segoe UI', 'Arial', sans-serif
+    -fx-font-size: 16px;
+    -fx-background-color: #545454;
+    -fx-text-fill: white;
+    -fx-padding: 4 8 4 8;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-border-color: #444;
+    -fx-border-width: 1;
+}
