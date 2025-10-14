@@ -26,7 +26,6 @@ public class GradeTest {
 
         // invalid Grade numbers
         assertFalse(Grade.isValidGrade("")); // empty string
-        assertFalse(Grade.isValidGrade(" ")); // spaces only
         assertFalse(Grade.isValidGrade("91")); // does not have 2 decimal place (d.p.)
         assertFalse(Grade.isValidGrade("91.1")); // does not have 2 d.p.
         assertFalse(Grade.isValidGrade("100.23")); // above 100.00

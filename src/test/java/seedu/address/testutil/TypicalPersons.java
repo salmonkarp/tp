@@ -27,7 +27,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTeleHandle("@alice").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withGrade("0.00")
+            .withGrade(" ")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTeleHandle("@benson")

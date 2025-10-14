@@ -22,7 +22,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new TeleHandle("@alex"),
-                new Grade(" "),
+                new Grade("70.67"),
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new TeleHandle("@bernice"),
@@ -34,7 +34,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new TeleHandle("@david"),
-                new Grade(" "),
+                new Grade("50.29"),
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new TeleHandle("@irfan"),
