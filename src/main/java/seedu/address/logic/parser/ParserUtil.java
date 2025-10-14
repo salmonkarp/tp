@@ -129,9 +129,28 @@ public class ParserUtil {
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
-        if (!Grade.isValidGradeConstructor(trimmedGrade)) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
+        float floatGrade;
+
+        // Don't allow empty grade values, inside command
+        if (trimmedGrade.isEmpty()) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return new Grade(trimmedGrade);
+        // Ensure its numeric
+        try {
+            floatGrade = Float.parseFloat(trimmedGrade);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        // Checks if more than 2 d.p.
+        if (trimmedGrade.contains(".") && trimmedGrade.substring(
+                trimmedGrade.indexOf('.') + 1).length() > 2) {
+            System.out.println("Warning: The input grade has more than 2 decimal places and will be rounded.");
+        }
+        // Round to 2 d.p.
+        String formattedGrade = String.format("%.2f", floatGrade);
+        if (!Grade.isValidGrade(formattedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return new Grade(formattedGrade);
     }
 }
