@@ -17,7 +17,7 @@ public class Grade {
      * Strict validation for constructor, exactly 2 decimal places or an empty String for standardization.
      * Matches 0.00 to 99.99 or exactly 100.00 or an empty String.
      */
-    public static final String VALIDATION_REGEX = "^(100\\.00|\\d{1,2}\\.\\d{2})?$";
+    public static final String VALIDATION_REGEX = "^( |100\\.00|\\d{1,2}\\.\\d{2})$";
 
     public final String value;
 
