@@ -16,13 +16,13 @@ public class GradeMapTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new GradeMap((HashMap<GradeTypes, Grade>) null));
+        assertThrows(NullPointerException.class, () -> new GradeMap((HashMap<Assignments, Grade>) null));
     }
 
     @Test
     public void constructor_success() {
         GradeMap gradeMap = new GradeMap();
-        for (GradeTypes gradeType : GradeTypes.getAllAssignments()) {
+        for (Assignments gradeType : Assignments.getAllAssignments()) {
             assertTrue(gradeMap.containsKey(gradeType));
             assertEquals(" ", gradeMap.get(gradeType).value);
         }
@@ -31,7 +31,7 @@ public class GradeMapTest {
     @Test
     public void putAndGet_success() {
         GradeMap gradeMap = new GradeMap();
-        GradeTypes firstAssignment = GradeTypes.getAllAssignments()[0];
+        Assignments firstAssignment = Assignments.getAllAssignments()[0];
         Grade firstGrade = new Grade(VALID_GRADE_0);
         gradeMap.put(firstAssignment, firstGrade);
         assertEquals(gradeMap.get(firstAssignment), firstGrade);
@@ -47,7 +47,7 @@ public class GradeMapTest {
     @Test
     public void put_nullValue_throwsIllegalArgumentException() {
         GradeMap gradeMap = new GradeMap();
-        GradeTypes firstAssignment = GradeTypes.getAllAssignments()[0];
+        Assignments firstAssignment = Assignments.getAllAssignments()[0];
         assertThrows(IllegalArgumentException.class, () -> gradeMap.put(firstAssignment, null));
     }
 
@@ -63,7 +63,7 @@ public class GradeMapTest {
         GradeMap gradeMap2 = new GradeMap();
         assertEquals(gradeMap1, gradeMap2);
 
-        GradeTypes firstAssignment = GradeTypes.getAllAssignments()[0];
+        Assignments firstAssignment = Assignments.getAllAssignments()[0];
         Grade firstGrade = new Grade(VALID_GRADE_0);
         gradeMap1.put(firstAssignment, firstGrade);
         assertNotEquals(gradeMap1, gradeMap2);

@@ -5,13 +5,13 @@ import java.util.HashMap;
 /**
  * A map from assignments to grades for each student.
  */
-public class GradeMap extends HashMap<GradeTypes, Grade> {
+public class GradeMap extends HashMap<Assignments, Grade> {
     /**
      * Constructs a default GradeList with uninitialized scores.
      */
     public GradeMap() {
         super();
-        for (GradeTypes gradeType : GradeTypes.getAllAssignments()) {
+        for (Assignments gradeType : Assignments.getAllAssignments()) {
             this.put(gradeType, new Grade(" "));
         }
     }
@@ -20,7 +20,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
      * Constructs a GradeList with the given map.
      * Used for copying.
      */
-    public GradeMap(HashMap<GradeTypes, Grade> map) {
+    public GradeMap(HashMap<Assignments, Grade> map) {
         super(map);
     }
 
@@ -34,7 +34,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
     }
 
     @Override
-    public Grade put(GradeTypes key, Grade value) {
+    public Grade put(Assignments key, Grade value) {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Key and value must not be null");
         }
@@ -43,7 +43,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
 
     @Override
     public Grade get(Object key) {
-        if (!(key instanceof GradeTypes)) {
+        if (!(key instanceof Assignments)) {
             throw new IllegalArgumentException("Key must be an Assignment");
         }
         return super.get(key);
