@@ -135,14 +135,17 @@ public class ParserUtil {
         if (trimmedGrade.isEmpty()) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
+
         // Ensure its numeric
         try {
             floatGrade = Float.parseFloat(trimmedGrade);
         } catch (NumberFormatException e) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
+
         // Round to 2 d.p.
         String formattedGrade = String.format("%.2f", floatGrade);
+
         if (!Grade.isValidGrade(formattedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
