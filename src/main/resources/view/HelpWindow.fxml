@@ -32,7 +32,7 @@
             <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
             <TextFlow>
                 <Label text="n/Name" id="sampleCommandLabel"/>
-                <Text text=" - The name of the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - The name of the student or an assignemnt" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
                 <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
@@ -43,8 +43,16 @@
                 <Text text=" - student's email address" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
-                <Label text="u/TELE_HANDLE" id="sampleCommandLabel"/>
+                <Label text="u/TELEHANDLE" id="sampleCommandLabel"/>
                 <Text text=" - student's telegram handle(e.g. @JohnDoe)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="g/GRADE" id="sampleCommandLabel"/>
+                <Text text=" - the grade to be given(numerical grade)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="t/TUTORIAL" id="sampleCommandLabel"/>
+                <Text text=" - the tutorial group for that student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
 
             <Label text="Available commands:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
@@ -52,7 +60,7 @@
             <Label text="1. add: Adds a person to the address book." id="commandListLabel" />
             <TextFlow>
               <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="add n/NAME p/PHONE_NUMBER e/EMAIL u/TELE_HANDLE [t/TAG]..." id="sampleCommandLabel"/>
+              <Label text="add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [t/TAG]..." id="sampleCommandLabel"/>
             </TextFlow>
             <Label text="2. delete: Deletes a person from the address book." id="commandListLabel"/>
             <TextFlow>
@@ -63,7 +71,7 @@
             <Label text="3. edit: Edits an existing person in the address book." id="commandListLabel"/>
             <TextFlow>
               <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELE_HANDLE] [t/TAG]..." id="sampleCommandLabel"/>
+              <Label text="edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [t/TAG]..." id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="4. find: Finds persons by name(first name or full/partial name)." id="commandListLabel"/>
@@ -93,7 +101,7 @@
             <Label text="8. grade: places a numerical grade for a student" id="commandListLabel"/>
             <TextFlow>
               <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="grade" id="sampleCommandLabel"/>
+              <Label text="grade INDEX [n/ASSIGNMENT_NAME] [g/GRADE]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="9. exit: Exits the application." id="commandListLabel"/>
