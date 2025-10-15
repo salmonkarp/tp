@@ -66,8 +66,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code TeleHandle} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTeleHandle(String address) {
-        descriptor.setTeleHandle(new TeleHandle(address));
+    public EditPersonDescriptorBuilder withTeleHandle(String teleHandle) {
+        descriptor.setTeleHandle(new TeleHandle(teleHandle));
         return this;
     }
 
