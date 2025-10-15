@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.GradeTypes;
-
 public class GradeTypesTest {
 
     public static final String INVALID_ASSIGNMENT = "InvalidAssignment";

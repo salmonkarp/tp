@@ -9,8 +9,6 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.GradeTypes;
-
 public class GradeMapTest {
 
     public static final String VALID_GRADE_0 = "85.00";

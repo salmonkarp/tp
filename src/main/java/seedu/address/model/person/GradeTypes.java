@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.person;
 
 /**
  * Represents an assignment type in the address book.

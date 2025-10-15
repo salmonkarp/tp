@@ -2,18 +2,10 @@ package seedu.address.model.person;
 
 import java.util.HashMap;
 
-import seedu.address.model.GradeTypes;
-
 /**
  * A map from assignments to grades for each student.
  */
 public class GradeMap extends HashMap<GradeTypes, Grade> {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "GradeList should be in the format "
-            + "ASSIGNMENT:GRADE;ASSIGNMENT:GRADE;...\n"
-            + "Assignments without grades can be represented as ASSIGNMENT:.";
-
     /**
      * Constructs a default GradeList with uninitialized scores.
      */
