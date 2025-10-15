@@ -9,8 +9,9 @@ public enum GradeTypes {
     Q3,
     Q4,
     Q5,
-    Midterm,
-    Final;
+    Q6,
+    Q7,
+    Finals;
 
     /**
      * Returns an array of all assignment types.
