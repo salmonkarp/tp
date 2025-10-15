@@ -68,7 +68,7 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 
 Shows a popup with a help guide of the commands available to users.
 
-![help popup](images/helpPopup.png)
+![help popup](images/helpPopup.jpg)
 
 Format: `help`
 
