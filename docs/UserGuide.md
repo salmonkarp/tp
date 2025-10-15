@@ -83,7 +83,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [t/TUTORIAL]…​`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 t/Tutorial 1`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 t/Tutorial1`
 
 ### Listing all persons : `list`
 
