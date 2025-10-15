@@ -5,8 +5,7 @@ import java.util.HashMap;
 import seedu.address.model.GradeTypes;
 
 /**
- * A list of grades for assignments.
- * Guarantees: immutable
+ * A map from assignments to grades for each student.
  */
 public class GradeMap extends HashMap<GradeTypes, Grade> {
 
@@ -16,7 +15,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
             + "Assignments without grades can be represented as ASSIGNMENT:.";
 
     /**
-     * Constructs an empty GradeList.
+     * Constructs a default GradeList with uninitialized scores.
      */
     public GradeMap() {
         super();
@@ -38,8 +37,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
      * If there are no grades, returns a Grade with an empty value.
      */
     public Grade getOverallGrade() {
-        // can be modified later when we have weights for assignments
-        // for later
+        // for modification later
         return new Grade("0.00");
     }
 

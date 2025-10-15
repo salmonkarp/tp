@@ -2,7 +2,6 @@ package seedu.address.model;
 
 /**
  * Represents an assignment type in the address book.
- * Guarantees: immutable.
  */
 public enum GradeTypes {
     Q1,
@@ -21,8 +20,8 @@ public enum GradeTypes {
     }
 
     /**
-     * Returns the Assignment corresponding to the given string.
-     * Throws IllegalArgumentException if no such Assignment exists.
+     * Returns the GradeType corresponding to the given string.
+     * Throws IllegalArgumentException if no such GradeType exists.
      */
     public static GradeTypes fromString(String part) {
         for (GradeTypes gradeType : GradeTypes.values()) {
