@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEHANDLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEHANDLE_BOB;
 
