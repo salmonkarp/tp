@@ -26,7 +26,7 @@ public class GradeMapTest {
         GradeMap gradeMap = new GradeMap();
         for (GradeTypes gradeType : GradeTypes.getAllAssignments()) {
             assertTrue(gradeMap.containsKey(gradeType));
-            assertEquals("0.00", gradeMap.get(gradeType).value);
+            assertEquals(" ", gradeMap.get(gradeType).value);
         }
     }
 
@@ -77,6 +77,6 @@ public class GradeMapTest {
     @Test
     public void getOverallGrade_noGrades_returnsEmptyGrade() {
         GradeMap gradeMap = new GradeMap();
-        assert(gradeMap.getOverallGrade().value.equals("0.00"));
+        assert(gradeMap.getOverallGrade().value.equals(" "));
     }
 }

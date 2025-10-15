@@ -20,7 +20,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
     public GradeMap() {
         super();
         for (GradeTypes gradeType : GradeTypes.getAllAssignments()) {
-            this.put(gradeType, new Grade("0.00"));
+            this.put(gradeType, new Grade(" "));
         }
     }
 
@@ -38,7 +38,7 @@ public class GradeMap extends HashMap<GradeTypes, Grade> {
      */
     public Grade getOverallGrade() {
         // for modification later
-        return new Grade("0.00");
+        return new Grade(" ");
     }
 
     @Override
