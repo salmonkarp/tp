@@ -23,7 +23,7 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new TeleHandle("@alex"),
                 new Grade("0.00"),
-                getTagSet("Tutorial2"/**/)),
+                getTagSet("Tutorial2")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new TeleHandle("@bernice"),
                 new Grade("0.50"),
