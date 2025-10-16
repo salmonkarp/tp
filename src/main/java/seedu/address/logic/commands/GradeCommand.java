@@ -75,7 +75,10 @@ public class GradeCommand extends Command {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         TeleHandle teleHandle = personToEdit.getTeleHandle();
-        GradeMap gradeMap = (GradeMap) personToEdit.getGradeMap().clone();
+        GradeMap gradeMap = personToEdit.getGradeMap();
+        // Removed clone behaviour here since logic would've applied
+        // to other fields as well. Either way, normal behaviour would not
+        // cause sharing of objects as attributes, and is thus fine to take directly.
         gradeMap.put(assignment, grade);
         Set<Tag> tags = personToEdit.getTags();
 

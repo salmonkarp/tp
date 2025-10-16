@@ -87,9 +87,10 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different grade -> returns false
-        GradeMap gradeMap = (GradeMap) ALICE.getGradeMap().clone();
-        gradeMap.put(Assignments.Q1, new Grade(VALID_GRADE_AMY));
-        editedAlice = new PersonBuilder(ALICE).withGradeMap(gradeMap).build();
+        GradeMap gradeMap = ALICE.getGradeMap();
+        GradeMap clonedGradeMap = (GradeMap) gradeMap.clone();
+        clonedGradeMap.put(Assignments.Q1, new Grade(VALID_GRADE_AMY));
+        editedAlice = new PersonBuilder(ALICE).withGradeMap(clonedGradeMap).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
