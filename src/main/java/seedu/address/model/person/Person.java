@@ -23,19 +23,19 @@ public class Person {
 
     // Data fields
     private final TeleHandle teleHandle;
-    private final Grade grade;
+    private final GradeMap gradeMap;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, TeleHandle teleHandle, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, teleHandle, tags);
+    public Person(Name name, Phone phone, Email email, TeleHandle teleHandle, GradeMap gradeMap, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, teleHandle, gradeMap, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
-        this.grade = grade;
+        this.gradeMap = gradeMap;
         this.tags.addAll(tags);
     }
 
@@ -55,8 +55,8 @@ public class Person {
         return teleHandle;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public GradeMap getGradeMap() {
+        return gradeMap;
     }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -99,14 +99,14 @@ public class Person {
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && teleHandle.equals(otherPerson.teleHandle)
-            && grade.equals(otherPerson.grade)
+            && gradeMap.equals(otherPerson.gradeMap)
             && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, teleHandle, grade, tags);
+        return Objects.hash(name, phone, email, teleHandle, gradeMap, tags);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("teleHandle", teleHandle)
-            .add("grade", grade)
+            .add("gradeMap", gradeMap)
             .add("tags", tags)
             .toString();
     }
