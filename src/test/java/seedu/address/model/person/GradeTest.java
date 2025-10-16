@@ -34,6 +34,7 @@ public class GradeTest {
         assertFalse(Grade.isValidGrade("7 2.23")); // spaces within digits
 
         // valid Grade numbers
+        assertTrue(Grade.isValidGrade(" "));
         assertTrue(Grade.isValidGrade("67.12")); // within 0 to 100 and has 2 d.p.
         assertTrue(Grade.isValidGrade("80.86"));
         assertTrue(Grade.isValidGrade("100.00")); // accepts 100.00 exact

@@ -132,9 +132,9 @@ public class ParserUtil {
         String trimmedGrade = grade.trim();
         float floatGrade;
 
-        // Don't allow empty grade values, inside command
+        // Allow empty grade values, which will reset it to the default value
         if (trimmedGrade.isEmpty()) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+            return new Grade(" ");
         }
 
         // Ensure its numeric
