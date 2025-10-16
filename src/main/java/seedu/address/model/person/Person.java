@@ -58,6 +58,11 @@ public class Person {
     public GradeMap getGradeMap() {
         return gradeMap;
     }
+
+    public Grade getOverallGrade() {
+        return gradeMap.getOverallGrade();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

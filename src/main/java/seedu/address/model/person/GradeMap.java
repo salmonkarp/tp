@@ -47,8 +47,20 @@ public class GradeMap extends LinkedHashMap<Assignments, Grade> {
      * If there are no grades, returns a Grade with an empty value.
      */
     public Grade getOverallGrade() {
-        // for modification later
-        return new Grade(" ");
+        float totalGrade = 0f;
+        int count = 0;
+        for (Assignments gradeType : Assignments.getAllAssignments()) {
+            Grade grade = this.get(gradeType);
+            if (grade != null && !grade.value.equals(" ")) {
+                totalGrade += grade.valueFloat;
+                count++;
+            }
+        }
+        if (count != 0) {
+            return new Grade(totalGrade / count);
+        } else {
+            return new Grade(" ");
+        }
     }
 
     @Override
