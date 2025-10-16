@@ -134,7 +134,7 @@ public class ParserUtil {
 
         // Don't allow empty grade values, inside command
         if (trimmedGrade.isEmpty()) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+            return new Grade(" ");
         }
 
         // Ensure its numeric
