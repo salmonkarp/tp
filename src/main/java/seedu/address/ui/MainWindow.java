@@ -76,6 +76,12 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        // Add window icon and title
+        primaryStage.setTitle("CalcConnect");
+        primaryStage.getIcons().setAll(
+                new javafx.scene.image.Image(getClass().getResourceAsStream("/images/calculus_icon.png"))
+        );
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
