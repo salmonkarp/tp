@@ -7,6 +7,8 @@ import java.util.Map;
  * A map from assignments to grades for each student.
  */
 public class GradeMap extends LinkedHashMap<Assignments, Grade> {
+    public static final String MESSAGE_CONSTRAINTS = Grade.MESSAGE_CONSTRAINTS + "\n" + Assignments.MESSAGE_CONSTRAINTS;
+
     /**
      * Constructs a default GradeList with uninitialized scores.
      */
@@ -23,6 +25,21 @@ public class GradeMap extends LinkedHashMap<Assignments, Grade> {
      */
     public GradeMap(LinkedHashMap<Assignments, Grade> map) {
         super(map);
+    }
+
+    /**
+     * Returns true if a given map is a valid grade map.
+     * A valid grade map has valid assignment keys and valid grade values.
+     */
+    public static boolean isValidGradeMap(LinkedHashMap<String, String> gradeMap) {
+        for (Map.Entry<String, String> entry : gradeMap.entrySet()) {
+            String assignmentStr = entry.getKey();
+            String gradeStr = entry.getValue();
+            if (!Assignments.isValidAssignment(assignmentStr) || !Grade.isValidGrade(gradeStr)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

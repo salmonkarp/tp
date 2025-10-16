@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String teleHandle;
-    private final LinkedHashMap<String, String> gradeMap = new LinkedHashMap<>();
+    private final LinkedHashMap<String, String> gradeMap;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -48,7 +48,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
-        this.gradeMap.putAll(gradeMap);
+        this.gradeMap = gradeMap;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         teleHandle = source.getTeleHandle().value;
-        gradeMap.putAll(source.getGradeMap().toStringMap());
+        gradeMap = (LinkedHashMap<String, String>) source.getGradeMap().toStringMap();
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -112,6 +112,13 @@ class JsonAdaptedPerson {
         }
         final TeleHandle modelTeleHandle = new TeleHandle(teleHandle);
 
+        if (gradeMap == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, GradeMap.class.getSimpleName()));
+        }
+        if (!GradeMap.isValidGradeMap(gradeMap)) {
+            throw new IllegalValueException(GradeMap.MESSAGE_CONSTRAINTS);
+        }
         final GradeMap modelGradeMap = new GradeMap();
         for (Map.Entry<String, String> entry : gradeMap.entrySet()) {
             modelGradeMap.put(Assignments.fromString(entry.getKey()), new Grade(entry.getValue()));
