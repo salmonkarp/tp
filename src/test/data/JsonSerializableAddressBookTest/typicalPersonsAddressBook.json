@@ -5,49 +5,112 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "teleHandle": "@alice",
-    "grade" : " ",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "teleHandle": "@benson",
-    "grade" : "67.93",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "teleHandle": "@carl",
-    "grade" : "91.32",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "teleHandle": "@daniel",
-    "grade" : "100.00",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "teleHandle": "@elle",
-    "grade" : "0.00",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "teleHandle": "@fiona",
-    "grade" : "13.23",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "teleHandle": "@george",
-    "grade" : "51.67",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags" : [ ]
   } ]
 }

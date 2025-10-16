@@ -4,13 +4,31 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "teleHandle": "@alice",
-    "grade": "89.26",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "grade": "89.26",
+    "gradeMap" : {
+      "Q1" : " ",
+      "Q2" : " ",
+      "Q3" : " ",
+      "Q4" : " ",
+      "Q5" : " ",
+      "Q6" : " ",
+      "Q7" : " ",
+      "Finals" : " "
+    },
     "teleHandle": "@alice"
   } ]
 }

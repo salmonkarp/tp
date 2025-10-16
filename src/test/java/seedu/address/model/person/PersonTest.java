@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL1;
@@ -87,7 +87,10 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different grade -> returns false
-        editedAlice = new PersonBuilder(ALICE).withGrade(VALID_GRADE_BOB).build();
+        GradeMap gradeMap = ALICE.getGradeMap();
+        GradeMap clonedGradeMap = (GradeMap) gradeMap.clone();
+        clonedGradeMap.put(Assignments.Q1, new Grade(VALID_GRADE_AMY));
+        editedAlice = new PersonBuilder(ALICE).withGradeMap(clonedGradeMap).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -99,7 +102,7 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", teleHandle=" + ALICE.getTeleHandle()
-                + ", grade=" + ALICE.getGrade()
+                + ", gradeMap=" + ALICE.getGradeMap()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }

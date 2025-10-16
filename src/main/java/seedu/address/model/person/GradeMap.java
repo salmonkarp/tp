@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * A map from assignments to grades for each student.
  */
-public class GradeMap extends HashMap<Assignments, Grade> {
+public class GradeMap extends LinkedHashMap<Assignments, Grade> {
+    public static final String MESSAGE_CONSTRAINTS = Grade.MESSAGE_CONSTRAINTS + "\n" + Assignments.MESSAGE_CONSTRAINTS;
+
     /**
      * Constructs a default GradeList with uninitialized scores.
      */
@@ -20,8 +23,23 @@ public class GradeMap extends HashMap<Assignments, Grade> {
      * Constructs a GradeList with the given map.
      * Used for copying.
      */
-    public GradeMap(HashMap<Assignments, Grade> map) {
+    public GradeMap(LinkedHashMap<Assignments, Grade> map) {
         super(map);
+    }
+
+    /**
+     * Returns true if a given map is a valid grade map.
+     * A valid grade map has valid assignment keys and valid grade values.
+     */
+    public static boolean isValidGradeMap(LinkedHashMap<String, String> gradeMap) {
+        for (Map.Entry<String, String> entry : gradeMap.entrySet()) {
+            String assignmentStr = entry.getKey();
+            String gradeStr = entry.getValue();
+            if (!Assignments.isValidAssignment(assignmentStr) || !Grade.isValidGrade(gradeStr)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -58,4 +76,15 @@ public class GradeMap extends HashMap<Assignments, Grade> {
         return super.equals(other);
     }
 
+    /**
+     * Converts the GradeMap to a Map with String keys and values.
+     * Used for serialization.
+     */
+    public Map<String, String> toStringMap() {
+        Map<String, String> stringMap = new LinkedHashMap<>();
+        for (Map.Entry<Assignments, Grade> entry : this.entrySet()) {
+            stringMap.put(entry.getKey().name(), entry.getValue().toString());
+        }
+        return stringMap;
+    }
 }
