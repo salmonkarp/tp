@@ -1,11 +1,12 @@
 package seedu.address.model.person;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * A map from assignments to grades for each student.
  */
-public class GradeMap extends HashMap<Assignments, Grade> {
+public class GradeMap extends LinkedHashMap<Assignments, Grade> {
     /**
      * Constructs a default GradeList with uninitialized scores.
      */
@@ -20,7 +21,7 @@ public class GradeMap extends HashMap<Assignments, Grade> {
      * Constructs a GradeList with the given map.
      * Used for copying.
      */
-    public GradeMap(HashMap<Assignments, Grade> map) {
+    public GradeMap(LinkedHashMap<Assignments, Grade> map) {
         super(map);
     }
 
@@ -58,4 +59,15 @@ public class GradeMap extends HashMap<Assignments, Grade> {
         return super.equals(other);
     }
 
+    /**
+     * Converts the GradeMap to a Map with String keys and values.
+     * Used for serialization.
+     */
+    public Map<String, String> toStringMap() {
+        Map<String, String> stringMap = new LinkedHashMap<>();
+        for (Map.Entry<Assignments, Grade> entry : this.entrySet()) {
+            stringMap.put(entry.getKey().name(), entry.getValue().toString());
+        }
+        return stringMap;
+    }
 }

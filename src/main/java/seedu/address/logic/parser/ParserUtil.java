@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
@@ -150,5 +151,19 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return new Grade(formattedGrade);
+    }
+
+    /**
+     * Parses {@code String assignment} into an {@code Assignments}.
+     */
+    public static Assignments parseAssignment(String assignment) throws ParseException {
+        requireNonNull(assignment);
+        String trimmedAssignment = assignment.trim();
+
+        // Don't allow empty assignment values, inside command
+        if (trimmedAssignment.isEmpty() || !Assignments.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignments.MESSAGE_CONSTRAINTS);
+        }
+        return Assignments.fromString(trimmedAssignment);
     }
 }
