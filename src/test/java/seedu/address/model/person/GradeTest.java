@@ -58,5 +58,22 @@ public class GradeTest {
 
         // different values -> returns false
         assertFalse(grade.equals(new Grade("50.53")));
+
+        Grade grade1 = new Grade(67);
+
+        // same values -> returns true
+        assertTrue(grade1.equals(new Grade("67.00")));
+
+        // same object -> returns true
+        assertTrue(grade1.equals(grade1));
+
+        // null -> returns false
+        assertFalse(grade1.equals(null));
+
+        // different types -> returns false
+        assertFalse(grade1.equals("67.00"));
+
+        // different values -> returns false
+        assertFalse(grade1.equals(new Grade("67.01")));
     }
 }

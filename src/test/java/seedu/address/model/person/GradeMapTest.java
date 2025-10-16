@@ -13,6 +13,13 @@ public class GradeMapTest {
 
     public static final String VALID_GRADE_0 = "85.00";
     public static final String VALID_GRADE_1 = "90.00";
+    public static final String CORRECT_GRADE_0 = "87.50";
+    public static final String INVALID_GRADE_0 = "InvalidGrade";
+    public static final String VALID_ASSIGNMENT_STR_0 = "Q1";
+    public static final String VALID_ASSIGNMENT_STR_1 = "Q2";
+    public static final String INVALID_ASSIGNMENT_STR_0 = "A1";
+    public static final Assignments VALID_ASSIGNMENT_0 = Assignments.Q1;
+    public static final Assignments VALID_ASSIGNMENT_1 = Assignments.Q2;
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -54,7 +61,7 @@ public class GradeMapTest {
     @Test
     public void get_invalidKey_throwsIllegalArgumentException() {
         GradeMap gradeMap = new GradeMap();
-        assertThrows(IllegalArgumentException.class, () -> gradeMap.get("InvalidKey"));
+        assertThrows(IllegalArgumentException.class, () -> gradeMap.get(INVALID_ASSIGNMENT_STR_0));
     }
 
     @Test
@@ -73,8 +80,38 @@ public class GradeMapTest {
     }
 
     @Test
+    public void isValidGradeMap_validMap_returnsTrue() {
+        LinkedHashMap<String, String> validMap = new LinkedHashMap<>();
+        validMap.put(VALID_ASSIGNMENT_STR_0, VALID_GRADE_0);
+        validMap.put(VALID_ASSIGNMENT_STR_1, VALID_GRADE_1);
+        assertEquals(true, GradeMap.isValidGradeMap(validMap));
+    }
+
+    @Test
+    public void isValidGradeMap_invalidMap_returnsFalse() {
+        LinkedHashMap<String, String> invalidMap = new LinkedHashMap<>();
+        invalidMap.put(VALID_ASSIGNMENT_STR_0, VALID_GRADE_0);
+        invalidMap.put(INVALID_ASSIGNMENT_STR_0, VALID_GRADE_1);
+        assertEquals(false, GradeMap.isValidGradeMap(invalidMap));
+
+        LinkedHashMap<String, String> invalidMap1 = new LinkedHashMap<>();
+        invalidMap1.put(VALID_ASSIGNMENT_STR_0, VALID_GRADE_0);
+        invalidMap1.put(VALID_ASSIGNMENT_STR_1, INVALID_GRADE_0);
+        assertEquals(false, GradeMap.isValidGradeMap(invalidMap1));
+    }
+
+    @Test
     public void getOverallGrade_noGrades_returnsEmptyGrade() {
         GradeMap gradeMap = new GradeMap();
-        assert(gradeMap.getOverallGrade().value.equals(" "));
+        assertEquals(gradeMap.getOverallGrade().value, " ");
+    }
+
+    @Test
+    public void getOverallGrade_validGrades_returnsCorrectGrade() {
+        LinkedHashMap<Assignments, Grade> map = new LinkedHashMap<>();
+        map.put(VALID_ASSIGNMENT_0, new Grade(VALID_GRADE_0));
+        map.put(VALID_ASSIGNMENT_1, new Grade(VALID_GRADE_1));
+        GradeMap gradeMap = new GradeMap(map);
+        assertEquals(gradeMap.getOverallGrade().value, CORRECT_GRADE_0);
     }
 }
