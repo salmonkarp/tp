@@ -17,7 +17,7 @@ public enum Assignments {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Assignment types should be one of the following: "
-            + Arrays.toString(Assignments.getAllAssignments());
+                    + Arrays.toString(Assignments.getAllAssignments());
     /**
      * Returns an array of all assignment types.
      */
@@ -48,5 +48,22 @@ public enum Assignments {
             }
         }
         throw new IllegalArgumentException("No assignment with name: " + part);
+    }
+
+    /**
+     * Returns a user-friendly description of the assignment type.
+     */
+    public String getDescription() {
+        switch (this) {
+        case Q1: return "Quiz 1";
+        case Q2: return "Quiz 2";
+        case Q3: return "Quiz 3";
+        case Q4: return "Quiz 4";
+        case Q5: return "Quiz 5";
+        case Q6: return "Quiz 6";
+        case Q7: return "Quiz 7";
+        case Finals: return "Finals";
+        default: return "";
+        }
     }
 }
