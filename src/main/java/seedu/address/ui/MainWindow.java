@@ -26,7 +26,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.GradeTypes;
+import seedu.address.model.person.Assignments;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -237,8 +237,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private VBox assignmentPopupContent() {
         VBox content = new VBox();
-        GradeTypes[] assignments = GradeTypes.values();
-        for (GradeTypes assignment : assignments) {
+        Assignments[] assignments = Assignments.values();
+        for (Assignments assignment : assignments) {
             Label label = new Label(assignment.getDescription());
             label.setStyle("-fx-font-weight: bold; -fx-padding: 4 8; -fx-text-fill: #d4d4d6;");
             content.getChildren().add(label);
