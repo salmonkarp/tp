@@ -21,6 +21,8 @@ public class Grade {
 
     public final String value;
 
+    public final float valueFloat;
+
     /**
      * Constructs a {@code Grade}.
      *
@@ -30,6 +32,20 @@ public class Grade {
         requireNonNull(value);
         checkArgument(isValidGrade(value), VALIDATION_REGEX);
         this.value = value;
+        this.valueFloat = value.equals(" ") ? 0.0f : Float.parseFloat(value);
+    }
+
+    /**
+     * Constructs a {@code Grade} from a float.
+     *
+     * @param value A valid grade number between 0.00 and 100.00.
+     */
+    public Grade(float value) {
+        // primitive float cannot be null
+        String valueStr = String.format("%.2f", value);
+        checkArgument(isValidGrade(valueStr), VALIDATION_REGEX);
+        this.value = valueStr;
+        this.valueFloat = value;
     }
 
     /**
