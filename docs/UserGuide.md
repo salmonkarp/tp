@@ -177,6 +177,16 @@ Examples:
 * `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd person in the address book.
 * `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st person in the results of the `find` command.
 
+Expected output:
+* `Attendance: x/11`, x increases by 1 after each successful attendance marking
+
+Warnings:
+* Entering the wrong format for the command will result in a warning:
+`Invalid command format!
+  attend: Marks the attendance of the given tutorial group of the person identified by the index number used in the displayed person list.
+  Parameters: INDEX (must be a positive integer) c/TUTORIAL_CLASS
+  Example: attend 1 c/t1`
+
 ### Unmarking a person's tutorial attendance: `unattend`
 
 Unmarks a person as attended for a specific tutorial class.
@@ -192,9 +202,15 @@ Examples:
 * `unattend 2 c/t5` unmarks the attendance for tutorial 5 class of the 2nd person in the address book.
 * `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 class of the 1st person in the results of the `find` command.
 
-Warnings:
-
 Expected output:
+* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
+
+Warnings:
+* Entering the wrong format for the command will result in a warning:
+  `Invalid command format!
+    unattend: Unmarks the attendance of the given tutorial group of the person identified by the index number used in the displayed person list.
+    Parameters: INDEX (must be a positive integer) c/TUTORIAL_CLASS
+    Example: unattend 1 c/t1`
 
 ### Exiting the program : `exit`
 
