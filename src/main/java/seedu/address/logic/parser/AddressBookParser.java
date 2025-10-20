@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.text.similarity.LevenshteinDistance;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
@@ -44,9 +47,10 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+        commandWord = fuzzyMatch(commandWord);
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
@@ -87,4 +91,33 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Attempts to fuzzy match the given command word to a known keyword.
+     * Checks for an exact (case-sensitive) match first. If none is found, compares
+     * the input against known command keywords using Levenshtein distance with a
+     * maximum allowed distance of 1 and returns the closest matching keyword when
+     * within that threshold.
+     *
+     * @param commandWord the command word to match
+     * @return the matched keyword (exact or fuzzy)
+     * @throws ParseException if no close match is found
+     */
+    public String fuzzyMatch(String commandWord) throws ParseException {
+        final int maxDistThreshold = 1;
+        final LevenshteinDistance levDist = new LevenshteinDistance(maxDistThreshold);
+        final List<String> commandKeywords = List.of(
+                AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD,
+                ClearCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+                ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, GradeCommand.COMMAND_WORD
+        );
+        if (commandKeywords.contains(commandWord)) {
+            return commandWord;
+        }
+        for (String keyword : commandKeywords) {
+            if (levDist.apply(keyword, commandWord) != -1) {
+                return keyword;
+            }
+        }
+        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+    }
 }
