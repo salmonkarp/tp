@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,8 +51,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TELEHANDLE_DESC_AMY = " " + PREFIX_TELEHANDLE + VALID_TELEHANDLE_AMY;
     public static final String TELEHANDLE_DESC_BOB = " " + PREFIX_TELEHANDLE + VALID_TELEHANDLE_BOB;
-    public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP_AMY;
-    public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP_BOB;
+    public static final String TUTORIAL_GROUP_DESC_AMY = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_AMY;
+    public static final String TUTORIAL_GROUP_DESC_BOB = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL2;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL1;
 
@@ -61,7 +61,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // empty string not allowed for telehandle
     public static final String INVALID_TELEHANDLE_DESC = " " + PREFIX_TELEHANDLE;
-    public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIAL + "T0@1"; // '@' not allowed in tutorial
+    public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIAL_GROUP + "T0@1";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tutorial*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

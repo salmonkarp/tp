@@ -19,8 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TELEHANDLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TELEHANDLE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -57,7 +57,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TELEHANDLE_DESC_BOB + TUTORIAL_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TELEHANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
@@ -65,7 +65,7 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + TELEHANDLE_DESC_BOB + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND
+                        + TELEHANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND
                         + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
     }
@@ -141,7 +141,7 @@ public class AddCommandParserTest {
         // zero tags and no tutorial
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
-                        + EMAIL_DESC_AMY + TELEHANDLE_DESC_AMY + TUTORIAL_DESC_AMY,
+                        + EMAIL_DESC_AMY + TELEHANDLE_DESC_AMY + TUTORIAL_GROUP_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -174,19 +174,19 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
-                + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
-                + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TELEHANDLE_DESC_BOB
-                + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid telehandle
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_TELEHANDLE_DESC
-                + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TeleHandle.MESSAGE_CONSTRAINTS);
+                + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TeleHandle.MESSAGE_CONSTRAINTS);
 
         // invalid tutorial
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_TELEHANDLE_DESC
@@ -194,16 +194,16 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
-                + TUTORIAL_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_TUTORIAL2, Tag.MESSAGE_CONSTRAINTS);
+                + TUTORIAL_GROUP_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_TUTORIAL2, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + INVALID_TELEHANDLE_DESC + TUTORIAL_DESC_BOB,
+                        + EMAIL_DESC_BOB + INVALID_TELEHANDLE_DESC + TUTORIAL_GROUP_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TELEHANDLE_DESC_BOB + TUTORIAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + TELEHANDLE_DESC_BOB + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

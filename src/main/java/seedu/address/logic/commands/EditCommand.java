@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TELEHANDLE + "TELEHANDLE] "
-        + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
+        + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
@@ -260,7 +260,7 @@ public class EditCommand extends Command {
                 .add("phone", phone)
                 .add("email", email)
                 .add("teleHandle", teleHandle)
-                .add("tutorial", tutorialGroup)
+                .add("tutorialGroup", tutorialGroup)
                 .add("tags", tags)
                 .toString();
         }

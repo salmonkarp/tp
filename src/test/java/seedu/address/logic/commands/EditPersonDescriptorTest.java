@@ -53,7 +53,7 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTeleHandle(VALID_TELEHANDLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different telehandle -> returns false
+        // different tutorial group -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTutorialGroup(VALID_TUTORIAL_GROUP_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -69,7 +69,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", teleHandle="
-                + editPersonDescriptor.getTutorialGroup().orElse(null) + ", tutorial="
+                + editPersonDescriptor.getTutorialGroup().orElse(null) + ", tutorialGroup="
                 + editPersonDescriptor.getTeleHandle().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());

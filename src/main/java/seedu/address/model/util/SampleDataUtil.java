@@ -25,12 +25,12 @@ public class SampleDataUtil {
                 new TeleHandle("@alex"),
                 new TutorialGroup("T01"),
                 new GradeMap(),
-                getTagSet("NeedsHelp")),
+                getTagSet("Needs Help")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new TeleHandle("@bernice"),
                 new TutorialGroup("T02"),
                 new GradeMap(),
-                getTagSet("TopStudent")),
+                getTagSet("Top Student")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new TeleHandle("@charlotte"),
                 new TutorialGroup("T03"),
@@ -50,7 +50,7 @@ public class SampleDataUtil {
                 new TeleHandle("@roy"),
                 new TutorialGroup("T03"),
                 new GradeMap(),
-                getTagSet("NeedsHelp"))
+                getTagSet("Needs Help"))
         };
     }
 

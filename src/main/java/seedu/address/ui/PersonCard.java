@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label grade;
     @FXML
-    private FlowPane tutorialAndTags;
+    private FlowPane tutorialGroupAndTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,12 +57,12 @@ public class PersonCard extends UiPart<Region> {
         if (!tutorial.isEmpty()) {
             Label tutorialLabel = new Label(tutorial);
             tutorialLabel.getStyleClass().add("tutorial-label");
-            tutorialAndTags.getChildren().add(tutorialLabel);
+            tutorialGroupAndTags.getChildren().add(tutorialLabel);
         }
         email.setText(person.getEmail().value);
         grade.setText(person.getOverallGrade().value);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tutorialAndTags.getChildren().add(new Label(tag.tagName)));
+            .forEach(tag -> tutorialGroupAndTags.getChildren().add(new Label(tag.tagName)));
     }
 }

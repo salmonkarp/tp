@@ -25,7 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TELEHANDLE = "rachel";
-    private static final String INVALID_TUTORIAL = "Tutori@L1";
+    private static final String INVALID_TUTORIAL_GROUP = "Tutori@L1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GRADE = "131.53";
     private static final LinkedHashMap<String, String> INVALID_GRADE_MAP = new LinkedHashMap<>(
@@ -37,7 +37,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_TELEHANDLE = BENSON.getTeleHandle().toString();
-    private static final String VALID_TUTORIAL = BENSON.getTutorialGroup().toString();
+    private static final String VALID_TUTORIAL_GROUP = BENSON.getTutorialGroup().toString();
     private static final LinkedHashMap<String, String> VALID_GRADE_MAP;
     static {
         VALID_GRADE_MAP = (LinkedHashMap<String, String>) BENSON.getGradeMap().toStringMap();
@@ -60,7 +60,7 @@ public class JsonAdaptedPersonTest {
                         VALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
-                        VALID_TUTORIAL,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
@@ -74,7 +74,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
@@ -88,7 +88,7 @@ public class JsonAdaptedPersonTest {
                         INVALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
-                        VALID_TUTORIAL,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
@@ -102,7 +102,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
@@ -115,7 +115,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 INVALID_EMAIL,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
@@ -129,7 +129,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 null,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
@@ -142,7 +142,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 INVALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = TeleHandle.MESSAGE_CONSTRAINTS;
@@ -155,7 +155,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 null,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TeleHandle.class.getSimpleName());
@@ -168,7 +168,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
-                INVALID_TUTORIAL,
+                INVALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = TutorialGroup.MESSAGE_CONSTRAINTS;
@@ -197,7 +197,7 @@ public class JsonAdaptedPersonTest {
                         VALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
-                        VALID_TUTORIAL,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
@@ -209,7 +209,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 INVALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = GradeMap.MESSAGE_CONSTRAINTS;
@@ -222,7 +222,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
-                VALID_TUTORIAL,
+                VALID_TUTORIAL_GROUP,
                 null,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GradeMap.class.getSimpleName());

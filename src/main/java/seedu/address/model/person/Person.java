@@ -134,7 +134,7 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("teleHandle", teleHandle)
-            .add("tutorial", tutorialGroup)
+            .add("tutorialGroup", tutorialGroup)
             .add("gradeMap", gradeMap)
             .add("tags", tags)
             .toString();

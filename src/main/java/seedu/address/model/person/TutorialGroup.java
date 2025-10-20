@@ -20,12 +20,12 @@ public class TutorialGroup {
     /**
      * Constructs a {@code Tutorial}.
      *
-     * @param tutorial A valid tutorial name.
+     * @param tutorialGroup A valid tutorial name.
      */
-    public TutorialGroup(String tutorial) {
-        requireNonNull(tutorial);
-        checkArgument(isValidTutorial(tutorial), MESSAGE_CONSTRAINTS);
-        value = tutorial;
+    public TutorialGroup(String tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        checkArgument(isValidTutorial(tutorialGroup), MESSAGE_CONSTRAINTS);
+        value = tutorialGroup;
     }
 
     public static boolean isValidTutorial(String test) {

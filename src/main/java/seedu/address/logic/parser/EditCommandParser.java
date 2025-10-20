@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -39,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     PREFIX_PHONE,
                     PREFIX_EMAIL,
                     PREFIX_TELEHANDLE,
-                    PREFIX_TUTORIAL,
+                    PREFIX_TUTORIAL_GROUP,
                     PREFIX_TAG);
 
         Index index;
@@ -54,7 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_PHONE,
                 PREFIX_EMAIL,
                 PREFIX_TELEHANDLE,
-                PREFIX_TUTORIAL);
+                PREFIX_TUTORIAL_GROUP);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -71,9 +71,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTeleHandle(
                 ParserUtil.parseTeleHandle(argMultimap.getValue(PREFIX_TELEHANDLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TUTORIAL_GROUP).isPresent()) {
             editPersonDescriptor.setTutorial(
-                ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL).get()));
+                ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL_GROUP).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
