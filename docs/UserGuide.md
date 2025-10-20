@@ -28,7 +28,7 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com u/@john t/Tutorial1` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/T01 t/Smart` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -50,10 +50,10 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TUTORIAL]` can be used as `n/John Doe t/Tutorial1` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Good Student` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TUTORIAL]…​` can be used as ` ` (i.e. 0 times), `t/Tutorial1`, `t/Tutorial1 t/Tutorial2` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Good Student`, `t/Good Student t/Smart` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -77,13 +77,14 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [t/TUTORIAL]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​`
 
-
+* `TUTORIAL_GROUP` must be in the format `TXX` where `XX` is any sequence of digits e.g. `T01`, `T12`.
+* `TAG` must only contain either alphanumeric characters or spaces, e.g. `Good Student` is a valid tag.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 t/Tutorial1`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/T01 t/Good Student`
 
 ### Listing all persons : `list`
 
@@ -95,13 +96,14 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tutorial tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tutorial tags by typing `t/` without
+* You can unset a person's tutorial group by typing `tg/` without specifying any tutorial group after it.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s  tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
@@ -205,11 +207,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [t/TUTORIAL]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Tutorial1`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
