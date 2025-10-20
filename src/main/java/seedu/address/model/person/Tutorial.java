@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tutorial {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial should start with 'T' followed by digits, "
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial group should start with 'T' followed by digits, "
             + "or be left blank to indicate no tutorial group assigned.";
 
     public static final String VALIDATION_REGEX = "(T\\d+)?";
