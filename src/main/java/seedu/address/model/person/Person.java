@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final TeleHandle teleHandle;
     private final GradeMap gradeMap;
+    private Tutorial tutorialGroup; // accept the version that has "final", this is temporary only
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -53,6 +54,10 @@ public class Person {
 
     public TeleHandle getTeleHandle() {
         return teleHandle;
+    }
+
+    public Tutorial getTutorialGroup() {
+        return tutorialGroup;
     }
 
     public GradeMap getGradeMap() {
