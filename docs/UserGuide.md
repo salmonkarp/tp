@@ -186,7 +186,7 @@ Format: `unattend INDEX c/TUTORIAL_NUMBER`
 * Unmarks the person at the specified `INDEX` as attended for the given tutorial (sets attendance value to 0).
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_NUMBER` must be a valid tutorial identifier from t1 to t11.
+* `TUTORIAL_NUMBER` must be a valid tutorial identifier from **t1** to **t11**.
 
 Examples:
 * `unattend 2 c/t5` unmarks the attendance for tutorial 5 of the 2nd person in the address book.
