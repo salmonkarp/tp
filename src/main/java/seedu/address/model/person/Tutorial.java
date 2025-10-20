@@ -9,9 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tutorial {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial name should not be blank and must be alphanumeric.";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial name must be alphanumeric.";
 
-    public static final String VALIDATION_REGEX = "[A-Za-z0-9 ]+";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
+    public static final String DEFAULT_TUTORIAL = "";
 
     public final String value;
 

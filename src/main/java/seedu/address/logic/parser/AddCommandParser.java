@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -42,7 +43,13 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEHANDLE, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args,
+                    PREFIX_NAME,
+                    PREFIX_PHONE,
+                    PREFIX_EMAIL,
+                    PREFIX_TELEHANDLE,
+                    PREFIX_TUTORIAL,
+                    PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEHANDLE, PREFIX_PHONE, PREFIX_EMAIL)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -54,7 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         TeleHandle teleHandle = ParserUtil.parseTeleHandle(argMultimap.getValue(PREFIX_TELEHANDLE).get());
-        Tutorial tutorial = ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TAG).get());
+        Tutorial tutorial;
+        tutorial = ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL).orElse(Tutorial.DEFAULT_TUTORIAL));
         GradeMap defaultGradeMap = new GradeMap();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

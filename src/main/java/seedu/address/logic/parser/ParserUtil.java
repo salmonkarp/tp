@@ -171,12 +171,11 @@ public class ParserUtil {
     /**
      * Parses {@code String tutorial} into an {@code Tutorial}.
      */
-    public static Tutorial parseTutorial(String s) {
-        requireNonNull(s);
-        String trimmedTutorial = s.trim();
-
-        if (trimmedTutorial.isEmpty() || !Tutorial.isValidTutorial(trimmedTutorial)) {
-            throw new IllegalArgumentException(Tutorial.MESSAGE_CONSTRAINTS);
+    public static Tutorial parseTutorial(String tutorial) throws ParseException {
+        requireNonNull(tutorial);
+        String trimmedTutorial = tutorial.trim();
+        if (!Tutorial.isValidTutorial(trimmedTutorial)) {
+            throw new ParseException(Tutorial.MESSAGE_CONSTRAINTS);
         }
         return new Tutorial(trimmedTutorial);
     }
