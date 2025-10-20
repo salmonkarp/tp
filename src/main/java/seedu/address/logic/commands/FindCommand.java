@@ -21,9 +21,14 @@ public class FindCommand extends Command {
         + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
+    private final boolean isVerbose;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    /**
+     * Creates a FindCommand to find persons matching the given predicate.
+     */
+    public FindCommand(NameContainsKeywordsPredicate predicate, boolean isVerbose) {
         this.predicate = predicate;
+        this.isVerbose = isVerbose;
     }
 
     @Override
@@ -31,7 +36,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), false, false, isVerbose);
     }
 
     @Override

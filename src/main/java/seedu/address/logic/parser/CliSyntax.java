@@ -13,4 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_GRADE = new Prefix("g/");
     public static final Prefix PREFIX_ASSIGNMENT = new Prefix("n/");
+
+    /* Suffix definition */
+    public static final String SUFFIX_VERBOSE = "/v";
 }
