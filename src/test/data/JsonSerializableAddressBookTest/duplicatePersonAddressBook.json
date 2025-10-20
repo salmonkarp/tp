@@ -4,7 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "teleHandle": "@alice",
-    "tutorial": "T01",
+    "tutorialGroup": "T01",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -20,7 +20,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "tutorial": "T01",
+    "tutorialGroup": "T01",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",

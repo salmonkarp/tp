@@ -20,7 +20,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +34,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String teleHandle;
-    private final String tutorial;
+    private final String tutorialGroup;
     private final LinkedHashMap<String, String> gradeMap;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -44,14 +44,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("teleHandle") String teleHandle,
-                             @JsonProperty("tutorial") String tutorial,
+                             @JsonProperty("tutorialGroup") String tutorialGroup,
                              @JsonProperty("gradeMap") LinkedHashMap<String, String> gradeMap,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
-        this.tutorial = tutorial;
+        this.tutorialGroup = tutorialGroup;
         this.gradeMap = gradeMap;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -66,7 +66,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         teleHandle = source.getTeleHandle().value;
-        tutorial = source.getTutorial().value;
+        tutorialGroup = source.getTutorialGroup().value;
         gradeMap = (LinkedHashMap<String, String>) source.getGradeMap().toStringMap();
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -117,14 +117,14 @@ class JsonAdaptedPerson {
         }
         final TeleHandle modelTeleHandle = new TeleHandle(teleHandle);
 
-        if (tutorial == null) {
+        if (tutorialGroup == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Tutorial.class.getSimpleName()));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName()));
         }
-        if (!Tutorial.isValidTutorial(tutorial)) {
-            throw new IllegalValueException(Tutorial.MESSAGE_CONSTRAINTS);
+        if (!TutorialGroup.isValidTutorial(tutorialGroup)) {
+            throw new IllegalValueException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
-        final Tutorial modelTutorial = new Tutorial(tutorial);
+        final TutorialGroup modelTutorialGroup = new TutorialGroup(tutorialGroup);
 
         if (gradeMap == null) {
             throw new IllegalValueException(
@@ -139,7 +139,13 @@ class JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTeleHandle, modelTutorial, modelGradeMap, modelTags);
+        return new Person(modelName,
+                modelPhone,
+                modelEmail,
+                modelTeleHandle,
+                modelTutorialGroup,
+                modelGradeMap,
+                modelTags);
     }
 
 }

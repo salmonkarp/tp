@@ -28,7 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,7 +82,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         TeleHandle updatedTeleHandle = editPersonDescriptor.getTeleHandle().orElse(personToEdit.getTeleHandle());
-        Tutorial updatedTutorial = editPersonDescriptor.getTutorial().orElse(personToEdit.getTutorial());
+        TutorialGroup updatedTutorialGroup = editPersonDescriptor.getTutorialGroup()
+                .orElse(personToEdit.getTutorialGroup());
         GradeMap updatedGradeMap = personToEdit.getGradeMap();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -90,7 +91,7 @@ public class EditCommand extends Command {
                 updatedPhone,
                 updatedEmail,
                 updatedTeleHandle,
-                updatedTutorial,
+                updatedTutorialGroup,
                 updatedGradeMap,
                 updatedTags);
     }
@@ -149,7 +150,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private TeleHandle teleHandle;
-        private Tutorial tutorial;
+        private TutorialGroup tutorialGroup;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -164,7 +165,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTeleHandle(toCopy.teleHandle);
-            setTutorial(toCopy.tutorial);
+            setTutorial(toCopy.tutorialGroup);
             setTags(toCopy.tags);
         }
 
@@ -172,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, teleHandle, tutorial, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, teleHandle, tutorialGroup, tags);
         }
 
         public Optional<Name> getName() {
@@ -207,12 +208,12 @@ public class EditCommand extends Command {
             this.teleHandle = teleHandle;
         }
 
-        public Optional<Tutorial> getTutorial() {
-            return Optional.ofNullable(tutorial);
+        public Optional<TutorialGroup> getTutorialGroup() {
+            return Optional.ofNullable(tutorialGroup);
         }
 
-        public void setTutorial(Tutorial tutorial) {
-            this.tutorial = tutorial;
+        public void setTutorial(TutorialGroup tutorialGroup) {
+            this.tutorialGroup = tutorialGroup;
         }
 
         /**
@@ -248,7 +249,7 @@ public class EditCommand extends Command {
                 && Objects.equals(phone, otherEditPersonDescriptor.phone)
                 && Objects.equals(email, otherEditPersonDescriptor.email)
                 && Objects.equals(teleHandle, otherEditPersonDescriptor.teleHandle)
-                && Objects.equals(tutorial, otherEditPersonDescriptor.tutorial)
+                && Objects.equals(tutorialGroup, otherEditPersonDescriptor.tutorialGroup)
                 && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -259,7 +260,7 @@ public class EditCommand extends Command {
                 .add("phone", phone)
                 .add("email", email)
                 .add("teleHandle", teleHandle)
-                .add("tutorial", tutorial)
+                .add("tutorial", tutorialGroup)
                 .add("tags", tags)
                 .toString();
         }

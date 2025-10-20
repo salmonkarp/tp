@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's Tutorial Group in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTutorial(String)}
  */
-public class Tutorial {
+public class TutorialGroup {
 
     public static final String MESSAGE_CONSTRAINTS = "Tutorial group should start with 'T' followed by digits, "
             + "or be left blank to indicate no tutorial group assigned.";
@@ -22,7 +22,7 @@ public class Tutorial {
      *
      * @param tutorial A valid tutorial name.
      */
-    public Tutorial(String tutorial) {
+    public TutorialGroup(String tutorial) {
         requireNonNull(tutorial);
         checkArgument(isValidTutorial(tutorial), MESSAGE_CONSTRAINTS);
         value = tutorial;
@@ -44,12 +44,12 @@ public class Tutorial {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Tutorial)) {
+        if (!(other instanceof TutorialGroup)) {
             return false;
         }
 
-        Tutorial otherTutorial = (Tutorial) other;
-        return value.equals(otherTutorial.value);
+        TutorialGroup otherTutorialGroup = (TutorialGroup) other;
+        return value.equals(otherTutorialGroup.value);
     }
 
     @Override

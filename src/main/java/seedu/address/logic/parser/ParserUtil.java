@@ -15,7 +15,7 @@ import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -171,12 +171,12 @@ public class ParserUtil {
     /**
      * Parses {@code String tutorial} into an {@code Tutorial}.
      */
-    public static Tutorial parseTutorial(String tutorial) throws ParseException {
+    public static TutorialGroup parseTutorial(String tutorial) throws ParseException {
         requireNonNull(tutorial);
         String trimmedTutorial = tutorial.trim();
-        if (!Tutorial.isValidTutorial(trimmedTutorial)) {
-            throw new ParseException(Tutorial.MESSAGE_CONSTRAINTS);
+        if (!TutorialGroup.isValidTutorial(trimmedTutorial)) {
+            throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
-        return new Tutorial(trimmedTutorial);
+        return new TutorialGroup(trimmedTutorial);
     }
 }

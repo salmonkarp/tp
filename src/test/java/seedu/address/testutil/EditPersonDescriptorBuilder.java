@@ -10,7 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setTeleHandle(person.getTeleHandle());
-        descriptor.setTutorial(person.getTutorial());
+        descriptor.setTutorial(person.getTutorialGroup());
         descriptor.setTags(person.getTags());
     }
 
@@ -76,8 +76,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Tutorial} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTutorial(String teleHandle) {
-        descriptor.setTutorial(new Tutorial(teleHandle));
+    public EditPersonDescriptorBuilder withTutorialGroup(String tutorialGroup) {
+        descriptor.setTutorial(new TutorialGroup(tutorialGroup));
         return this;
     }
 

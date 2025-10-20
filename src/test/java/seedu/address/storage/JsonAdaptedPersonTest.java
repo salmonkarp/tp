@@ -19,7 +19,7 @@ import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -37,7 +37,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_TELEHANDLE = BENSON.getTeleHandle().toString();
-    private static final String VALID_TUTORIAL = BENSON.getTutorial().toString();
+    private static final String VALID_TUTORIAL = BENSON.getTutorialGroup().toString();
     private static final LinkedHashMap<String, String> VALID_GRADE_MAP;
     static {
         VALID_GRADE_MAP = (LinkedHashMap<String, String>) BENSON.getGradeMap().toStringMap();
@@ -163,7 +163,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidTutorial_throwsIllegalValueException() {
+    public void toModelType_invalidTutorialGroup_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
                 VALID_PHONE,
                 VALID_EMAIL,
@@ -171,12 +171,12 @@ public class JsonAdaptedPersonTest {
                 INVALID_TUTORIAL,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
-        String expectedMessage = Tutorial.MESSAGE_CONSTRAINTS;
+        String expectedMessage = TutorialGroup.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
-    public void toModelType_nullTutorial_throwsIllegalValueException() {
+    public void toModelType_nullTutorialGroup_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
                 VALID_PHONE,
                 VALID_EMAIL,
@@ -184,7 +184,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Tutorial.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

@@ -28,42 +28,42 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTeleHandle("@alice").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTutorial("T01")
+            .withTutorialGroup("T01")
             .withGradeMap()
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTeleHandle("@benson")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTutorial("T02")
+            .withTutorialGroup("T02")
             .withGradeMap()
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withTutorial("T01").withEmail("heinz@example.com").withTeleHandle("@carl").withGradeMap().build();
+            .withTutorialGroup("T01").withEmail("heinz@example.com").withTeleHandle("@carl").withGradeMap().build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withTeleHandle("@daniel")
-            .withTutorial("T03")
+            .withTutorialGroup("T03")
             .withGradeMap()
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withTutorial("T02").withEmail("werner@example.com").withTeleHandle("@elle").withGradeMap().build();
+            .withTutorialGroup("T02").withEmail("werner@example.com").withTeleHandle("@elle").withGradeMap().build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withTutorial("T03").withEmail("lydia@example.com").withTeleHandle("@fiona").withGradeMap().build();
+            .withTutorialGroup("T03").withEmail("lydia@example.com").withTeleHandle("@fiona").withGradeMap().build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withTutorial("T01").withEmail("anna@example.com").withTeleHandle("@george").withGradeMap().build();
+            .withTutorialGroup("T01").withEmail("anna@example.com").withTeleHandle("@george").withGradeMap().build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withTutorial("T01").withEmail("stefan@example.com").withTeleHandle("@hoonie").build();
+            .withTutorialGroup("T01").withEmail("stefan@example.com").withTeleHandle("@hoonie").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withTutorial("T01").withEmail("hans@example.com").withTeleHandle("@idaknow").build();
+            .withTutorialGroup("T01").withEmail("hans@example.com").withTeleHandle("@idaknow").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withTutorial("T01").withEmail(VALID_EMAIL_AMY)
+            .withTutorialGroup("T01").withEmail(VALID_EMAIL_AMY)
             .withTeleHandle(VALID_TELEHANDLE_AMY).withTags(VALID_TAG_TUTORIAL2).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withTutorial("T02").withEmail(VALID_EMAIL_BOB)
+            .withTutorialGroup("T02").withEmail(VALID_EMAIL_BOB)
             .withTeleHandle(VALID_TELEHANDLE_BOB).withTags(VALID_TAG_TUTORIAL1, VALID_TAG_TUTORIAL2)
             .build();
 

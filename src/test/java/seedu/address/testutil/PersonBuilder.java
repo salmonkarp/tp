@@ -12,7 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
-import seedu.address.model.person.Tutorial;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private TeleHandle teleHandle;
-    private Tutorial tutorial;
+    private TutorialGroup tutorialGroup;
     private GradeMap gradeMap;
     private Set<Tag> tags;
 
@@ -43,7 +43,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         teleHandle = new TeleHandle(DEFAULT_TELEHANDLE);
-        tutorial = new Tutorial(DEFAULT_TUTORIAL);
+        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL);
         gradeMap = new GradeMap();
         tags = new HashSet<>();
     }
@@ -56,7 +56,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         teleHandle = personToCopy.getTeleHandle();
-        tutorial = personToCopy.getTutorial();
+        tutorialGroup = personToCopy.getTutorialGroup();
         gradeMap = personToCopy.getGradeMap();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -88,8 +88,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Tutorial} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTutorial(String tutorial) {
-        this.tutorial = new Tutorial(tutorial);
+    public PersonBuilder withTutorialGroup(String tutorial) {
+        this.tutorialGroup = new TutorialGroup(tutorial);
         return this;
     }
 
@@ -126,6 +126,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, teleHandle, tutorial, gradeMap, tags);
+        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, tags);
     }
 }

@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_TELEHANDLE + person.getTeleHandle().value + " ");
-        sb.append(PREFIX_TUTORIAL + person.getTutorial().value + " ");
+        sb.append(PREFIX_TUTORIAL + person.getTutorialGroup().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -52,7 +52,7 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getTeleHandle().ifPresent(address -> sb.append(PREFIX_TELEHANDLE)
                 .append(address.value).append(" "));
-        descriptor.getTutorial().ifPresent(tutorial -> sb.append(PREFIX_TUTORIAL)
+        descriptor.getTutorialGroup().ifPresent(tutorial -> sb.append(PREFIX_TUTORIAL)
                 .append(tutorial.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
