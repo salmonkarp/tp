@@ -149,13 +149,14 @@ Format: `clear`
 ### Grading a person: `grade`
 
 Assigns a grade to a person in the address book.
+
+Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+
 * Grades the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Assignment name must be in enum list.
-* Grade must be a positive integer in the range 0-100 (inclusive). 
-
-Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+* Grade must be a positive integer in the range 0-100 (inclusive).
 
 Examples:
 * `grade 3 n/Assignment 1 g/97`
