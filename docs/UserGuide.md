@@ -64,6 +64,21 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+### Fuzzy Command Matching
+
+The app includes a fuzzy matching feature for commands to enhance user experience. If you make a small typo when entering a command, the application will attempt to match it to the most similar valid command.
+
+This feature uses the Levenshtein distance algorithm with a maximum allowed distance of **1**. This means that commands with a single character difference (insertion, deletion or substitution) from a valid command will be automatically corrected and executed.
+
+For example:
+*   If you type `addd`, it will be interpreted as `add`.
+*   If you type `liss`, it will be interpreted as `list`.
+*   If you type `eddit`, it will be interpreted as `edit`.
+*   If you type `ad`, it will be interpreted as `add`.
+
+However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
+For instance, `listee` will not be interpreted as `list`.
+
 ### Viewing help : `help`
 
 Shows a popup with a help guide of the commands available to users.
