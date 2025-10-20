@@ -168,7 +168,7 @@ Marks a person as attended for a specific tutorial.
 
 Format: `attend INDEX c/TUTORIAL_NUMBER`
 
-* Marks the person at the specified `INDEX` as attended for the given tutorial.
+* Marks the person at the specified `INDEX` as attended for the given tutorial (sets attendance value to 1).
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_NUMBER` must be a valid tutorial identifier from t1 to t11.
@@ -176,6 +176,21 @@ Format: `attend INDEX c/TUTORIAL_NUMBER`
 Examples:
 * `attend 2 c/t5` marks the attendance for tutorial 5 of the 2nd person in the address book.
 * `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 of the 1st person in the results of the `find` command.
+
+### Unmarking a person's tutorial attendance: `unattend`
+
+Unmarks a person as attended for a specific tutorial.
+
+Format: `unattend INDEX c/TUTORIAL_NUMBER`
+
+* Unmarks the person at the specified `INDEX` as attended for the given tutorial (sets attendance value to 0).
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `TUTORIAL_NUMBER` must be a valid tutorial identifier from t1 to t11.
+
+Examples:
+* `unattend 2 c/t5` unmarks the attendance for tutorial 5 of the 2nd person in the address book.
+* `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 of the 1st person in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
@@ -224,6 +239,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
+**Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
+**Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
