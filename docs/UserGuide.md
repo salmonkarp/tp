@@ -161,6 +161,20 @@ Examples:
 * `grade 3 n/Assignment 1 g/97`
 * `grade 5 n/Assignment 2 g/80`
 
+### Marking a person's tutorial attendance: `attend`
+
+Marks a person as attended for a specific tutorial.
+
+Format: `attend INDEX c/TUTORIAL_NUMBER`
+
+* Marks the person at the specified `INDEX` as attended for the given tutorial.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `TUTORIAL_NUMBER` must be a valid tutorial identifier from t1 to t11.
+
+Examples:
+* `attend 2 c/t5` marks the attendance for tutorial 5 of the 2nd person in the address book.
+* `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 of the 1st person in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
