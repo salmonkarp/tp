@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -45,6 +46,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TELEHANDLE + "TELEHANDLE] "
+        + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
@@ -162,6 +164,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTeleHandle(toCopy.teleHandle);
+            setTutorial(toCopy.tutorial);
             setTags(toCopy.tags);
         }
 
@@ -169,7 +172,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, teleHandle, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, teleHandle, tutorial, tags);
         }
 
         public Optional<Name> getName() {
@@ -245,6 +248,7 @@ public class EditCommand extends Command {
                 && Objects.equals(phone, otherEditPersonDescriptor.phone)
                 && Objects.equals(email, otherEditPersonDescriptor.email)
                 && Objects.equals(teleHandle, otherEditPersonDescriptor.teleHandle)
+                && Objects.equals(tutorial, otherEditPersonDescriptor.tutorial)
                 && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -255,6 +259,7 @@ public class EditCommand extends Command {
                 .add("phone", phone)
                 .add("email", email)
                 .add("teleHandle", teleHandle)
+                .add("tutorial", tutorial)
                 .add("tags", tags)
                 .toString();
         }

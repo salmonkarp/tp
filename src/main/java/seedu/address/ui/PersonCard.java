@@ -53,9 +53,12 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         teleHandle.setText(person.getTeleHandle().value);
-        Label tutorialLabel = new Label(person.getTutorial().value);
-        tutorialLabel.getStyleClass().add("tutorial-label");
-        tutorialAndTags.getChildren().add(tutorialLabel);
+        String tutorial = person.getTutorial().value;
+        if (!tutorial.isEmpty()) {
+            Label tutorialLabel = new Label(tutorial);
+            tutorialLabel.getStyleClass().add("tutorial-label");
+            tutorialAndTags.getChildren().add(tutorialLabel);
+        }
         email.setText(person.getEmail().value);
         grade.setText(person.getOverallGrade().value);
         person.getTags().stream()

@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TELEHANDLE_AMY = "@amy";
     public static final String VALID_TELEHANDLE_BOB = "@bob";
-    public static final String VALID_TUTORIAL_GROUP1 = "T01";
-    public static final String VALID_TUTORIAL_GROUP2 = "T02";
+    public static final String VALID_TUTORIAL_GROUP_AMY = "T01";
+    public static final String VALID_TUTORIAL_GROUP_BOB = "T02";
     public static final String VALID_TAG_TUTORIAL1 = "Tutorial1";
     public static final String VALID_TAG_TUTORIAL2 = "Tutorial2";
     public static final String VALID_GRADE_AMY = "80.50";
@@ -51,8 +51,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TELEHANDLE_DESC_AMY = " " + PREFIX_TELEHANDLE + VALID_TELEHANDLE_AMY;
     public static final String TELEHANDLE_DESC_BOB = " " + PREFIX_TELEHANDLE + VALID_TELEHANDLE_BOB;
-    public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP1;
-    public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP2;
+    public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP_AMY;
+    public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_GROUP_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL2;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL1;
 
