@@ -26,7 +26,7 @@ public class Tutorial {
         value = tutorial;
     }
 
-    private boolean isValidTutorial(String test) {
+    public static boolean isValidTutorial(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

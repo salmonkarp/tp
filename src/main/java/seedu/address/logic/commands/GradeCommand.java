@@ -14,14 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignments;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Grade;
-import seedu.address.model.person.GradeMap;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,14 +68,12 @@ public class GradeCommand extends Command {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         TeleHandle teleHandle = personToEdit.getTeleHandle();
+        Tutorial tutorial = personToEdit.getTutorial();
         GradeMap gradeMap = personToEdit.getGradeMap();
-        // Removed clone behaviour here since logic would've applied
-        // to other fields as well. Either way, normal behaviour would not
-        // cause sharing of objects as attributes, and is thus fine to take directly.
         gradeMap.put(assignment, grade);
         Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(name, phone, email, teleHandle, gradeMap, tags);
+        return new Person(name, phone, email, teleHandle, tutorial, gradeMap, tags);
     }
 
     @Override

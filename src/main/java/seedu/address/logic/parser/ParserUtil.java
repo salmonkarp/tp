@@ -9,12 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Assignments;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Grade;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -165,5 +160,15 @@ public class ParserUtil {
             throw new ParseException(Assignments.MESSAGE_CONSTRAINTS);
         }
         return Assignments.fromString(trimmedAssignment);
+    }
+
+    public static Tutorial parseTutorial(String s) {
+        requireNonNull(s);
+        String trimmedTutorial = s.trim();
+
+        if (trimmedTutorial.isEmpty() || !Tutorial.isValidTutorial(trimmedTutorial)) {
+            throw new IllegalArgumentException(Tutorial.MESSAGE_CONSTRAINTS);
+        }
+        return new Tutorial(trimmedTutorial);
     }
 }

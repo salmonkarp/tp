@@ -23,18 +23,26 @@ public class Person {
 
     // Data fields
     private final TeleHandle teleHandle;
+    private final Tutorial tutorial;
     private final GradeMap gradeMap;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, TeleHandle teleHandle, GradeMap gradeMap, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, teleHandle, gradeMap, tags);
+    public Person(Name name,
+                  Phone phone,
+                  Email email,
+                  TeleHandle teleHandle,
+                  Tutorial tutorial,
+                  GradeMap gradeMap,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, teleHandle, tutorial, gradeMap, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
+        this.tutorial = tutorial;
         this.gradeMap = gradeMap;
         this.tags.addAll(tags);
     }
@@ -53,6 +61,10 @@ public class Person {
 
     public TeleHandle getTeleHandle() {
         return teleHandle;
+    }
+
+    public Tutorial getTutorial() {
+        return tutorial;
     }
 
     public GradeMap getGradeMap() {
@@ -104,6 +116,7 @@ public class Person {
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && teleHandle.equals(otherPerson.teleHandle)
+            && tutorial.equals(otherPerson.tutorial)
             && gradeMap.equals(otherPerson.gradeMap)
             && tags.equals(otherPerson.tags);
     }
@@ -111,7 +124,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, teleHandle, gradeMap, tags);
+        return Objects.hash(name, phone, email, teleHandle, tutorial, gradeMap, tags);
     }
 
     @Override
@@ -121,6 +134,7 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("teleHandle", teleHandle)
+            .add("tutorial", tutorial)
             .add("gradeMap", gradeMap)
             .add("tags", tags)
             .toString();
