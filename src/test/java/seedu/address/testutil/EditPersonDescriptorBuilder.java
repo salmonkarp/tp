@@ -37,7 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setTeleHandle(person.getTeleHandle());
-        descriptor.setTutorial(person.getTutorialGroup());
+        descriptor.setTutorialGroup(person.getTutorialGroup());
         descriptor.setTags(person.getTags());
     }
 
@@ -77,7 +77,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Tutorial} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withTutorialGroup(String tutorialGroup) {
-        descriptor.setTutorial(new TutorialGroup(tutorialGroup));
+        descriptor.setTutorialGroup(new TutorialGroup(tutorialGroup));
         return this;
     }
 

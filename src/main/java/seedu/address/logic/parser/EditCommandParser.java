@@ -72,7 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ParserUtil.parseTeleHandle(argMultimap.getValue(PREFIX_TELEHANDLE).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL_GROUP).isPresent()) {
-            editPersonDescriptor.setTutorial(
+            editPersonDescriptor.setTutorialGroup(
                 ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL_GROUP).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);

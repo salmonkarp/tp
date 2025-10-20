@@ -165,7 +165,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTeleHandle(toCopy.teleHandle);
-            setTutorial(toCopy.tutorialGroup);
+            setTutorialGroup(toCopy.tutorialGroup);
             setTags(toCopy.tags);
         }
 
@@ -212,7 +212,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tutorialGroup);
         }
 
-        public void setTutorial(TutorialGroup tutorialGroup) {
+        public void setTutorialGroup(TutorialGroup tutorialGroup) {
             this.tutorialGroup = tutorialGroup;
         }
 
