@@ -171,7 +171,7 @@ Format: `attend INDEX c/TUTORIAL_NUMBER`
 * Marks the person at the specified `INDEX` as attended for the given tutorial (sets attendance value to 1).
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_NUMBER` must be a valid tutorial identifier from t1 to t11.
+* `TUTORIAL_NUMBER` must be a valid tutorial identifier from **t1** to **t11**.
 
 Examples:
 * `attend 2 c/t5` marks the attendance for tutorial 5 of the 2nd person in the address book.
