@@ -79,6 +79,10 @@ For example:
 However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
 For instance, `listee` will not be interpreted as `list`.
 
+Warnings:
+1. If command typo is too different
+- Output: `Unknown Command`
+
 ### Viewing help : `help`
 
 Shows a popup with a help guide of the commands available to users.
@@ -160,6 +164,10 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+Expected Output: `Address book has been cleared!`
+
+- The address book is blank and has no entries.
 
 ### Grading a person: `grade`
 
