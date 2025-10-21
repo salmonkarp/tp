@@ -20,7 +20,7 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 1. Copy the file to the folder you want to use as the **home folder** for your AddressBook.
 
 1. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
-   ![OpenInTerminalWindows](images/openCMD.png)
+   ![OpenInTerminalWindows](images/OpenCMD.png)
 
 2. For Mac and Linux users, open the Terminal app and use the `cd` command to change the current directory to the folder you put the jar file in.
 
