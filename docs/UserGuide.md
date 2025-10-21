@@ -189,7 +189,8 @@ Examples:
 
 **Warnings:**
 * If no matches are found, the list will be empty.
-* If wrong format is used (e.g. `find n/ e/`), the command will be ignored and the full person list will be shown instead.
+* If wrong format is used (e.g. `find `, with no specifications), an error message will be displayed.
+  e.g. `Invalid command format!...` and details of the error.
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
