@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEHANDLE = "@amy";
-    public static final String DEFAULT_TUTORIAL = "TG01";
+    public static final String DEFAULT_TUTORIAL_GROUP = "TG01";
 
     private Name name;
     private Phone phone;
@@ -43,7 +43,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         teleHandle = new TeleHandle(DEFAULT_TELEHANDLE);
-        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL);
+        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
         gradeMap = new GradeMap();
         tags = new HashSet<>();
     }

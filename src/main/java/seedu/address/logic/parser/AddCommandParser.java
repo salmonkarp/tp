@@ -63,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         TeleHandle teleHandle = ParserUtil.parseTeleHandle(argMultimap.getValue(PREFIX_TELEHANDLE).get());
         TutorialGroup tutorialGroup;
         tutorialGroup = ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL_GROUP)
-                .orElse(TutorialGroup.DEFAULT_TUTORIAL));
+                .orElse(TutorialGroup.DEFAULT_TUTORIAL_GROUP));
         GradeMap defaultGradeMap = new GradeMap();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

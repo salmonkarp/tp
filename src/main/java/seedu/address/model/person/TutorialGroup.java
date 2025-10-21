@@ -13,7 +13,7 @@ public class TutorialGroup {
             + "or be left blank to indicate no tutorial group assigned.";
 
     public static final String VALIDATION_REGEX = "(TG\\d+)?";
-    public static final String DEFAULT_TUTORIAL = "";
+    public static final String DEFAULT_TUTORIAL_GROUP = "";
 
     public final String value;
 
