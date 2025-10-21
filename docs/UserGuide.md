@@ -126,25 +126,25 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 Hints:
-* Use `find` command to locate the person to delete then use the `delete` command to delete the relevant person.
+* Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
-* Person is deleted from the addressbook.
+* Student is deleted from the addressbook.
 
 Warnings:
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
@@ -171,23 +171,23 @@ Examples:
 * `grade 3 n/Assignment 1 g/97`
 * `grade 5 n/Assignment 2 g/80`
 
-### Marking a person's tutorial attendance: `attend`
+### Marking a student's tutorial attendance: `attend`
 
-Marks a person as attended for a specific tutorial class.
+Marks a student as attended for a specific tutorial class.
 
 Format: `attend INDEX c/TUTORIAL_NUMBER`
 
-* Marks the person at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 1).
-* The index refers to the index number shown in the displayed person list.
+* Marks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 1).
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
-* `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd person in the address book.
-* `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st person in the results of the `find` command.
+* `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd student in the address book.
+* `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
 
 Hints:
-* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant person.
+* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking
@@ -195,23 +195,23 @@ Expected output:
 Warnings:
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
-### Unmarking a person's tutorial attendance: `unattend`
+### Unmarking a student's tutorial attendance: `unattend`
 
-Unmarks a person as attended for a specific tutorial class.
+Unmarks a student as attended for a specific tutorial class.
 
 Format: `unattend INDEX c/TUTORIAL_NUMBER`
 
-* Unmarks the person at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
-* The index refers to the index number shown in the displayed person list.
+* Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
-* `unattend 2 c/t5` unmarks the attendance for tutorial 5 class of the 2nd person in the address book.
-* `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 class of the 1st person in the results of the `find` command.
+* `unattend 2 c/t5` unmarks the attendance for tutorial 5 class of the 2nd student in the address book.
+* `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
 
 Hints:
-* Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant person.
+* Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
@@ -238,8 +238,9 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
+### Features coming soon
+* Delete multiple students in a single command
+* Mark the attendance of multiple students in a single command
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
