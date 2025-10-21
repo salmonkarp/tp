@@ -156,12 +156,18 @@ Assigns a grade to a person in the address book.
 * Assignment name must be in enum list.
 * Grade must be a positive integer in the range 0-100 (inclusive). 
 
-Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+Format: `grade INDEX n/ASSIGNMENT_NAME g/GRADE`
 
 Examples:
-* `grade 3 n/Assignment 1 g/97`
-* `grade 5 n/Assignment 2 g/80`
+* `grade 3 n/Q1 g/97`
+* `grade 5 n/Finals g/80`
 
+Expected Output:
+* Average grade of all assignments displayed for the person.
+
+Warnings:
+* Entering the wrong format for the command will result in a warning:
+  `Invalid command format!`
 
 ### Exiting the program : `exit`
 
@@ -181,10 +187,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
