@@ -110,20 +110,32 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords. 
+These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format 1: `find KEYWORD [MORE_KEYWORDS]`
+
+Format 2: `find n/[NAME_KEYWORD] e/[EMAIL_KEYWORD] u/[TELEHANDLE_KEYWORD] tg/[TUTORIAL_KEYWORD]`
+
+The first format searches only by name, while the second format allows searching by specific fields. 
+You can combine multiple fields in the second format. 
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* **Partial matches** are supported. e.g. `ann` will match `Annabel`, `Joanna`
+* The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` 
+<br>returns `john` and `John Doe`
+* `find alex david`
+<br>returns `Alex Yeoh`, `David Li`
+* `find n/Alex e/example.com` 
+<br>returns persons whose names contain `Alex` or whose email addresses contain `example.com`
+* `find u/@jake tg/Tutorial2` 
+<br>returns persons whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -161,6 +173,26 @@ Examples:
 * `grade 3 n/Assignment 1 g/97`
 * `grade 5 n/Assignment 2 g/80`
 
+### Sorting the person list: `sort`
+
+Sorts the person list currently displayed in the address book based on given sort instructions.
+
+Format: `sort [field]`
+
+* Sorts the person list based on the specified `field`.
+* The `field` can be one of the following: `name`, `grade`, `attendance` and `tutorial`.
+* Sorting by `name` sorts the persons in **alphabetical order** of their **names**.
+* Sorting by `grade` sorts the persons in **descending order** of their **average grades across all assignments**.
+* Sorting by `attendance` sorts the persons in **descending order** of their **attendance percentage**.
+* Sorting by `tutorial` sorts the persons in **ascending numerical order** of their **tutorial group numbers**.
+* If no `field` is specified, the default sorting field is `name`.
+* The sorting is done in ascending order.
+
+Examples:
+* `sort name` sorts the person list in alphabetical order of names.
+* `sort grade` sorts the person list in descending order of average grades.
+* `sort attendance` sorts the person list in descending order of attendance percentage.
+* `sort tutorial` sorts the person list in ascending order of tutorial group numbers.
 
 ### Exiting the program : `exit`
 
@@ -211,5 +243,6 @@ Action | Format, Examples
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Sort** | `sort [field]`<br> e.g., `sort grade`
 **List** | `list`
 **Help** | `help`
