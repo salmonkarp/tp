@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "teleHandle": "@alice",
-    "tutorialGroup": "T01",
+    "tutorialGroup": "TG01",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -22,7 +22,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "teleHandle": "@benson",
-    "tutorialGroup": "T02",
+    "tutorialGroup": "TG02",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -39,7 +39,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "teleHandle": "@carl",
-    "tutorialGroup": "T01",
+    "tutorialGroup": "TG01",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -56,7 +56,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "teleHandle": "@daniel",
-    "tutorialGroup": "T03",
+    "tutorialGroup": "TG03",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -73,7 +73,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "teleHandle": "@elle",
-    "tutorialGroup": "T02",
+    "tutorialGroup": "TG02",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -90,7 +90,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "teleHandle": "@fiona",
-    "tutorialGroup": "T03",
+    "tutorialGroup": "TG03",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
@@ -107,7 +107,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "teleHandle": "@george",
-    "tutorialGroup": "T01",
+    "tutorialGroup": "TG01",
     "gradeMap" : {
       "Q1" : " ",
       "Q2" : " ",
