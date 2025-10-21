@@ -70,7 +70,7 @@ The app includes a fuzzy matching feature for commands to enhance user experienc
 
 This feature uses the Levenshtein distance algorithm with a maximum allowed distance of **1**. This means that commands with a single character difference (insertion, deletion or substitution) from a valid command will be automatically corrected and executed.
 
-For example:
+Examples:
 *   If you type `addd`, it will be interpreted as `add`.
 *   If you type `liss`, it will be interpreted as `list`.
 *   If you type `eddit`, it will be interpreted as `edit`.
@@ -80,7 +80,7 @@ However, if the typo is too different from any valid command (a Levenshtein dist
 For instance, `listee` will not be interpreted as `list`.
 
 Warnings:
-1. If command typo is too different
+* If command typo is too different
 - Output: `Unknown Command`
 
 ### Viewing help : `help`
@@ -98,8 +98,6 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [t/TUTORIAL]…​`
 
-
-
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 t/Tutorial1`
@@ -114,7 +112,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -124,8 +122,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…�
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Warnings:
+* Entering the wrong format for the command will result in a warning:
+  `Invalid command format!`
+* `edit OUT_OF_BOUNDS_INDEX u/@samplehandle` will result in warning:`The person index provided is invalid`
+* `edit VALID_INDEX (no field provided)` will result in warning: `At least one field to edit must be provided.`
 
 ### Locating persons by name: `find`
 
@@ -204,10 +208,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -232,7 +232,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
