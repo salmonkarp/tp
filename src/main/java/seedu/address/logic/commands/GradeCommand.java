@@ -15,6 +15,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Assignments;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.GradeMap;
@@ -80,9 +81,10 @@ public class GradeCommand extends Command {
         // to other fields as well. Either way, normal behaviour would not
         // cause sharing of objects as attributes, and is thus fine to take directly.
         gradeMap.put(assignment, grade);
+        AttendMap attendMap = personToEdit.getAttendMap();
         Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(name, phone, email, teleHandle, gradeMap, tags);
+        return new Person(name, phone, email, teleHandle, gradeMap, attendMap, tags);
     }
 
     @Override
