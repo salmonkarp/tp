@@ -31,6 +31,7 @@ import seedu.address.model.tag.Tag;
 public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
+    public static final String FUZZY_COMMAND_WORD = "gradee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns the grade to the person identified "
