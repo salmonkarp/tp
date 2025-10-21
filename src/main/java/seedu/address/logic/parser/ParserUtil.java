@@ -169,11 +169,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String tutorial} into an {@code Tutorial}.
+     * Parses {@code String tutorialGroup} into an {@code TutorialGroup}.
      */
-    public static TutorialGroup parseTutorial(String tutorial) throws ParseException {
-        requireNonNull(tutorial);
-        String trimmedTutorial = tutorial.trim();
+    public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
+        requireNonNull(tutorialGroup);
+        String trimmedTutorial = tutorialGroup.trim();
         if (!TutorialGroup.isValidTutorial(trimmedTutorial)) {
             throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
