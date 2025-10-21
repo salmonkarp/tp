@@ -73,9 +73,9 @@ Shows a popup with a help guide of the commands available to users.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
-Adds a person to the address book.
+Adds a student to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​`
 * `NAME` should only contain alphanumeric characters and spaces. It should not be blank.
@@ -90,12 +90,12 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 Expected output:
-* `New person added:...` with the details of the person added.
+* `New student added:...` with the details of the student added.
 
 Warnings:
-* If a person with the same name already exists in the address book, an error message will be displayed, and the person will not be added.
-  e.g. `This person already exists in the address book`
-* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the person will not be added.
+* If a student with the same name already exists in the address book, an error message will be displayed, and the student will not be added.
+  e.g. `This student already exists in the address book`
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
 
 ### Listing all persons : `list`
