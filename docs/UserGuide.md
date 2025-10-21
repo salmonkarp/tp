@@ -181,19 +181,28 @@ Examples:
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+Hints:
+* Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
+
+Expected output:
+* Student is deleted from the addressbook.
+
+Warnings:
+* Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Clearing all entries : `clear`
 
@@ -208,13 +217,14 @@ Expected Output: `Address book has been cleared!`
 ### Grading a person: `grade`
 
 Assigns a grade to a person in the address book.
+
+Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+
 * Grades the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Assignment name must be in enum list.
-* Grade must be a positive integer in the range 0-100 (inclusive). 
-
-Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+* Grade must be a positive integer in the range 0-100 (inclusive).
 
 Examples:
 * `grade 3 n/Assignment 1 g/97`
@@ -253,6 +263,54 @@ Examples:
 * Sorting only affects the current displayed list, not the underlying data.
 * If you enter an invalid field, the command will default to sorting by name.
 
+### Marking a student's tutorial attendance: `attend`
+
+Marks a student as attended for a specific tutorial class.
+
+Format: `attend INDEX c/TUTORIAL_NUMBER`
+
+* Marks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 1).
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
+
+Examples:
+* `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd student in the address book.
+* `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
+
+Hints:
+* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
+
+Expected output:
+* `Attendance: x/11`, x increases by 1 after each successful attendance marking
+
+Warnings:
+* Entering the wrong format for the command will result in a warning: `Invalid command format!`
+
+### Unmarking a student's tutorial attendance: `unattend`
+
+Unmarks a student as attended for a specific tutorial class.
+
+Format: `unattend INDEX c/TUTORIAL_NUMBER`
+
+* Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
+
+Examples:
+* `unattend 2 c/t5` unmarks the attendance for tutorial 5 class of the 2nd student in the address book.
+* `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
+
+Hints:
+* Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
+
+Expected output:
+* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
+
+Warnings:
+* Entering the wrong format for the command will result in a warning: `Invalid command format!`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -271,6 +329,11 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
+### Features coming soon
+* Delete multiple students in a single command
+* Mark the attendance of multiple students in a single command
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,7 +366,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TUTORIAL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
+**Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Sort** | `sort [field]`<br> e.g., `sort grade`
 **List** | `list`
