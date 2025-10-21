@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-CalcConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CalcConnect can get your contact management tasks done faster than traditional GUI apps.
+CalcConnect allows you to **manage your students’ information on your desktop with keyboard commands**. If you type fast, you can complete your student management tasks faster with CalcConnect than with mouse-based apps. CalcConnect aims to be your **all-in-one tool** to manage the administrative processes of your students. From easily being able to find their contact information to marking their attendance and grading their assignments. Once you familiarise yourself with our intuitive interface, CalcConnect will provide **unparalleled ease** in managing your students.
+
+CalcConnect is designed for **MA1521 TAs** who are technologically inclined. While those familiar with Command Line Interface (CLI) from their previous experience in Computing courses might find it easier to use it, we also have this clear user guide to help those without such previous experience.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
@@ -212,8 +216,15 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: In the original computer, copy `addressbook.json` in your `data/` folder. Install the app in the other computer, and overwrite the data file it creates in `data/` with the copied file from the original computer.
+
+**Q**: How do I update CalcConnect?<br>
+**A**: Download the latest .jar file from the official release page and replace your old version. Do note that your data may not be usable in the new version, and the application will instead boot with an empty address book.
+
+**Q**: Where can I get help or report bugs?<br>
+**A**: Contact the development team via [this page](https://ay2526s1-cs2103t-f08b-4.github.io/tp/AboutUs.html), or open an issue on the project’s Github repository.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
