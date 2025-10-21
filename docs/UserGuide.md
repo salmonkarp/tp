@@ -78,13 +78,27 @@ Format: `help`
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​`
-
+* `NAME` should only contain alphanumeric characters and spaces. It should not be blank.
+* `PHONE_NUMBER` should only contain numeric characters. It should not be blank.
+* `EMAIL` should be in the format `local-part@domain` and should not be blank.
+* `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should not be blank.
 * `TUTORIAL_GROUP` must be in the format `TXX` where `XX` is any sequence of digits e.g. `T01`, `T12`.
 * `TAG` must only contain either alphanumeric characters or spaces, e.g. `Good Student` is a valid tag.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
+
+Expected output:
+* `New person added:...` with the details of the person added.
+
+Warnings:
+* If a person with the same name already exists in the address book, an error message will be displayed, and the person will not be added.
+  e.g. `This person already exists in the address book`
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the person will not be added.
+  e.g. `Invalid command format! 
+add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL u/TELEHANDLE [t/TAG]...
+Example: add n/John Doe p/98765432 e/johnd@example.com u/@john t/friends t/owesMoney`
 
 ### Listing all persons : `list`
 
