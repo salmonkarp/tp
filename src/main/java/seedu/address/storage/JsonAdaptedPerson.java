@@ -35,8 +35,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String teleHandle;
-    private final LinkedHashMap<String, String> attendMap;
     private final LinkedHashMap<String, String> gradeMap;
+    private final LinkedHashMap<String, String> attendMap;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**

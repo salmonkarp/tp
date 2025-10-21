@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -73,6 +74,10 @@ public class Person {
 
     public AttendMap getAttendMap() {
         return attendMap;
+    }
+
+    public Map<String, String> getAttendMapAsStringMap() {
+        return attendMap.toStringMap();
     }
 
     public String getOverallAttendance() {
