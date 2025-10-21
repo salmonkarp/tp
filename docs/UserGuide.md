@@ -108,23 +108,29 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name or details: `find`
 
 Finds persons whose names contain any of the given keywords. 
 These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
 
-Format 1: `find KEYWORD [MORE_KEYWORDS]`
+Format 1:
+`find KEYWORD [MORE_KEYWORDS]`<br>
+Searches by name only.
 
-Format 2: `find n/[NAME_KEYWORD] e/[EMAIL_KEYWORD] u/[TELEHANDLE_KEYWORD] tg/[TUTORIAL_KEYWORD]`
+Format 2:
+`find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD`<br>
+Searches by specific fields. You can combine multiple fields.
 
-The first format searches only by name, while the second format allows searching by specific fields. 
-You can combine multiple fields in the second format. 
+**Behaviour & Tips**:
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * **Partial matches** are supported. e.g. `ann` will match `Annabel`, `Joanna`
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+**Expected Output:**<br>
+A list of persons matching your search criteria will be displayed in the main window.
 
 Examples:
 * `find John` 
@@ -135,6 +141,10 @@ Examples:
 <br>returns persons whose names contain `Alex` or whose email addresses contain `example.com`
 * `find u/@jake tg/Tutorial2` 
 <br>returns persons whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
+
+**Warnings:**
+* If no matches are found, the list will be empty.
+* If wrong format is used (e.g. `find n/ e/`), the command will be ignored and the full person list will be shown instead.
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -179,8 +189,13 @@ Sorts the person list currently displayed in the address book based on given sor
 
 Format: `sort [field]`
 
-* Sorts the person list based on the specified `field`.
-* The `field` can be one of the following: `name`, `grade`, `attendance` and `tutorial`.
+Possible `[field]` values:
+* `name`: Sorts alphabetically by name.
+* `grade`: Sorts by average grade (highest first).
+* `attendance`: Sorts by attendance percentage (highest first).
+* `tutorial`: Sorts by tutorial group number (lowest first).
+
+**Behaviour & Tips**:
 * Sorting by `name` sorts the persons in **alphabetical order** of their **names**.
 * Sorting by `grade` sorts the persons in **descending order** of their **average grades across all assignments**.
 * Sorting by `attendance` sorts the persons in **descending order** of their **attendance percentage**.
@@ -188,11 +203,18 @@ Format: `sort [field]`
 * If no `field` is specified, the default sorting field is `name`.
 * The sorting is done in ascending order.
 
+**Expected Output:**<br>
+The person list will be reordered according to your chosen field.
+
 Examples:
 * `sort name` sorts the person list in alphabetical order of names.
 * `sort grade` sorts the person list in descending order of average grades.
 * `sort attendance` sorts the person list in descending order of attendance percentage.
 * `sort tutorial` sorts the person list in ascending order of tutorial group numbers.
+
+**Warnings:**
+* Sorting only affects the current displayed list, not the underlying data.
+* If you enter an invalid field, the command will default to sorting by name.
 
 ### Exiting the program : `exit`
 
