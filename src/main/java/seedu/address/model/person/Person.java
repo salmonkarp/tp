@@ -63,6 +63,10 @@ public class Person {
         return gradeMap.getOverallGrade();
     }
 
+    public String getFormattedGrades() {
+        return gradeMap.formatGrades();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

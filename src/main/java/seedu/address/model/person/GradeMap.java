@@ -63,6 +63,21 @@ public class GradeMap extends LinkedHashMap<Assignments, Grade> {
         }
     }
 
+    /**
+     * Formats the grades in the GradeMap for display.
+     * Excludes uninitialized grades.
+     */
+    public String formatGrades() {
+        StringBuilder sb = new StringBuilder();
+        for (Assignments assignment : Assignments.getAllAssignments()) {
+            Grade grade = this.get(assignment);
+            if (grade != null && !grade.value.equals(" ")) {
+                sb.append(assignment.name()).append(": ").append(grade).append("\n");
+            }
+        }
+        return sb.toString().trim();
+    }
+
     @Override
     public Grade put(Assignments key, Grade value) {
         if (key == null || value == null) {

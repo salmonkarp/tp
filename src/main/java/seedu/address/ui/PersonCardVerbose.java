@@ -16,7 +16,6 @@ public class PersonCardVerbose extends PersonCard {
      */
     @Override
     protected String getGradeText() {
-        //return person.getAllGrades();
-        return "all grades here";
+        return person.getFormattedGrades();
     }
 }
