@@ -34,14 +34,15 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(firstPredicate, false);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate, false);
+        FindCommand findSecondVerboseCommand = new FindCommand(secondPredicate, true);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate, false);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -52,13 +53,14 @@ public class FindCommandTest {
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(findSecondCommand.equals(findSecondVerboseCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindCommand command = new FindCommand(predicate, false);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -68,18 +70,34 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindCommand command = new FindCommand(predicate, false);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
+    public void execute_verboseCommand_moreDetailsShown() {
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate, true);
+        CommandResult result = command.execute(model);
+        assertTrue(result.isVerbose());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        boolean isVerbose = false;
+        FindCommand findCommand = new FindCommand(predicate, isVerbose);
+        String expected = FindCommand.class.getCanonicalName()
+                + "{predicate=" + predicate + ", isVerbose=" + isVerbose + "}";
         assertEquals(expected, findCommand.toString());
+        boolean isVerbose1 = true;
+        FindCommand findCommand1 = new FindCommand(predicate, isVerbose1);
+        String expected1 = FindCommand.class.getCanonicalName()
+                + "{predicate=" + predicate + ", isVerbose=" + isVerbose1 + "}";
+        assertEquals(expected1, findCommand1.toString());
     }
 
     /**

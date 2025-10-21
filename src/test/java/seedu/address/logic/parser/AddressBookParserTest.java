@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -78,7 +79,11 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords), false), command);
+        FindCommand command1 = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" "))
+                        + SUFFIX_VERBOSE);
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords), true), command1);
     }
 
     @Test

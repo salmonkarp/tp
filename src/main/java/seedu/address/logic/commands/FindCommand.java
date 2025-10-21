@@ -36,7 +36,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), false, false, isVerbose);
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                false, false, isVerbose);
     }
 
     @Override
@@ -51,13 +52,14 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return predicate.equals(otherFindCommand.predicate) && (isVerbose == otherFindCommand.isVerbose);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
             .add("predicate", predicate)
+            .add("isVerbose", isVerbose)
             .toString();
     }
 }
