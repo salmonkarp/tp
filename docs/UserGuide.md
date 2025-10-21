@@ -96,9 +96,7 @@ Warnings:
 * If a person with the same name already exists in the address book, an error message will be displayed, and the person will not be added.
   e.g. `This person already exists in the address book`
 * If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the person will not be added.
-  e.g. `Invalid command format! 
-add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL u/TELEHANDLE [t/TAG]...
-Example: add n/John Doe p/98765432 e/johnd@example.com u/@john t/friends t/owesMoney`
+  e.g. `Invalid command format!...` and details of the error.
 
 ### Listing all persons : `list`
 
