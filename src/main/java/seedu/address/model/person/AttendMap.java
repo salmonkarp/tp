@@ -9,6 +9,8 @@ import java.util.Map;
  */
 public class AttendMap {
 
+    public static final String MESSAGE_CONSTRAINTS = TutorialClass.MESSAGE_CONSTRAINTS;
+
     private final Map<TutorialClass, Integer> attendanceMap;
 
     public AttendMap() {
