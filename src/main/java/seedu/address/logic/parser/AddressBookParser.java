@@ -33,7 +33,15 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
-
+    /**
+     * Used for fuzzy match
+     */
+    private static final int MAX_DIST_THRESHOLD = 1;
+    private static final List<String> COMMAND_KEYWORDS = List.of(
+        AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, GradeCommand.COMMAND_WORD
+    );
     /**
      * Parses user input into command for execution.
      *
@@ -103,17 +111,11 @@ public class AddressBookParser {
      * @throws ParseException if no close match is found
      */
     public String fuzzyMatch(String commandWord) throws ParseException {
-        final int maxDistThreshold = 1;
-        final LevenshteinDistance levDist = new LevenshteinDistance(maxDistThreshold);
-        final List<String> commandKeywords = List.of(
-                AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, GradeCommand.COMMAND_WORD
-        );
-        if (commandKeywords.contains(commandWord)) {
+        final LevenshteinDistance levDist = new LevenshteinDistance(MAX_DIST_THRESHOLD);
+        if (COMMAND_KEYWORDS.contains(commandWord)) {
             return commandWord;
         }
-        for (String keyword : commandKeywords) {
+        for (String keyword : COMMAND_KEYWORDS) {
             if (levDist.apply(keyword, commandWord) != -1) {
                 return keyword;
             }
