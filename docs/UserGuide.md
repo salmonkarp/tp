@@ -158,16 +158,9 @@ These keywords can include **names**, **emails**, **Telegram handles** or **tuto
 Format 1:
 `find KEYWORD [MORE_KEYWORDS] [/v]`<br>
 Searches by name only.
-Warnings:
-* Entering the wrong format for the command will result in a warning:
-  `Invalid command format!`
-* `edit OUT_OF_BOUNDS_INDEX u/@samplehandle` will result in warning:`The person index provided is invalid`
-* `edit VALID_INDEX (no field provided)` will result in warning: `At least one field to edit must be provided.`
-
-### Locating persons by name: `find`
 
 Format 2:
-`find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD [/v]`<br>
+`find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]`<br>
 Searches by specific fields. You can combine multiple fields.
 
 **Behaviour & Tips**:
@@ -196,7 +189,8 @@ Examples:
 
 **Warnings:**
 * If no matches are found, the list will be empty.
-* If wrong format is used (e.g. `find n/ e/`), the command will be ignored and the full person list will be shown instead.
+* If wrong format is used (e.g. `find `, with no specifications), an error message will be displayed.
+  e.g. `Invalid command format!...` and details of the error.
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
