@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import seedu.address.model.person.Assignments;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.GradeMap;
@@ -30,6 +31,7 @@ public class PersonBuilder {
     private Email email;
     private TeleHandle teleHandle;
     private GradeMap gradeMap;
+    private AttendMap attendMap;
     private Set<Tag> tags;
 
     /**
@@ -41,6 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         teleHandle = new TeleHandle(DEFAULT_TELEHANDLE);
         gradeMap = new GradeMap();
+        attendMap = new AttendMap();
         tags = new HashSet<>();
     }
 
@@ -53,6 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         teleHandle = personToCopy.getTeleHandle();
         gradeMap = personToCopy.getGradeMap();
+        attendMap = personToCopy.getAttendMap();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -112,7 +116,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the default {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap() {
+        this.attendMap = new AttendMap();
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, teleHandle, gradeMap, tags);
+        return new Person(name, phone, email, teleHandle, gradeMap, attendMap, tags);
     }
 }
