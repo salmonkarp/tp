@@ -12,18 +12,23 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. **Windows** and **Linux** users: Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08B-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the **home folder** for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CalcConnect.jar` command to run the application.<br>
+1. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
+   ![OpenInTerminalWindows](images/openCMD.png)
+
+2. For Mac and Linux users, open the Terminal app and use the `cd` command to change the current directory to the folder you put the jar file in.
+
+2. Use the `java -jar CalcConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -108,7 +113,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name or details: `find`
+### Locating students by name or details: `find`
 
 Finds persons whose names contain any of the given keywords. 
 These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
@@ -183,23 +188,23 @@ Examples:
 * `grade 3 n/Assignment 1 g/97`
 * `grade 5 n/Assignment 2 g/80`
 
-### Sorting the person list: `sort`
+### Sorting the student list: `sort`
 
 Sorts the person list currently displayed in the address book based on given sort instructions.
 
 Format: `sort [field]`
 
 Possible `[field]` values:
-* `name`: Sorts alphabetically by name.
+* `name`: Sorts alphabetically by student's name.
 * `grade`: Sorts by average grade (highest first).
 * `attendance`: Sorts by attendance percentage (highest first).
 * `tutorial`: Sorts by tutorial group number (lowest first).
 
 **Behaviour & Tips**:
-* Sorting by `name` sorts the persons in **alphabetical order** of their **names**.
-* Sorting by `grade` sorts the persons in **descending order** of their **average grades across all assignments**.
-* Sorting by `attendance` sorts the persons in **descending order** of their **attendance percentage**.
-* Sorting by `tutorial` sorts the persons in **ascending numerical order** of their **tutorial group numbers**.
+* Sorting by `name` sorts the students in **alphabetical order** of their **names**.
+* Sorting by `grade` sorts the students in **descending order** of their **average grades across all assignments**.
+* Sorting by `attendance` sorts the students in **descending order** of their **attendance percentage**.
+* Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
 * The sorting is done in ascending order.
 
@@ -207,10 +212,10 @@ Possible `[field]` values:
 The person list will be reordered according to your chosen field.
 
 Examples:
-* `sort name` sorts the person list in alphabetical order of names.
-* `sort grade` sorts the person list in descending order of average grades.
-* `sort attendance` sorts the person list in descending order of attendance percentage.
-* `sort tutorial` sorts the person list in ascending order of tutorial group numbers.
+* `sort name` sorts the student list in alphabetical order of names.
+* `sort grade` sorts the student list in descending order of average grades.
+* `sort attendance` sorts the student list in descending order of attendance percentage.
+* `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
