@@ -93,11 +93,19 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withGradeMap(clonedGradeMap).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different attendance -> returns false
+        // different attendance, mark present -> returns false
         AttendMap attendMap = ALICE.getAttendMap();
         AttendMap diffAttendMap = new AttendMap(attendMap);
         diffAttendMap.markPresent(TutorialClass.t1);
         editedAlice = new PersonBuilder(ALICE).withAttendMap(diffAttendMap).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different attendance, mark absent -> returns false
+        AttendMap attendMap1 = ALICE.getAttendMap();
+        attendMap1.markPresent(TutorialClass.t1);
+        AttendMap diffAttendMap1 = new AttendMap(attendMap1);
+        diffAttendMap1.markAbsent(TutorialClass.t1);
+        editedAlice = new PersonBuilder(ALICE).withAttendMap(diffAttendMap1).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // same attendance -> returns true
