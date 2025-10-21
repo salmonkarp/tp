@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-CalcConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CalcConnect can get your contact management tasks done faster than traditional GUI apps.
+CalcConnect allows you to **manage your students’ information on your desktop with keyboard commands**. If you type fast, you can complete your student management tasks faster with CalcConnect than with mouse-based apps. CalcConnect aims to be your **all-in-one tool** to manage the administrative processes of your students. From easily being able to find their contact information to marking their attendance and grading their assignments. Once you familiarise yourself with our intuitive interface, CalcConnect will provide **unparalleled ease** in managing your students.
+
+CalcConnect is designed for **MA1521 TAs** who are technologically inclined. While those familiar with Command Line Interface (CLI) from their previous experience in Computing courses might find it easier to use it, we also have this clear user guide to help those without such previous experience.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
@@ -64,6 +68,25 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+### Fuzzy Command Matching
+
+The app includes a fuzzy matching feature for commands to enhance user experience. If you make a small typo when entering a command, the application will attempt to match it to the most similar valid command.
+
+This feature uses the Levenshtein distance algorithm with a maximum allowed distance of **1**. This means that commands with a single character difference (insertion, deletion or substitution) from a valid command will be automatically corrected and executed.
+
+Examples:
+*   If you type `addd`, it will be interpreted as `add`.
+*   If you type `liss`, it will be interpreted as `list`.
+*   If you type `eddit`, it will be interpreted as `edit`.
+*   If you type `ad`, it will be interpreted as `add`.
+
+However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
+For instance, `listee` will not be interpreted as `list`.
+
+Warnings:
+* If command typo is too different
+- Output: `Unknown Command`
+
 ### Viewing help : `help`
 
 Shows a popup with a help guide of the commands available to users.
@@ -119,8 +142,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GRO
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Warnings:
+* Entering the wrong format for the command will result in a warning:
+  `Invalid command format!`
+* `edit OUT_OF_BOUNDS_INDEX u/@samplehandle` will result in warning:`The person index provided is invalid`
+* `edit VALID_INDEX (no field provided)` will result in warning: `At least one field to edit must be provided.`
 
 ### Locating persons by name: `find`
 
@@ -160,6 +189,10 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+Expected Output: `Address book has been cleared!`
+
+- The address book is blank and has no entries.
+
 ### Grading a person: `grade`
 
 Assigns a grade to a person in the address book.
@@ -195,16 +228,19 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: In the original computer, copy `addressbook.json` in your `data/` folder. Install the app in the other computer, and overwrite the data file it creates in `data/` with the copied file from the original computer.
+
+**Q**: How do I update CalcConnect?<br>
+**A**: Download the latest .jar file from the official release page and replace your old version. Do note that your data may not be usable in the new version, and the application will instead boot with an empty address book.
+
+**Q**: Where can I get help or report bugs?<br>
+**A**: Contact the development team via [this page](https://ay2526s1-cs2103t-f08b-4.github.io/tp/AboutUs.html), or open an issue on the project’s Github repository.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
