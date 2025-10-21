@@ -24,7 +24,7 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 1. Copy the file to the folder you want to use as the **home folder** for your AddressBook.
 
 1. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
-   ![OpenInTerminalWindows](images/openCMD.png)
+   ![OpenInTerminalWindows](images/OpenCMD.png)
 
 2. For Mac and Linux users, open the Terminal app and use the `cd` command to change the current directory to the folder you put the jar file in.
 
@@ -156,7 +156,7 @@ Finds persons whose names contain any of the given keywords.
 These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
 
 Format 1:
-`find KEYWORD [MORE_KEYWORDS]`<br>
+`find KEYWORD [MORE_KEYWORDS] [/v]`<br>
 Searches by name only.
 Warnings:
 * Entering the wrong format for the command will result in a warning:
@@ -167,7 +167,7 @@ Warnings:
 ### Locating persons by name: `find`
 
 Format 2:
-`find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD`<br>
+`find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD [/v]`<br>
 Searches by specific fields. You can combine multiple fields.
 
 **Behaviour & Tips**:
@@ -177,6 +177,7 @@ Searches by specific fields. You can combine multiple fields.
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If the optional verbose flag `/v` is written at the end, more detailed information of the found persons will be shown instead of a summary.
 
 **Expected Output:**<br>
 A list of persons matching your search criteria will be displayed in the main window.
@@ -186,6 +187,8 @@ Examples:
 <br>returns `john` and `John Doe`
 * `find alex david`
 <br>returns `Alex Yeoh`, `David Li`
+* `find alex bernice /v`
+<br>returns detailed information (shows all grades and attendance) of `Alex Yeoh`  and `Bernice Yu`
 * `find n/Alex e/example.com` 
 <br>returns persons whose names contain `Alex` or whose email addresses contain `example.com`
 * `find u/@jake tg/Tutorial2` 
@@ -243,8 +246,8 @@ Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
 * Grade must be a positive integer in the range 0-100 (inclusive).
 
 Examples:
-* `grade 3 n/Assignment 1 g/97`
-* `grade 5 n/Assignment 2 g/80`
+* `grade 3 n/Q1 g/97`
+* `grade 5 n/Finals g/80`
 
 ### Sorting the student list: `sort`
 
@@ -385,7 +388,7 @@ Action | Format, Examples
 **Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
 **Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS] [/v]`<br> `find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD [/v]` <br> e.g., `find James Jake`
 **Sort** | `sort [field]`<br> e.g., `sort grade`
 **List** | `list`
 **Help** | `help`
