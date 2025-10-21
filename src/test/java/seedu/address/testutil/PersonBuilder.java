@@ -117,10 +117,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the default {@code AttendMap} of the {@code Person} that we are building.
+     * Sets the {@code AttendMap} of the {@code Person} that we are building.
      */
     public PersonBuilder withAttendMap() {
         this.attendMap = new AttendMap();
+        return this;
+    }
+
+    /**
+     * Sets the clone {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap(AttendMap newAttendMap) {
+        this.attendMap = new AttendMap(newAttendMap);
         return this;
     }
 
