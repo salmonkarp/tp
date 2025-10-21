@@ -32,6 +32,8 @@ public class UnattendCommandParser implements Parser<UnattendCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
+            assert index.getOneBased() > 0;
+
             String tutorialClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
             tutClass = ParserUtil.parseTutorialClass(tutorialClassName);
         } catch (IllegalValueException | NumberFormatException ive) {

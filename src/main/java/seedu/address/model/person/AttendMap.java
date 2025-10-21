@@ -29,6 +29,7 @@ public class AttendMap {
      * Used for copying.
      */
     public AttendMap(AttendMap otherAttendMap) {
+        assert otherAttendMap != null;
         attendanceMap = new EnumMap<>(otherAttendMap.attendanceMap);
     }
 
@@ -73,6 +74,7 @@ public class AttendMap {
      * Marks the student present for the given tutorial
      */
     public void markPresent(TutorialClass tut) {
+        assert attendanceMap.containsKey(tut);
         attendanceMap.put(tut, 1);
     }
 
@@ -80,6 +82,7 @@ public class AttendMap {
      * Marks the student absent for the given tutorial.
      */
     public void markAbsent(TutorialClass tut) {
+        assert attendanceMap.containsKey(tut);
         attendanceMap.put(tut, 0);
     }
 
@@ -87,6 +90,7 @@ public class AttendMap {
      * Checks if student is present for the given tutorial.
      */
     public boolean isPresent(TutorialClass tut) {
+        assert attendanceMap.containsKey(tut);
         return attendanceMap.get(tut) == 1;
     }
 
