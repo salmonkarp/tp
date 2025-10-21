@@ -31,7 +31,7 @@ public enum TutorialClass {
     /**
      * Returns true if a given string is a valid TutorialClass type.
      */
-    public static boolean isValidClass(String test) {
+    public static boolean isValidTutorialClass(String test) {
         for (TutorialClass tutClass : TutorialClass.values()) {
             if (tutClass.name().equals(test)) {
                 return true;
