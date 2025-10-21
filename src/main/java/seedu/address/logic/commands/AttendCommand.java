@@ -29,6 +29,7 @@ import seedu.address.model.tag.Tag;
 public class AttendCommand extends Command {
 
     public static final String COMMAND_WORD = "attend";
+    public static final String FUZZY_COMMAND_WORD = "attendd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the attendance of the given tutorial class of the person identified by "
