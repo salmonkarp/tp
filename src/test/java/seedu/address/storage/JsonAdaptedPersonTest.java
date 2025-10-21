@@ -216,7 +216,7 @@ public class JsonAdaptedPersonTest {
                 VALID_GRADE_MAP,
                 INVALID_ATTEND_MAP,
                 VALID_TAGS);
-        String expectedMessage = GradeMap.MESSAGE_CONSTRAINTS;
+        String expectedMessage = AttendMap.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

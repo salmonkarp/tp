@@ -13,6 +13,9 @@ public class AttendMap {
 
     private final Map<TutorialClass, Integer> attendanceMap;
 
+    /**
+     * AttendMap constructor which populates TutorialClass with default value.
+     */
     public AttendMap() {
         attendanceMap = new EnumMap<>(TutorialClass.class);
         // Initialize attendanceMap with default value 0
@@ -85,6 +88,19 @@ public class AttendMap {
      */
     public boolean isPresent(TutorialClass tut) {
         return attendanceMap.get(tut) == 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AttendMap)) {
+            return false;
+        }
+
+        AttendMap other = (AttendMap) o;
+        return attendanceMap.equals(other.attendanceMap);
     }
 
     /**
