@@ -28,7 +28,7 @@ CalcConnect is a **desktop app for managing contacts, optimized for use via a Co
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/T01 t/Smart` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/TG01 t/Smart` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -84,7 +84,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/T
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/T01 t/Good Student`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 ### Listing all persons : `list`
 
