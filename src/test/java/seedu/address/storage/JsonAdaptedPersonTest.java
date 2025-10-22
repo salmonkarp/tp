@@ -20,11 +20,13 @@ import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialGroup;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TELEHANDLE = "rachel";
+    private static final String INVALID_TUTORIAL_GROUP = "Tutori@L1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GRADE = "131.53";
     private static final String INVALID_ATTEND_VALUE = "2";
@@ -40,6 +42,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_TELEHANDLE = BENSON.getTeleHandle().toString();
+    private static final String VALID_TUTORIAL_GROUP = BENSON.getTutorialGroup().toString();
     private static final LinkedHashMap<String, String> VALID_GRADE_MAP;
     private static final LinkedHashMap<String, String> VALID_ATTEND_MAP;
     static {
@@ -64,6 +67,7 @@ public class JsonAdaptedPersonTest {
                         VALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         VALID_ATTEND_MAP,
                         VALID_TAGS);
@@ -78,6 +82,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -92,6 +97,7 @@ public class JsonAdaptedPersonTest {
                         INVALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         VALID_ATTEND_MAP,
                         VALID_TAGS);
@@ -106,6 +112,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -119,6 +126,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 INVALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -133,6 +141,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 null,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -146,6 +155,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 INVALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -159,10 +169,39 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 null,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TeleHandle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTutorialGroup_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_TELEHANDLE,
+                INVALID_TUTORIAL_GROUP,
+                VALID_ATTEND_MAP,
+                VALID_GRADE_MAP,
+                VALID_TAGS);
+        String expectedMessage = TutorialGroup.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTutorialGroup_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_TELEHANDLE,
+                null,
+                VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
+                VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -175,6 +214,7 @@ public class JsonAdaptedPersonTest {
                         VALID_PHONE,
                         VALID_EMAIL,
                         VALID_TELEHANDLE,
+                        VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
                         VALID_ATTEND_MAP,
                         invalidTags);
@@ -187,6 +227,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 INVALID_GRADE_MAP,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -200,6 +241,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 null,
                 VALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -213,6 +255,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 INVALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -226,6 +269,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 null,
                 VALID_TAGS);

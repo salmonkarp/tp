@@ -24,6 +24,7 @@ public class Person {
 
     // Data fields
     private final TeleHandle teleHandle;
+    private final TutorialGroup tutorialGroup;
     private final GradeMap gradeMap;
     private final AttendMap attendMap;
     private final Set<Tag> tags = new HashSet<>();
@@ -35,14 +36,16 @@ public class Person {
                   Phone phone,
                   Email email,
                   TeleHandle teleHandle,
+                  TutorialGroup tutorialGroup,
                   GradeMap gradeMap,
-                  AttendMap attendMap,
+                 AttendMap attendMap,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, teleHandle, gradeMap, attendMap, tags);
+        requireAllNonNull(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
+        this.tutorialGroup = tutorialGroup;
         this.gradeMap = gradeMap;
         this.attendMap = attendMap;
         this.tags.addAll(tags);
@@ -62,6 +65,10 @@ public class Person {
 
     public TeleHandle getTeleHandle() {
         return teleHandle;
+    }
+
+    public TutorialGroup getTutorialGroup() {
+        return tutorialGroup;
     }
 
     public GradeMap getGradeMap() {
@@ -126,6 +133,7 @@ public class Person {
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && teleHandle.equals(otherPerson.teleHandle)
+            && tutorialGroup.equals(otherPerson.tutorialGroup)
             && gradeMap.equals(otherPerson.gradeMap)
             && attendMap.equals(otherPerson.attendMap)
             && tags.equals(otherPerson.tags);
@@ -134,7 +142,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, teleHandle, gradeMap, attendMap, tags);
+        return Objects.hash(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 
     @Override
@@ -144,6 +152,7 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("teleHandle", teleHandle)
+            .add("tutorialGroup", tutorialGroup)
             .add("gradeMap", gradeMap)
             .add("attendMap", attendMap)
             .add("tags", tags)

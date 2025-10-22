@@ -23,6 +23,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,15 +78,13 @@ public class GradeCommand extends Command {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         TeleHandle teleHandle = personToEdit.getTeleHandle();
+        TutorialGroup tutorialGroup = personToEdit.getTutorialGroup();
         GradeMap gradeMap = personToEdit.getGradeMap();
-        // Removed clone behaviour here since logic would've applied
-        // to other fields as well. Either way, normal behaviour would not
-        // cause sharing of objects as attributes, and is thus fine to take directly.
         gradeMap.put(assignment, grade);
         AttendMap attendMap = personToEdit.getAttendMap();
         Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(name, phone, email, teleHandle, gradeMap, attendMap, tags);
+        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 
     @Override

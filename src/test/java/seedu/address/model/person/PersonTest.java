@@ -118,12 +118,14 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_TUTORIAL1).build();
         assertFalse(ALICE.equals(editedAlice));
+
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", teleHandle=" + ALICE.getTeleHandle()
+                + ", tutorialGroup=" + ALICE.getTutorialGroup()
                 + ", gradeMap=" + ALICE.getGradeMap()
                 + ", attendMap=" + ALICE.getAttendMap()
                 + ", tags=" + ALICE.getTags() + "}";

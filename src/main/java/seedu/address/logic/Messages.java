@@ -43,6 +43,8 @@ public class Messages {
             .append(person.getEmail())
             .append("; TeleHandle: ")
             .append(person.getTeleHandle())
+            .append("; Tutorial Group: ")
+            .append(person.getTutorialGroup())
             .append("; GradeMap: ")
             .append(person.getGradeMap())
             .append("; AttendMap: ")
