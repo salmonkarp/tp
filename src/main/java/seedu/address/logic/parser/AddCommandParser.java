@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
@@ -64,9 +65,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         TutorialGroup tutorialGroup = ParserUtil.parseTutorialGroup(argMultimap.getValue(PREFIX_TUTORIAL_GROUP)
                 .orElse(TutorialGroup.DEFAULT_TUTORIAL_GROUP));
         GradeMap defaultGradeMap = new GradeMap();
+        AttendMap defaultAttendMap = new AttendMap();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, teleHandle, tutorialGroup, defaultGradeMap, tagList);
+        Person person = new Person(name, phone, email, teleHandle, tutorialGroup, defaultGradeMap, defaultAttendMap, tagList);
 
         return new AddCommand(person);
     }

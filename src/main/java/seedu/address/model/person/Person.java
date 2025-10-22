@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ public class Person {
     private final TeleHandle teleHandle;
     private final TutorialGroup tutorialGroup;
     private final GradeMap gradeMap;
+    private final AttendMap attendMap;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,14 +38,16 @@ public class Person {
                   TeleHandle teleHandle,
                   TutorialGroup tutorialGroup,
                   GradeMap gradeMap,
+                 AttendMap attendMap,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, teleHandle, tutorialGroup, gradeMap, tags);
+        requireAllNonNull(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
         this.tutorialGroup = tutorialGroup;
         this.gradeMap = gradeMap;
+        this.attendMap = attendMap;
         this.tags.addAll(tags);
     }
 
@@ -74,6 +78,19 @@ public class Person {
     public Grade getOverallGrade() {
         return gradeMap.getOverallGrade();
     }
+
+    public AttendMap getAttendMap() {
+        return attendMap;
+    }
+
+    public Map<String, String> getAttendMapAsStringMap() {
+        return attendMap.toStringMap();
+    }
+
+    public String getOverallAttendance() {
+        return attendMap.getOverallAttendance();
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -118,13 +135,14 @@ public class Person {
             && teleHandle.equals(otherPerson.teleHandle)
             && tutorialGroup.equals(otherPerson.tutorialGroup)
             && gradeMap.equals(otherPerson.gradeMap)
+            && attendMap.equals(otherPerson.attendMap)
             && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, teleHandle, tutorialGroup, gradeMap, tags);
+        return Objects.hash(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 
     @Override
@@ -136,6 +154,7 @@ public class Person {
             .add("teleHandle", teleHandle)
             .add("tutorialGroup", tutorialGroup)
             .add("gradeMap", gradeMap)
+            .add("attendMap", attendMap)
             .add("tags", tags)
             .toString();
     }

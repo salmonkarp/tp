@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import seedu.address.model.person.Assignments;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.GradeMap;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private TeleHandle teleHandle;
     private TutorialGroup tutorialGroup;
     private GradeMap gradeMap;
+    private AttendMap attendMap;
     private Set<Tag> tags;
 
     /**
@@ -45,6 +47,7 @@ public class PersonBuilder {
         teleHandle = new TeleHandle(DEFAULT_TELEHANDLE);
         tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
         gradeMap = new GradeMap();
+        attendMap = new AttendMap();
         tags = new HashSet<>();
     }
 
@@ -58,6 +61,7 @@ public class PersonBuilder {
         teleHandle = personToCopy.getTeleHandle();
         tutorialGroup = personToCopy.getTutorialGroup();
         gradeMap = personToCopy.getGradeMap();
+        attendMap = personToCopy.getAttendMap();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -125,7 +129,23 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap() {
+        this.attendMap = new AttendMap();
+        return this;
+    }
+
+    /**
+     * Sets the clone {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap(AttendMap newAttendMap) {
+        this.attendMap = new AttendMap(newAttendMap);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, tags);
+        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 }

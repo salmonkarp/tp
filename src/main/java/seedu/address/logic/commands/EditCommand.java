@@ -22,6 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
@@ -37,6 +38,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String FUZZY_COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
         + "by the index number used in the displayed person list. "
@@ -85,6 +87,7 @@ public class EditCommand extends Command {
         TutorialGroup updatedTutorialGroup = editPersonDescriptor.getTutorialGroup()
                 .orElse(personToEdit.getTutorialGroup());
         GradeMap updatedGradeMap = personToEdit.getGradeMap();
+        AttendMap updatedAttendMap = personToEdit.getAttendMap();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName,
@@ -93,6 +96,7 @@ public class EditCommand extends Command {
                 updatedTeleHandle,
                 updatedTutorialGroup,
                 updatedGradeMap,
+               updatedAttendMap,
                 updatedTags);
     }
 

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
@@ -28,8 +29,12 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TUTORIAL_GROUP = "Tutori@L1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GRADE = "131.53";
+    private static final String INVALID_ATTEND_VALUE = "2";
     private static final LinkedHashMap<String, String> INVALID_GRADE_MAP = new LinkedHashMap<>(
             Map.ofEntries(Map.entry("Finals", INVALID_GRADE))
+    );
+    private static final LinkedHashMap<String, String> INVALID_ATTEND_MAP = new LinkedHashMap<>(
+            Map.ofEntries(Map.entry("t1", INVALID_ATTEND_VALUE))
     );
     private static final String INVALID_TAG = "#friend";
 
@@ -39,8 +44,10 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_TELEHANDLE = BENSON.getTeleHandle().toString();
     private static final String VALID_TUTORIAL_GROUP = BENSON.getTutorialGroup().toString();
     private static final LinkedHashMap<String, String> VALID_GRADE_MAP;
+    private static final LinkedHashMap<String, String> VALID_ATTEND_MAP;
     static {
         VALID_GRADE_MAP = (LinkedHashMap<String, String>) BENSON.getGradeMap().toStringMap();
+        VALID_ATTEND_MAP = (LinkedHashMap<String, String>) BENSON.getAttendMap().toStringMap();
     }
     // to fit line width checkstyle requirement
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -62,6 +69,7 @@ public class JsonAdaptedPersonTest {
                         VALID_TELEHANDLE,
                         VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
+                        VALID_ATTEND_MAP,
                         VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -76,6 +84,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+               VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -90,6 +99,7 @@ public class JsonAdaptedPersonTest {
                         VALID_TELEHANDLE,
                         VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
+                        VALID_ATTEND_MAP,
                         VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -104,6 +114,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -117,6 +128,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -131,6 +143,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -144,6 +157,7 @@ public class JsonAdaptedPersonTest {
                 INVALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = TeleHandle.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -157,6 +171,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TeleHandle.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -199,6 +214,7 @@ public class JsonAdaptedPersonTest {
                         VALID_TELEHANDLE,
                         VALID_TUTORIAL_GROUP,
                         VALID_GRADE_MAP,
+                        VALID_ATTEND_MAP,
                         invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
@@ -211,6 +227,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 INVALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = GradeMap.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -224,8 +241,35 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 null,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GradeMap.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAttendMap_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_TELEHANDLE,
+                VALID_GRADE_MAP,
+                INVALID_ATTEND_MAP,
+                VALID_TAGS);
+        String expectedMessage = AttendMap.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullAttendMap_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_TELEHANDLE,
+                VALID_GRADE_MAP,
+                null,
+                VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AttendMap.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
