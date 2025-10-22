@@ -184,6 +184,7 @@ public class JsonAdaptedPersonTest {
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
                 INVALID_TUTORIAL_GROUP,
+                VALID_ATTEND_MAP,
                 VALID_GRADE_MAP,
                 VALID_TAGS);
         String expectedMessage = TutorialGroup.MESSAGE_CONSTRAINTS;
@@ -198,6 +199,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 null,
                 VALID_GRADE_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -253,6 +255,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 INVALID_ATTEND_MAP,
                 VALID_TAGS);
@@ -266,6 +269,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_TELEHANDLE,
+                VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
                 null,
                 VALID_TAGS);

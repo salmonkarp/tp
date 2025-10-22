@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
 import seedu.address.model.person.TutorialClass;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,6 +69,7 @@ public class AttendCommand extends Command {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         TeleHandle teleHandle = personToEdit.getTeleHandle();
+        TutorialGroup tutorialGroup = personToEdit.getTutorialGroup();
         GradeMap gradeMap = personToEdit.getGradeMap();
         AttendMap attendMap = personToEdit.getAttendMap();
         // Removed clone behaviour here since logic would've applied
@@ -76,7 +78,7 @@ public class AttendCommand extends Command {
         attendMap.markPresent(tutClass);
         Set<Tag> tags = personToEdit.getTags();
 
-        return new Person(name, phone, email, teleHandle, gradeMap, attendMap, tags);
+        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 
     @Override

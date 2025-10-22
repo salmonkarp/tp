@@ -68,7 +68,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         AttendMap defaultAttendMap = new AttendMap();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, teleHandle, tutorialGroup, defaultGradeMap, defaultAttendMap, tagList);
+        Person person = new Person(name,
+                phone,
+                email,
+                teleHandle,
+                tutorialGroup,
+                defaultGradeMap,
+                defaultAttendMap,
+                tagList);
 
         return new AddCommand(person);
     }
