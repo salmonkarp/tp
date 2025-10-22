@@ -42,7 +42,8 @@ public class AddressBookParser {
     private static final List<String> COMMAND_KEYWORDS = List.of(
         AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
-        ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, GradeCommand.COMMAND_WORD
+        ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, GradeCommand.COMMAND_WORD,
+        AttendCommand.COMMAND_WORD, UnattendCommand.COMMAND_WORD
     );
     /**
      * Parses user input into command for execution.

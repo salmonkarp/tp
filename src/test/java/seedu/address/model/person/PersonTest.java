@@ -117,6 +117,9 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_TUTORIAL1).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // cleanup
+        attendMap1.markAbsent(TutorialClass.t1);
     }
 
     @Test
