@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label grade;
     @FXML
+    private Label attend;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +57,7 @@ public class PersonCard extends UiPart<Region> {
         teleHandle.setText(person.getTeleHandle().value);
         email.setText(person.getEmail().value);
         grade.setText(person.getOverallGrade().value);
+        attend.setText(person.getOverallAttendance());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

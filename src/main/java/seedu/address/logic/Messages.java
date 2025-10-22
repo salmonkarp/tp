@@ -45,6 +45,8 @@ public class Messages {
             .append(person.getTeleHandle())
             .append("; GradeMap: ")
             .append(person.getGradeMap())
+            .append("; AttendMap: ")
+            .append(person.getAttendMapAsStringMap())
             .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

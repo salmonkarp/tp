@@ -21,6 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
@@ -81,9 +82,16 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         TeleHandle updatedTeleHandle = editPersonDescriptor.getTeleHandle().orElse(personToEdit.getTeleHandle());
         GradeMap updatedGradeMap = personToEdit.getGradeMap();
+        AttendMap updatedAttendMap = personToEdit.getAttendMap();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTeleHandle, updatedGradeMap, updatedTags);
+        return new Person(updatedName,
+                updatedPhone,
+                updatedEmail,
+                updatedTeleHandle,
+                updatedGradeMap,
+                updatedAttendMap,
+                updatedTags);
     }
 
     @Override
