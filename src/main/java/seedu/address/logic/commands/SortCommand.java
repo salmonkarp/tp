@@ -23,10 +23,16 @@ public class SortCommand extends Command {
             + "         " + COMMAND_WORD + " name";
     private static final String MESSAGE_SUCCESS = "Students sorted by %s in %s order.";
 
+    /**
+     * The field to sort by: Name, Tutorial, Grade, or Attendance
+     */
     public enum Field {
         NAME, TUTORIAL, GRADE, ATTENDANCE
     }
 
+    /**
+     * The order in which to sort: Ascending or Descending
+     */
     public enum Order {
         ASC, DESC;
         @Override
@@ -38,6 +44,9 @@ public class SortCommand extends Command {
     private final Field field;
     private final Order order;
 
+    /**
+     * Creates a SortCommand to sort the students by the specified field and order.
+     */
     public SortCommand(Field field, Order order) {
         this.field = requireNonNull(field);
         this.order = requireNonNull(order);
