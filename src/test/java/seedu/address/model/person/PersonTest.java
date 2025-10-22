@@ -107,6 +107,7 @@ public class PersonTest {
         diffAttendMap1.markAbsent(TutorialClass.t1);
         editedAlice = new PersonBuilder(ALICE).withAttendMap(diffAttendMap1).build();
         assertFalse(ALICE.equals(editedAlice));
+        attendMap1.markAbsent(TutorialClass.t1);
 
         // same attendance -> returns true
         AttendMap attendMap2 = ALICE.getAttendMap();
