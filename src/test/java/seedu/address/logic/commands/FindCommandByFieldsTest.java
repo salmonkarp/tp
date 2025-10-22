@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywords;
-import seedu.address.model.person.Tutorial;
 import seedu.address.testutil.PersonBuilder;
 
 public class FindCommandByFieldsTest {
@@ -31,35 +29,32 @@ public class FindCommandByFieldsTest {
     @BeforeEach
     public void setUp() {
         // Build persons with distinct email/tele/tg
-        alice = withTutorialGroup(
-                new PersonBuilder()
-                        .withName("Alice Pauline")
-                        .withEmail("alice@outlook.com")
-                        .withTeleHandle("@alice")
-                        .withPhone("11111111")
-                        .withTags("noisy") // tags are independent; predicate uses tutorialGroup field
-                        .build(),
-                "Tutorial 1");
+        alice = new PersonBuilder()
+                .withName("Alice Pauline")
+                .withEmail("alice@outlook.com")
+                .withTeleHandle("@alice")
+                .withPhone("11111111")
+                .withTags("noisy") // tags are independent; predicate uses tutorialGroup field
+                .withTutorialGroup("TG1")
+                .build();
 
-        bob = withTutorialGroup(
-                new PersonBuilder()
-                        .withName("Bob Brown")
-                        .withEmail("bob@gmail.com")
-                        .withTeleHandle("@bobby")
-                        .withPhone("22222222")
-                        .withTags("lousy") // same TG as Alice to test multi-match
-                        .build(),
-                "Tutorial 1");
+        bob = new PersonBuilder()
+                .withName("Bob Brown")
+                .withEmail("bob@gmail.com")
+                .withTeleHandle("@bobby")
+                .withPhone("22222222")
+                .withTags("lousy") // same TG as Alice to test multi-match
+                .withTutorialGroup("TG1")
+                .build();
 
-        carol = withTutorialGroup(
-                new PersonBuilder()
-                        .withName("Carol Chan")
-                        .withEmail("carol@school.edu")
-                        .withTeleHandle("@carol")
-                        .withPhone("33333333")
-                        .withTags("excellent")
-                        .build(),
-                "Tutorial 2");
+        carol = new PersonBuilder()
+                .withName("Carol Chan")
+                .withEmail("carol@school.edu")
+                .withTeleHandle("@carol")
+                .withPhone("33333333")
+                .withTags("excellent")
+                .withTutorialGroup("TG2")
+                .build();
 
         AddressBook ab = new AddressBook();
         ab.addPerson(alice);
@@ -98,7 +93,7 @@ public class FindCommandByFieldsTest {
     public void execute_tutorialGroup_matchesTwo() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonContainsKeywords predicate = new PersonContainsKeywords(
-                java.util.List.of(), java.util.List.of(), java.util.List.of(), java.util.List.of("Tutorial 1"));
+                java.util.List.of(), java.util.List.of(), java.util.List.of(), java.util.List.of("TG1"));
         FindCommand command = new FindCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
@@ -114,7 +109,7 @@ public class FindCommandByFieldsTest {
                 java.util.List.of(),
                 java.util.List.of("school.edu"),
                 java.util.List.of(),
-                java.util.List.of("Tutorial 1"));
+                java.util.List.of("TG1"));
         FindCommand command = new FindCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
@@ -122,15 +117,4 @@ public class FindCommandByFieldsTest {
         assertEquals(Arrays.asList(alice, bob, carol), model.getFilteredPersonList());
     }
 
-    // Helper to set the private tutorialGroup field to ensure predicate can match TGs.
-    private static Person withTutorialGroup(Person person, String tutorial) {
-        try {
-            Field f = Person.class.getDeclaredField("tutorialGroup");
-            f.setAccessible(true);
-            f.set(person, new Tutorial(tutorial));
-            return person;
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Failed to set tutorialGroup via reflection", e);
-        }
-    }
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,7 @@ public class PersonContainsKeywordsTest {
         PersonContainsKeywords withTele =
                 new PersonContainsKeywords(List.of(), List.of(), Collections.singletonList("@handle"), List.of());
         PersonContainsKeywords withTg =
-                new PersonContainsKeywords(List.of(), List.of(), List.of(), Collections.singletonList("Tutorial 1"));
+                new PersonContainsKeywords(List.of(), List.of(), List.of(), Collections.singletonList("TG1"));
 
         // same object -> true
         assertTrue(nameOnlyA.equals(nameOnlyA));
@@ -107,58 +106,49 @@ public class PersonContainsKeywordsTest {
 
     @Test
     public void test_tutorialGroupContainsKeywords_returnsTrue() {
-        Person person = withTutorialGroup(new PersonBuilder().withName("X").build(), "Tutorial 1");
+        Person person = new PersonBuilder()
+                .withName("X")
+                .withTutorialGroup("TG1")
+                .build();
 
         PersonContainsKeywords predicate =
-                new PersonContainsKeywords(List.of(), List.of(), List.of(), Arrays.asList("Tutorial 1"));
+                new PersonContainsKeywords(List.of(), List.of(), List.of(), List.of("TG1"));
         assertTrue(predicate.test(person));
 
         // Substring and case-insensitive
-        predicate = new PersonContainsKeywords(List.of(), List.of(), List.of(), Arrays.asList("tutor"));
+        predicate = new PersonContainsKeywords(List.of(), List.of(), List.of(), List.of("t"));
         assertTrue(predicate.test(person));
     }
 
     @Test
     public void test_noFieldsMatch_returnsFalse() {
-        Person person = withTutorialGroup(
-                new PersonBuilder()
-                        .withName("Alice")
-                        .withEmail("alice@outlook.com")
-                        .withTeleHandle("@alice")
-                        .build(),
-                "Tutorial 2");
+        Person person = new PersonBuilder()
+                .withName("Alice")
+                .withEmail("alice@outlook.com")
+                .withTeleHandle("@alice")
+                .withTutorialGroup("TG2")
+                .build();
+
 
         PersonContainsKeywords predicate =
                 new PersonContainsKeywords(
                         Arrays.asList("Bob"),
                         Arrays.asList("@nus.edu.sg"),
                         Arrays.asList("@bob"),
-                        Arrays.asList("Tutorial 3"));
+                        Arrays.asList("TG3"));
         assertFalse(predicate.test(person));
     }
 
     @Test
     public void toStringMethod() {
         PersonContainsKeywords predicate = new PersonContainsKeywords(
-                Arrays.asList("Alice"), List.of("gmail"), List.of("@al"), List.of("Tutorial 1"));
+                Arrays.asList("Alice"), List.of("gmail"), List.of("@al"), List.of("TG1"));
         String expected = PersonContainsKeywords.class.getCanonicalName()
                 + "{nameKeywords=[Alice], "
                 + "emailKeywords=[gmail], "
                 + "teleHandleKeywords=[@al], "
-                + "tutorialGroupKeywords=[Tutorial 1]}";
+                + "tutorialGroupKeywords=[TG1]}";
 
         assertEquals(expected, predicate.toString());
-    }
-
-    // Helper to set the private tutorialGroup field.
-    private static Person withTutorialGroup(Person person, String tutorial) {
-        try {
-            Field f = Person.class.getDeclaredField("tutorialGroup");
-            f.setAccessible(true);
-            f.set(person, new Tutorial(tutorial));
-            return person;
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Failed to set tutorialGroup via reflection", e);
-        }
     }
 }
