@@ -28,6 +28,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         SortCommand.Field field = parseField(tokens[0]);
         SortCommand.Order order = tokens.length == 2 ? parseOrder(tokens[1]) : SortCommand.Order.ASC;
 
+        assert field != null : "Field should not be null";
+        assert order != null : "Order should not be null";
+
         return new SortCommand(field, order); // Placeholder return statement
     }
 

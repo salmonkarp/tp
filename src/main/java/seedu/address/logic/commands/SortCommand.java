@@ -19,7 +19,7 @@ public class SortCommand extends Command {
             + "Parameters: FIELD [ORDER]\n"
             + "Fields: name | tutorial | grade | attendance\n"
             + "Order (optional): asc | desc (default is asc)\n"
-            + "Example: " + COMMAND_WORD + " grade desc"
+            + "Example: " + COMMAND_WORD + " grade desc\n"
             + "         " + COMMAND_WORD + " name";
     private static final String MESSAGE_SUCCESS = "Students sorted by %s in %s order.";
 
@@ -57,6 +57,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Comparator<Person> comparator = buildComparator(field);
+        assert comparator != null : "Comparator should not be null";
         model.sortPersonList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 field.toString().toLowerCase(Locale.ROOT),
