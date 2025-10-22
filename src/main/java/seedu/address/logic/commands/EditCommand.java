@@ -96,7 +96,7 @@ public class EditCommand extends Command {
                 updatedTeleHandle,
                 updatedTutorialGroup,
                 updatedGradeMap,
-               updatedAttendMap,
+                updatedAttendMap,
                 updatedTags);
     }
 

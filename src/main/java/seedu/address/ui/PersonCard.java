@@ -55,9 +55,9 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         teleHandle.setText(person.getTeleHandle().value);
-        String tutorial = person.getTutorialGroup().value;
-        if (!tutorial.isEmpty()) {
-            Label tutorialLabel = new Label(tutorial);
+        String tutorialGroup = person.getTutorialGroup().value;
+        if (!tutorialGroup.isEmpty()) {
+            Label tutorialLabel = new Label(tutorialGroup);
             tutorialLabel.getStyleClass().add("tutorial-label");
             tutorialGroupAndTags.getChildren().add(tutorialLabel);
         }

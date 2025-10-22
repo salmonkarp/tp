@@ -62,8 +62,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         TeleHandle teleHandle = ParserUtil.parseTeleHandle(argMultimap.getValue(PREFIX_TELEHANDLE).get());
-        TutorialGroup tutorialGroup = ParserUtil.parseTutorialGroup(argMultimap.getValue(PREFIX_TUTORIAL_GROUP)
-                .orElse(TutorialGroup.DEFAULT_TUTORIAL_GROUP));
+        String tutorialGroupString = argMultimap.getValue(PREFIX_TUTORIAL_GROUP)
+                .orElse(TutorialGroup.DEFAULT_TUTORIAL_GROUP);
+        TutorialGroup tutorialGroup = ParserUtil.parseTutorialGroup(tutorialGroupString);
         GradeMap defaultGradeMap = new GradeMap();
         AttendMap defaultAttendMap = new AttendMap();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

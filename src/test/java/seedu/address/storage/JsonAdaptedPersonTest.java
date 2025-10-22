@@ -84,7 +84,7 @@ public class JsonAdaptedPersonTest {
                 VALID_TELEHANDLE,
                 VALID_TUTORIAL_GROUP,
                 VALID_GRADE_MAP,
-               VALID_ATTEND_MAP,
+                VALID_ATTEND_MAP,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);

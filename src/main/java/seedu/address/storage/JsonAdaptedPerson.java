@@ -169,7 +169,7 @@ class JsonAdaptedPerson {
                 modelTeleHandle,
                 modelTutorialGroup,
                 modelGradeMap,
-               modelAttendMap, modelTags);
+                modelAttendMap, modelTags);
     }
 
 }
