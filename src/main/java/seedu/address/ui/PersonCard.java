@@ -74,7 +74,8 @@ public class PersonCard extends UiPart<Region> {
      * Verbose subclass can override this method to provide different grade text.
      */
     protected String getGradeText() {
-        return person.getOverallGrade().value;
+        String overallGrade = person.getOverallGrade().value;
+        return overallGrade.isBlank() ? "No grades yet." : "Overall grade: " + overallGrade;
     }
 
     /**
@@ -82,6 +83,6 @@ public class PersonCard extends UiPart<Region> {
      * Verbose subclass can override this method to provide different attendance text.
      */
     protected String getAttendText() {
-        return person.getOverallAttendance();
+        return "Overall attendance: " + person.getOverallAttendance();
     }
 }

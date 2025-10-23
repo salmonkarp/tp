@@ -16,7 +16,7 @@ public class PersonCardVerbose extends PersonCard {
      */
     @Override
     protected String getGradeText() {
-        return person.getFormattedGrades();
+        return person.getFormattedGrades().isEmpty() ? "No grades yet." : person.getFormattedGrades();
     }
 
     /**
