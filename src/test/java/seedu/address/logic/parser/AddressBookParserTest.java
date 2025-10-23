@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -25,6 +26,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.GradeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UnattendCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Grade;
@@ -154,5 +157,25 @@ public class AddressBookParserTest {
     @Test
     public void fuzzyMatch_listCommand() throws Exception {
         assertEquals(ListCommand.COMMAND_WORD, parser.fuzzyMatch(ListCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_editCommand() throws Exception {
+        assertEquals(EditCommand.COMMAND_WORD, parser.fuzzyMatch(EditCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_attendCommand() throws Exception {
+        assertEquals(AttendCommand.COMMAND_WORD, parser.fuzzyMatch(AttendCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_unattendCommand() throws Exception {
+        assertEquals(UnattendCommand.COMMAND_WORD, parser.fuzzyMatch(UnattendCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_sortCommand() throws Exception {
+        assertEquals(SortCommand.COMMAND_WORD, parser.fuzzyMatch(SortCommand.FUZZY_COMMAND_WORD));
     }
 }
