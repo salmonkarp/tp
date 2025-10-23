@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -84,7 +83,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate, false);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(List.of(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
@@ -93,13 +92,13 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate, true);
         CommandResult result = command.execute(model);
         assertTrue(result.isVerbose());
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(List.of(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
     public void toStringMethod() {
         PersonContainsKeywords predicate =
-                new PersonContainsKeywords(Arrays.asList("keyword"), List.of(), List.of(), List.of());
+                new PersonContainsKeywords(List.of("keyword"), List.of(), List.of(), List.of());
         boolean isVerbose = false;
         FindCommand findCommand = new FindCommand(predicate, isVerbose);
         String expected = FindCommand.class.getCanonicalName()
@@ -116,6 +115,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private PersonContainsKeywords preparePredicate(String userInput) {
-        return new PersonContainsKeywords(Arrays.asList(userInput.split("\\s+")), List.of(), List.of(), List.of());
+        return new PersonContainsKeywords(List.of(userInput.split("\\s+")), List.of(), List.of(), List.of());
     }
 }

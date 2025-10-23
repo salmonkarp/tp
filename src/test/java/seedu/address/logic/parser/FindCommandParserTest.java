@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // Fallback: no prefixes -> treat as name keywords
-        List<String> names = Arrays.asList("Alice", "Bob");
+        List<String> names = List.of("Alice", "Bob");
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywords(names, List.of(), List.of(), List.of()), false);
 
@@ -54,7 +53,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_validVerboseArgs_returnsVerboseFindCommand() {
         // no leading and trailing whitespaces
-        List<String> names = Arrays.asList("Alice", "Bob");
+        List<String> names = List.of("Alice", "Bob");
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywords(names, List.of(), List.of(), List.of()), true);
         assertParseSuccess(parser, "Alice Bob" + SUFFIX_VERBOSE, expectedFindCommand);
