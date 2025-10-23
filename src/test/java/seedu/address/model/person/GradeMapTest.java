@@ -132,7 +132,7 @@ public class GradeMapTest {
         map.put(VALID_ASSIGNMENT_1, new Grade(" "));
         map.put(VALID_ASSIGNMENT_2, new Grade(VALID_GRADE_1));
         GradeMap gradeMap = new GradeMap(map);
-        String expectedOutput = VALID_ASSIGNMENT_0 + ": " + VALID_GRADE_0 + "\n"
+        String expectedOutput = VALID_ASSIGNMENT_0 + ": " + VALID_GRADE_0 + ", "
                 + VALID_ASSIGNMENT_2 + ": " + VALID_GRADE_1;
         assertEquals(gradeMap.formatGrades(), expectedOutput);
     }

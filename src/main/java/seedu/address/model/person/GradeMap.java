@@ -72,10 +72,17 @@ public class GradeMap extends LinkedHashMap<Assignments, Grade> {
         for (Assignments assignment : Assignments.getAllAssignments()) {
             Grade grade = this.get(assignment);
             if (grade != null && !grade.value.equals(" ")) {
-                sb.append(assignment.name()).append(": ").append(grade).append("\n");
+                sb.append(assignment.name())
+                        .append(": ")
+                        .append(grade)
+                        .append(", ");
             }
         }
-        return sb.toString().trim();
+        // Remove the last ", " if exists
+        if (!sb.isEmpty()) {
+            sb.setLength(sb.length() - 2);
+        }
+        return sb.toString();
     }
 
     @Override
