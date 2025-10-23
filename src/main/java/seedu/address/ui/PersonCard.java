@@ -63,7 +63,7 @@ public class PersonCard extends UiPart<Region> {
         }
         email.setText(person.getEmail().value);
         grade.setText(getGradeText());
-        attend.setText(person.getOverallAttendance());
+        attend.setText(getAttendText());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tutorialGroupAndTags.getChildren().add(new Label(tag.tagName)));
@@ -75,5 +75,13 @@ public class PersonCard extends UiPart<Region> {
      */
     protected String getGradeText() {
         return person.getOverallGrade().value;
+    }
+
+    /**
+     * Returns the overall attendance text to be displayed.
+     * Verbose subclass can override this method to provide different attendance text.
+     */
+    protected String getAttendText() {
+        return person.getOverallAttendance();
     }
 }

@@ -18,4 +18,12 @@ public class PersonCardVerbose extends PersonCard {
     protected String getGradeText() {
         return person.getFormattedGrades();
     }
+
+    /**
+     * Returns a string representation of all attended tutorials of the person.
+     */
+    @Override
+    protected String getAttendText() {
+        return person.getFormattedAttendance();
+    }
 }

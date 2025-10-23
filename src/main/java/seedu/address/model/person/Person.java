@@ -95,6 +95,9 @@ public class Person {
         return attendMap.getOverallAttendance();
     }
 
+    public String getFormattedAttendance() {
+        return attendMap.formatAttendance();
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
