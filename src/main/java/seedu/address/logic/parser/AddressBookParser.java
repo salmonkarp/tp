@@ -61,7 +61,7 @@ public class AddressBookParser {
 
         String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-
+        // Perform fuzzy matching to the closest command word under a given tolerance for error
         commandWord = fuzzyMatch(commandWord);
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
