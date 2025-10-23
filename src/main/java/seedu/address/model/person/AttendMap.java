@@ -71,6 +71,23 @@ public class AttendMap {
     }
 
     /**
+     * Returns the attendance rate as a float between 0 and 1.
+     */
+    public float getAttendanceRate() {
+        int attendedClasses = 0;
+        int totalClasses = TutorialClass.getAllTutorialClass().length;
+
+        for (TutorialClass tutClass : TutorialClass.getAllTutorialClass()) {
+            attendedClasses += attendanceMap.get(tutClass);
+        }
+
+        if (totalClasses == 0) {
+            return 0f;
+        }
+        return (float) attendedClasses / totalClasses;
+    }
+
+    /**
      * Returns a string representation of the attendance map.
      * Format: "t1: Present; t2: Absent; ..."
      */

@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam ArrowColor LOGIC_COLOR
+skinparam sequenceParticipantBackgroundColor LOGIC_COLOR
+
+actor User
+participant ":LogicManager" as LogicManager
+participant ":AddressBookParser" as AddressBookParser
+participant "levDist:LevenshteinDistance" as LevenshteinDistance
+
+User -> LogicManager : execute("addd ...")
+note right
+  This UML diagram only illustrates
+  the fuzzy matching for AddCommand.
+  However, the same fuzzy matching logic
+  applies to all other commands as well.
+end note
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addd ...")
+activate AddressBookParser
+
+AddressBookParser -> AddressBookParser : fuzzyMatch("addd")
+activate AddressBookParser #FFBBBB
+
+AddressBookParser -> LevenshteinDistance : apply("add", "addd")
+activate LevenshteinDistance
+LevenshteinDistance --> AddressBookParser : 1
+deactivate LevenshteinDistance
+
+AddressBookParser --> AddressBookParser : "add"
+deactivate AddressBookParser
+
+AddressBookParser -> ":AddCommandParser" ** : parse("...")
+note right
+  A new AddCommandParser is created
+  to parse the arguments for "add".
+end note
+
+
+deactivate AddressBookParser
+deactivate LogicManager
+
+@enduml
