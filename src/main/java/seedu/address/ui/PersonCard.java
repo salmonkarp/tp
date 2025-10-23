@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -62,10 +62,26 @@ public class PersonCard extends UiPart<Region> {
             tutorialGroupAndTags.getChildren().add(tutorialLabel);
         }
         email.setText(person.getEmail().value);
-        grade.setText(person.getOverallGrade().value);
-        attend.setText(person.getOverallAttendance());
+        grade.setText(getGradeText());
+        attend.setText(getAttendText());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tutorialGroupAndTags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Returns the average grade text to be displayed.
+     * Verbose subclass can override this method to provide different grade text.
+     */
+    protected String getGradeText() {
+        return person.getOverallGrade().value;
+    }
+
+    /**
+     * Returns the overall attendance text to be displayed.
+     * Verbose subclass can override this method to provide different attendance text.
+     */
+    protected String getAttendText() {
+        return person.getOverallAttendance();
     }
 }

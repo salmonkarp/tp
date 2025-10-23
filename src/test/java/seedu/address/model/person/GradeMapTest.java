@@ -20,6 +20,7 @@ public class GradeMapTest {
     public static final String INVALID_ASSIGNMENT_STR_0 = "A1";
     public static final Assignments VALID_ASSIGNMENT_0 = Assignments.Q1;
     public static final Assignments VALID_ASSIGNMENT_1 = Assignments.Q2;
+    public static final Assignments VALID_ASSIGNMENT_2 = Assignments.Finals;
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -113,5 +114,26 @@ public class GradeMapTest {
         map.put(VALID_ASSIGNMENT_1, new Grade(VALID_GRADE_1));
         GradeMap gradeMap = new GradeMap(map);
         assertEquals(gradeMap.getOverallGrade().value, CORRECT_GRADE_0);
+    }
+
+    @Test
+    public void formatGrades_emptyGrades_returnsEmptyString() {
+        LinkedHashMap<Assignments, Grade> map = new LinkedHashMap<>();
+        map.put(VALID_ASSIGNMENT_0, new Grade(" "));
+        map.put(VALID_ASSIGNMENT_1, new Grade(" "));
+        GradeMap gradeMap = new GradeMap(map);
+        assertEquals(gradeMap.formatGrades(), "");
+    }
+
+    @Test
+    public void formatGrades_validGrades_returnsFormattedString() {
+        LinkedHashMap<Assignments, Grade> map = new LinkedHashMap<>();
+        map.put(VALID_ASSIGNMENT_0, new Grade(VALID_GRADE_0));
+        map.put(VALID_ASSIGNMENT_1, new Grade(" "));
+        map.put(VALID_ASSIGNMENT_2, new Grade(VALID_GRADE_1));
+        GradeMap gradeMap = new GradeMap(map);
+        String expectedOutput = VALID_ASSIGNMENT_0 + ": " + VALID_GRADE_0 + ", "
+                + VALID_ASSIGNMENT_2 + ": " + VALID_GRADE_1;
+        assertEquals(gradeMap.formatGrades(), expectedOutput);
     }
 }

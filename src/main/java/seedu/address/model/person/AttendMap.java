@@ -88,6 +88,27 @@ public class AttendMap {
     }
 
     /**
+     * Returns a string representation of the attendance map.
+     * Format: "t1: Present; t2: Absent; ..."
+     */
+    public String formatAttendance() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Attended: ");
+        for (TutorialClass tutClass : TutorialClass.getAllTutorialClass()) {
+            if (isPresent(tutClass)) {
+                sb.append(tutClass.getDescription()).append(", ");
+            }
+        }
+        // Remove the last ", " if exists
+        if (sb.length() > "Attended: ".length()) {
+            sb.setLength(sb.length() - 2);
+        } else {
+            sb.append("None");
+        }
+        return sb.toString();
+    }
+
+    /**
      * Marks the student present for the given tutorial
      */
     public void markPresent(TutorialClass tut) {

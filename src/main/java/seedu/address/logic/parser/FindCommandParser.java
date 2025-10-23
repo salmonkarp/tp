@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,16 +23,25 @@ public class FindCommandParser implements Parser<FindCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    @Override
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        boolean isVerbose = false;
+
+        // only trim trailing spaces to preserve leading spaces for prefix detection in ArgumentMultimap
+        String trimmedArgs = args.stripTrailing();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        // if trimmedArgs ends with "/v", treat as verbose and remove it
+        if (trimmedArgs.endsWith(SUFFIX_VERBOSE)) {
+            isVerbose = true;
+            trimmedArgs = trimmedArgs.substring(0, trimmedArgs.length() - SUFFIX_VERBOSE.length());
+        }
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
+                ArgumentTokenizer.tokenize(trimmedArgs,
                         CliSyntax.PREFIX_NAME,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_TELEHANDLE,
@@ -49,6 +59,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 && tutorialGroups.isEmpty();
 
         if (noPrefixedValues) {
+            trimmedArgs = trimmedArgs.trim();
             String[] keywords = trimmedArgs.split("\\s+");
             if (keywords.length == 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -60,8 +71,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-
-        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups));
+        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups),
+                isVerbose);
     }
 
     // Splits each segment into words based on whitespace and flattens the result into a single list

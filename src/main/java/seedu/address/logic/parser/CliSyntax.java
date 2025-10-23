@@ -15,4 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_GRADE = new Prefix("g/");
     public static final Prefix PREFIX_ASSIGNMENT = new Prefix("n/");
     public static final Prefix PREFIX_TUTORIALCLASS = new Prefix("c/");
+
+    /* Suffix definition */
+    public static final String SUFFIX_VERBOSE = "/v";
 }

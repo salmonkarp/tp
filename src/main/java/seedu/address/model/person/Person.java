@@ -79,6 +79,10 @@ public class Person {
         return gradeMap.getOverallGrade();
     }
 
+    public String getFormattedGrades() {
+        return gradeMap.formatGrades();
+    }
+
     public AttendMap getAttendMap() {
         return attendMap;
     }
@@ -91,6 +95,9 @@ public class Person {
         return attendMap.getOverallAttendance();
     }
 
+    public String getFormattedAttendance() {
+        return attendMap.formatAttendance();
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

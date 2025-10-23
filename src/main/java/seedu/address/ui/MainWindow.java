@@ -291,6 +291,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            personListPanel.setVerbose(commandResult.isVerbose());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

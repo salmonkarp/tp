@@ -58,6 +58,23 @@ public class AttendMapTest {
     }
 
     @Test
+    public void getFormatAttendance_noAttendance_returnsNone() {
+        AttendMap attendMap = new AttendMap();
+        String expected = "Attended: None";
+        assertEquals(expected, attendMap.formatAttendance());
+    }
+
+    @Test
+    public void getFormatAttendance_someAttendance_returnsCorrectString() {
+        AttendMap attendMap = new AttendMap();
+        attendMap.markPresent(TutorialClass.t2);
+        attendMap.markPresent(TutorialClass.t5);
+        String expected = "Attended: " + TutorialClass.t2.getDescription() + ", "
+                + TutorialClass.t5.getDescription();
+        assertEquals(expected, attendMap.formatAttendance());
+    }
+
+    @Test
     public void equals_sameObject_returnsTrue() {
         AttendMap attendMap = new AttendMap();
         assertTrue(attendMap.equals(attendMap));
