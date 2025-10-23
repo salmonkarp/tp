@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertVerboseCommandSuccess;
 
 import java.util.Arrays;
 
@@ -70,10 +71,14 @@ public class FindCommandByFieldsTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonContainsKeywords predicate = new PersonContainsKeywords(
                 java.util.List.of(), java.util.List.of("gmail.com"), java.util.List.of(), java.util.List.of());
-        FindCommand command = new FindCommand(predicate);
-
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(predicate, false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(java.util.List.of(bob), model.getFilteredPersonList());
+
+        FindCommand command1 = new FindCommand(predicate, true);
+        assertVerboseCommandSuccess(command1, model, expectedMessage, expectedModel);
         assertEquals(java.util.List.of(bob), model.getFilteredPersonList());
     }
 
@@ -82,10 +87,14 @@ public class FindCommandByFieldsTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonContainsKeywords predicate = new PersonContainsKeywords(
                 java.util.List.of(), java.util.List.of(), java.util.List.of("@carol"), java.util.List.of());
-        FindCommand command = new FindCommand(predicate);
-
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(predicate, false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(java.util.List.of(carol), model.getFilteredPersonList());
+
+        FindCommand command1 = new FindCommand(predicate, true);
+        assertVerboseCommandSuccess(command1, model, expectedMessage, expectedModel);
         assertEquals(java.util.List.of(carol), model.getFilteredPersonList());
     }
 
@@ -94,10 +103,14 @@ public class FindCommandByFieldsTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonContainsKeywords predicate = new PersonContainsKeywords(
                 java.util.List.of(), java.util.List.of(), java.util.List.of(), java.util.List.of("TG1"));
-        FindCommand command = new FindCommand(predicate);
-
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(predicate, false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(alice, bob), model.getFilteredPersonList());
+
+        FindCommand command1 = new FindCommand(predicate, true);
+        assertVerboseCommandSuccess(command1, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(alice, bob), model.getFilteredPersonList());
     }
 
@@ -110,10 +123,14 @@ public class FindCommandByFieldsTest {
                 java.util.List.of("school.edu"),
                 java.util.List.of(),
                 java.util.List.of("TG1"));
-        FindCommand command = new FindCommand(predicate);
-
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(predicate, false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(alice, bob, carol), model.getFilteredPersonList());
+
+        FindCommand command1 = new FindCommand(predicate, true);
+        assertVerboseCommandSuccess(command1, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(alice, bob, carol), model.getFilteredPersonList());
     }
 

@@ -26,7 +26,9 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         boolean isVerbose = false;
 
-        String trimmedArgs = args.trim();
+        // only trim trailing spaces to preserve leading spaces for prefix detection in ArgumentMultimap
+        String trimmedArgs = args.stripTrailing();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -35,11 +37,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         // if trimmedArgs ends with "/v", treat as verbose and remove it
         if (trimmedArgs.endsWith(SUFFIX_VERBOSE)) {
             isVerbose = true;
-            trimmedArgs = trimmedArgs.substring(0, trimmedArgs.length() - SUFFIX_VERBOSE.length()).trim();
+            trimmedArgs = trimmedArgs.substring(0, trimmedArgs.length() - SUFFIX_VERBOSE.length());
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
+                ArgumentTokenizer.tokenize(trimmedArgs,
                         CliSyntax.PREFIX_NAME,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_TELEHANDLE,
@@ -57,6 +59,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 && tutorialGroups.isEmpty();
 
         if (noPrefixedValues) {
+            trimmedArgs = trimmedArgs.trim();
             String[] keywords = trimmedArgs.split("\\s+");
             if (keywords.length == 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
