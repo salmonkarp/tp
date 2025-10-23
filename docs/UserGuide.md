@@ -219,7 +219,7 @@ Examples:
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
-* If you enter an invalid field, the command will default to sorting by name.
+* If you enter an invalid field, the command will thrown an error. Only matching fields are accepted.
 
 ### Exiting the program : `exit`
 
