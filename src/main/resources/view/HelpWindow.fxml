@@ -32,7 +32,7 @@
             <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
             <TextFlow>
                 <Label text="n/Name" id="sampleCommandLabel"/>
-                <Text text=" - The name of the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - The name of the student or an assignemnt" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
                 <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
@@ -65,6 +65,14 @@
             <TextFlow>
                 <Label text="[ORDER]" id="sampleCommandLabel"/>
                 <Text text=" - [ORDER] can be either asc(ascending) or desc(descending)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="g/GRADE" id="sampleCommandLabel"/>
+                <Text text=" - the grade to be given(numerical grade)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="tg/TUTORIAL_GROUP" id="sampleCommandLabel"/>
+                <Text text=" - the tutorial group for that student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
 
 

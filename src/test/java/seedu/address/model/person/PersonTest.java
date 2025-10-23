@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEHANDLE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -34,7 +35,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTeleHandle(VALID_TELEHANDLE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTeleHandle(VALID_TELEHANDLE_BOB).withTags(VALID_TAG_TUTORIAL1).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,16 +86,48 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTeleHandle(VALID_TELEHANDLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // different grade -> returns false
+        GradeMap gradeMap = ALICE.getGradeMap();
+        GradeMap clonedGradeMap = (GradeMap) gradeMap.clone();
+        clonedGradeMap.put(Assignments.Q1, new Grade(VALID_GRADE_AMY));
+        editedAlice = new PersonBuilder(ALICE).withGradeMap(clonedGradeMap).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different attendance, mark present -> returns false
+        AttendMap attendMap = ALICE.getAttendMap();
+        AttendMap diffAttendMap = new AttendMap(attendMap);
+        diffAttendMap.markPresent(TutorialClass.t1);
+        editedAlice = new PersonBuilder(ALICE).withAttendMap(diffAttendMap).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different attendance, mark absent -> returns false
+        AttendMap attendMap1 = ALICE.getAttendMap();
+        attendMap1.markPresent(TutorialClass.t1);
+        AttendMap diffAttendMap1 = new AttendMap(attendMap1);
+        diffAttendMap1.markAbsent(TutorialClass.t1);
+        editedAlice = new PersonBuilder(ALICE).withAttendMap(diffAttendMap1).build();
+        assertFalse(ALICE.equals(editedAlice));
+        attendMap1.markAbsent(TutorialClass.t1);
+
+        // same attendance -> returns true
+        AttendMap attendMap2 = ALICE.getAttendMap();
+        AttendMap sameAttendMap = new AttendMap(attendMap2);
+        Person sameAlice = new PersonBuilder(ALICE).withAttendMap(sameAttendMap).build();
+        assertTrue(ALICE.equals(sameAlice));
+
+        // different tags -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_TUTORIAL1).build();
+        assertFalse(ALICE.equals(editedAlice));
+
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", teleHandle=" + ALICE.getTeleHandle()
-                + ", grade=" + ALICE.getGrade()
+                + ", tutorialGroup=" + ALICE.getTutorialGroup()
+                + ", gradeMap=" + ALICE.getGradeMap()
+                + ", attendMap=" + ALICE.getAttendMap()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }

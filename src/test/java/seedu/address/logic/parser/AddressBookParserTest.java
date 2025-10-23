@@ -4,27 +4,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GradeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UnattendCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Assignments;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonContainsKeywords;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -39,7 +47,6 @@ public class AddressBookParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
-
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
@@ -70,10 +77,31 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        // Fallback behavior: no prefixes -> name keywords
+        List<String> keywords = List.of("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(
+                new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), false),
+                command);
+        FindCommand command1 = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" "))
+                        + SUFFIX_VERBOSE);
+        assertEquals(new FindCommand(
+                new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), true),
+                command1);
+    }
+
+    @Test
+    public void parseCommand_grade() throws Exception {
+        Grade grade = new Grade("78.50");
+        Assignments q1 = Assignments.Q1;
+        GradeCommand command;
+        command = (GradeCommand) parser.parseCommand(GradeCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_GRADE + grade.value
+                + " " + PREFIX_ASSIGNMENT + q1.name());
+        assertEquals(new GradeCommand(INDEX_FIRST_PERSON, grade, q1), command);
     }
 
     @Test
@@ -97,5 +125,65 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void fuzzyMatch_addCommand() throws Exception {
+        assertEquals(AddCommand.COMMAND_WORD, parser.fuzzyMatch(AddCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_clearCommand() throws Exception {
+        assertEquals(ClearCommand.COMMAND_WORD, parser.fuzzyMatch(ClearCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_deleteCommand() throws Exception {
+        assertEquals(DeleteCommand.COMMAND_WORD, parser.fuzzyMatch(DeleteCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_exitCommand() throws Exception {
+        assertEquals(ExitCommand.COMMAND_WORD, parser.fuzzyMatch(ExitCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_findCommand() throws Exception {
+        assertEquals(FindCommand.COMMAND_WORD, parser.fuzzyMatch(FindCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_gradeCommand() throws Exception {
+        assertEquals(GradeCommand.COMMAND_WORD, parser.fuzzyMatch(GradeCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_helpCommand() throws Exception {
+        assertEquals(HelpCommand.COMMAND_WORD, parser.fuzzyMatch(HelpCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_listCommand() throws Exception {
+        assertEquals(ListCommand.COMMAND_WORD, parser.fuzzyMatch(ListCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_editCommand() throws Exception {
+        assertEquals(EditCommand.COMMAND_WORD, parser.fuzzyMatch(EditCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_attendCommand() throws Exception {
+        assertEquals(AttendCommand.COMMAND_WORD, parser.fuzzyMatch(AttendCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_unattendCommand() throws Exception {
+        assertEquals(UnattendCommand.COMMAND_WORD, parser.fuzzyMatch(UnattendCommand.FUZZY_COMMAND_WORD));
+    }
+
+    @Test
+    public void fuzzyMatch_sortCommand() throws Exception {
+        assertEquals(SortCommand.COMMAND_WORD, parser.fuzzyMatch(SortCommand.FUZZY_COMMAND_WORD));
     }
 }

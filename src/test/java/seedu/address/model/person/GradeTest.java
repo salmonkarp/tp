@@ -22,23 +22,23 @@ public class GradeTest {
     @Test
     public void isValidGradeConstructor() {
         // null Grade number
-        assertThrows(NullPointerException.class, () -> Grade.isValidGradeConstructor(null));
+        assertThrows(NullPointerException.class, () -> Grade.isValidGrade(null));
 
         // invalid Grade numbers
-        assertFalse(Grade.isValidGradeConstructor("")); // empty string
-        assertFalse(Grade.isValidGradeConstructor(" ")); // spaces only
-        assertFalse(Grade.isValidGradeConstructor("91")); // does not have 2 decimal place (d.p.)
-        assertFalse(Grade.isValidGradeConstructor("91.1")); // does not have 2 d.p.
-        assertFalse(Grade.isValidGradeConstructor("100.23")); // above 100.00
-        assertFalse(Grade.isValidGradeConstructor("grade")); // non-numeric
-        assertFalse(Grade.isValidGradeConstructor("9A.12")); // alphabets within digits
-        assertFalse(Grade.isValidGradeConstructor("7 2.23")); // spaces within digits
+        assertFalse(Grade.isValidGrade("")); // empty string
+        assertFalse(Grade.isValidGrade("91")); // does not have 2 decimal place (d.p.)
+        assertFalse(Grade.isValidGrade("91.1")); // does not have 2 d.p.
+        assertFalse(Grade.isValidGrade("100.23")); // above 100.00
+        assertFalse(Grade.isValidGrade("grade")); // non-numeric
+        assertFalse(Grade.isValidGrade("9A.12")); // alphabets within digits
+        assertFalse(Grade.isValidGrade("7 2.23")); // spaces within digits
 
         // valid Grade numbers
-        assertTrue(Grade.isValidGradeConstructor("67.12")); // within 0 to 100 and has 2 d.p.
-        assertTrue(Grade.isValidGradeConstructor("80.86"));
-        assertTrue(Grade.isValidGradeConstructor("100.00")); // accepts 100.00 exact
-        assertTrue(Grade.isValidGradeConstructor("0.00")); // accepts 0.00 exact
+        assertTrue(Grade.isValidGrade(" "));
+        assertTrue(Grade.isValidGrade("67.12")); // within 0 to 100 and has 2 d.p.
+        assertTrue(Grade.isValidGrade("80.86"));
+        assertTrue(Grade.isValidGrade("100.00")); // accepts 100.00 exact
+        assertTrue(Grade.isValidGrade("0.00")); // accepts 0.00 exact
     }
 
     @Test
@@ -59,5 +59,22 @@ public class GradeTest {
 
         // different values -> returns false
         assertFalse(grade.equals(new Grade("50.53")));
+
+        Grade grade1 = new Grade(67);
+
+        // same values -> returns true
+        assertTrue(grade1.equals(new Grade("67.00")));
+
+        // same object -> returns true
+        assertTrue(grade1.equals(grade1));
+
+        // null -> returns false
+        assertFalse(grade1.equals(null));
+
+        // different types -> returns false
+        assertFalse(grade1.equals("67.00"));
+
+        // different values -> returns false
+        assertFalse(grade1.equals(new Grade("67.01")));
     }
 }

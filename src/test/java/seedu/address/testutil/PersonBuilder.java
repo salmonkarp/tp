@@ -1,14 +1,19 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
+import seedu.address.model.person.Assignments;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
+import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +26,15 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEHANDLE = "@amy";
-    public static final String DEFAULT_GRADE = "0.00";
+    public static final String DEFAULT_TUTORIAL_GROUP = "TG01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private TeleHandle teleHandle;
-    private Grade grade;
+    private TutorialGroup tutorialGroup;
+    private GradeMap gradeMap;
+    private AttendMap attendMap;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +45,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         teleHandle = new TeleHandle(DEFAULT_TELEHANDLE);
-        grade = new Grade(DEFAULT_GRADE);
+        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
+        gradeMap = new GradeMap();
+        attendMap = new AttendMap();
         tags = new HashSet<>();
     }
 
@@ -50,7 +59,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         teleHandle = personToCopy.getTeleHandle();
-        grade = personToCopy.getGrade();
+        tutorialGroup = personToCopy.getTutorialGroup();
+        gradeMap = personToCopy.getGradeMap();
+        attendMap = personToCopy.getAttendMap();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -79,6 +90,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Tutorial} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTutorialGroup(String tutorial) {
+        this.tutorialGroup = new TutorialGroup(tutorial);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -95,14 +114,38 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Grade} of the {@code Person} that we are building.
+     * Sets the {@code GradeMap} of the {@code Person} that we are building.
      */
-    public PersonBuilder withGrade(String grade) {
-        this.grade = new Grade(grade);
+    public PersonBuilder withGradeMap(LinkedHashMap<Assignments, Grade> gradeMap) {
+        this.gradeMap = new GradeMap(gradeMap);
+        return this;
+    }
+
+    /**
+     * Sets the default {@code GradeMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGradeMap() {
+        this.gradeMap = new GradeMap();
+        return this;
+    }
+
+    /**
+     * Sets the {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap() {
+        this.attendMap = new AttendMap();
+        return this;
+    }
+
+    /**
+     * Sets the clone {@code AttendMap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendMap(AttendMap newAttendMap) {
+        this.attendMap = new AttendMap(newAttendMap);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, teleHandle, grade, tags);
+        return new Person(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 }

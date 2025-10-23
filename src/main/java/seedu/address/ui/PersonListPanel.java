@@ -20,12 +20,23 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
 
+    private boolean isVerbose = false;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
         personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
+     * Sets the verbosity mode for displaying persons.
+     * @param isVerbose true for verbose mode
+     */
+    public void setVerbose(boolean isVerbose) {
+        this.isVerbose = isVerbose;
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
@@ -41,7 +52,11 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (isVerbose) {
+                    setGraphic(new PersonCardVerbose(person, getIndex() + 1).getRoot());
+                } else {
+                    setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                }
             }
         }
     }

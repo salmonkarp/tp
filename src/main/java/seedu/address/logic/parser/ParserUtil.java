@@ -9,11 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialClass;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -129,9 +132,66 @@ public class ParserUtil {
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
-        if (!Grade.isValidGradeConstructor(trimmedGrade)) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
+        float floatGrade;
+
+        // Allow empty grade values, which will reset it to the default value
+        if (trimmedGrade.isEmpty()) {
+            return new Grade(" ");
         }
-        return new Grade(trimmedGrade);
+
+        // Ensure its numeric
+        try {
+            floatGrade = Float.parseFloat(trimmedGrade);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+
+        // Round to 2 d.p.
+        String formattedGrade = String.format("%.2f", floatGrade);
+
+        if (!Grade.isValidGrade(formattedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return new Grade(formattedGrade);
+    }
+
+    /**
+     * Parses {@code String assignment} into an {@code Assignments}.
+     */
+    public static Assignments parseAssignment(String assignment) throws ParseException {
+        requireNonNull(assignment);
+        String trimmedAssignment = assignment.trim();
+
+        // Don't allow empty assignment values, inside command
+        if (trimmedAssignment.isEmpty() || !Assignments.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignments.MESSAGE_CONSTRAINTS);
+        }
+        return Assignments.fromString(trimmedAssignment);
+    }
+
+    /**
+     * Parses {@code String tutorialGroup} into an {@code TutorialGroup}.
+     */
+    public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
+        requireNonNull(tutorialGroup);
+        String trimmedTutorial = tutorialGroup.trim();
+        if (!TutorialGroup.isValidTutorial(trimmedTutorial)) {
+            throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroup(trimmedTutorial);
+    }
+
+    /**
+     * Parses {@code String tutClass} into an {@code TutorialClass}.
+     */
+    public static TutorialClass parseTutorialClass(String tutClass) throws ParseException {
+        requireNonNull(tutClass);
+        String trimmedTutClass = tutClass.trim();
+
+        // Don't allow empty tutorial class values, inside command
+        if (trimmedTutClass.isEmpty() || !TutorialClass.isValidTutorialClass(trimmedTutClass)) {
+            throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
+        }
+        return TutorialClass.fromString(trimmedTutClass);
     }
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,19 +24,30 @@ public class Person {
 
     // Data fields
     private final TeleHandle teleHandle;
-    private final Grade grade;
+    private final TutorialGroup tutorialGroup;
+    private final GradeMap gradeMap;
+    private final AttendMap attendMap;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, TeleHandle teleHandle, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, teleHandle, tags);
+    public Person(Name name,
+                  Phone phone,
+                  Email email,
+                  TeleHandle teleHandle,
+                  TutorialGroup tutorialGroup,
+                  GradeMap gradeMap,
+                 AttendMap attendMap,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
-        this.grade = grade;
+        this.tutorialGroup = tutorialGroup;
+        this.gradeMap = gradeMap;
+        this.attendMap = attendMap;
         this.tags.addAll(tags);
     }
 
@@ -55,9 +67,38 @@ public class Person {
         return teleHandle;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public TutorialGroup getTutorialGroup() {
+        return tutorialGroup;
     }
+
+    public GradeMap getGradeMap() {
+        return gradeMap;
+    }
+
+    public Grade getOverallGrade() {
+        return gradeMap.getOverallGrade();
+    }
+
+    public String getFormattedGrades() {
+        return gradeMap.formatGrades();
+    }
+
+    public AttendMap getAttendMap() {
+        return attendMap;
+    }
+
+    public Map<String, String> getAttendMapAsStringMap() {
+        return attendMap.toStringMap();
+    }
+
+    public String getOverallAttendance() {
+        return attendMap.getOverallAttendance();
+    }
+
+    public String getFormattedAttendance() {
+        return attendMap.formatAttendance();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -99,14 +140,16 @@ public class Person {
             && phone.equals(otherPerson.phone)
             && email.equals(otherPerson.email)
             && teleHandle.equals(otherPerson.teleHandle)
-            && grade.equals(otherPerson.grade)
+            && tutorialGroup.equals(otherPerson.tutorialGroup)
+            && gradeMap.equals(otherPerson.gradeMap)
+            && attendMap.equals(otherPerson.attendMap)
             && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, teleHandle, grade, tags);
+        return Objects.hash(name, phone, email, teleHandle, tutorialGroup, gradeMap, attendMap, tags);
     }
 
     @Override
@@ -116,7 +159,9 @@ public class Person {
             .add("phone", phone)
             .add("email", email)
             .add("teleHandle", teleHandle)
-            .add("grade", grade)
+            .add("tutorialGroup", tutorialGroup)
+            .add("gradeMap", gradeMap)
+            .add("attendMap", attendMap)
             .add("tags", tags)
             .toString();
     }

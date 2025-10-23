@@ -8,8 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEHANDLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,12 +49,16 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
+        // different telehandle -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTeleHandle(VALID_TELEHANDLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different tutorial group -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTutorialGroup(VALID_TUTORIAL_GROUP_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_TUTORIAL1).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -64,6 +69,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", teleHandle="
+                + editPersonDescriptor.getTutorialGroup().orElse(null) + ", tutorialGroup="
                 + editPersonDescriptor.getTeleHandle().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());

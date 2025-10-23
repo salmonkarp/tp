@@ -2,7 +2,9 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,12 +12,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Assignments;
+import seedu.address.model.person.AttendMap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Grade;
+import seedu.address.model.person.GradeMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialClass;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +36,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String teleHandle;
-    private final String grade;
+    private final String tutorialGroup;
+    private final LinkedHashMap<String, String> gradeMap;
+    private final LinkedHashMap<String, String> attendMap;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,13 +47,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("teleHandle") String teleHandle,
-                             @JsonProperty("grade") String grade,
+                             @JsonProperty("tutorialGroup") String tutorialGroup,
+                             @JsonProperty("gradeMap") LinkedHashMap<String, String> gradeMap,
+                             @JsonProperty("attendMap") LinkedHashMap<String, String> attendMap,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.teleHandle = teleHandle;
-        this.grade = grade;
+        this.tutorialGroup = tutorialGroup;
+        this.gradeMap = gradeMap;
+        this.attendMap = attendMap;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,7 +71,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         teleHandle = source.getTeleHandle().value;
-        grade = source.getGrade().value;
+        tutorialGroup = source.getTutorialGroup().value;
+        gradeMap = (LinkedHashMap<String, String>) source.getGradeMap().toStringMap();
+        attendMap = (LinkedHashMap<String, String>) source.getAttendMap().toStringMap();
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -108,17 +123,53 @@ class JsonAdaptedPerson {
         }
         final TeleHandle modelTeleHandle = new TeleHandle(teleHandle);
 
-        if (grade == null) {
+        if (tutorialGroup == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, "Grade"));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName()));
         }
-        if (!Grade.isValidGradeConstructor(grade)) {
-            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS_CONSTRUCT);
+        if (!TutorialGroup.isValidTutorial(tutorialGroup)) {
+            throw new IllegalValueException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
-        final Grade modelGrade = new Grade(grade);
+        final TutorialGroup modelTutorialGroup = new TutorialGroup(tutorialGroup);
+
+        if (gradeMap == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, GradeMap.class.getSimpleName()));
+        }
+        if (!GradeMap.isValidGradeMap(gradeMap)) {
+            throw new IllegalValueException(GradeMap.MESSAGE_CONSTRAINTS);
+        }
+        final GradeMap modelGradeMap = new GradeMap();
+        for (Map.Entry<String, String> entry : gradeMap.entrySet()) {
+            modelGradeMap.put(Assignments.fromString(entry.getKey()), new Grade(entry.getValue()));
+        }
+
+        if (attendMap == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, AttendMap.class.getSimpleName()));
+        }
+        if (!AttendMap.isValidAttendMap(attendMap)) {
+            throw new IllegalValueException(AttendMap.MESSAGE_CONSTRAINTS);
+        }
+        final AttendMap modelAttendMap = new AttendMap();
+        for (Map.Entry<String, String> entry : attendMap.entrySet()) {
+            TutorialClass tutClass = TutorialClass.fromString(entry.getKey());
+            int attended = Integer.parseInt(entry.getValue());
+            if (attended == 1) {
+                modelAttendMap.markPresent(tutClass);
+            } else {
+                modelAttendMap.markAbsent(tutClass);
+            }
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTeleHandle, modelGrade, modelTags);
+        return new Person(modelName,
+                modelPhone,
+                modelEmail,
+                modelTeleHandle,
+                modelTutorialGroup,
+                modelGradeMap,
+                modelAttendMap, modelTags);
     }
 
 }

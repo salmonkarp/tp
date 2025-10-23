@@ -2,18 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.GradeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Grade;
 
 /**
  * Parses input arguments and creates a new GradeCommand object
  */
-public class GradeCommandParser {
+public class GradeCommandParser implements Parser<GradeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the GradeCommand
@@ -24,16 +26,19 @@ public class GradeCommandParser {
     public GradeCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_GRADE);
+                PREFIX_GRADE, PREFIX_ASSIGNMENT);
 
         Index index;
         Grade grade;
+        Assignments assignment;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
             String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
-            Float convertedGrade = gradeString.isEmpty() ? Float.NaN : Float.parseFloat(gradeString);
-            String convertedGradeString = convertedGrade.isNaN() ? "0.00" : String.format("%.2f", convertedGrade);
-            grade = ParserUtil.parseGrade(convertedGradeString);
+            grade = ParserUtil.parseGrade(gradeString);
+
+            String assignmentName = argMultimap.getValue(PREFIX_ASSIGNMENT).orElse("");
+            assignment = ParserUtil.parseAssignment(assignmentName);
         } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeCommand.MESSAGE_USAGE), ive);
@@ -41,7 +46,7 @@ public class GradeCommandParser {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GRADE);
 
-        return new GradeCommand(index, grade);
+        return new GradeCommand(index, grade, assignment);
     }
 
 }

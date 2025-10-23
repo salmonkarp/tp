@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonContainsKeywords;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -14,16 +14,30 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    public static final String FUZZY_COMMAND_WORD = "findd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-        + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds persons by name, email, telegram handle, "
+            + "or tutorial group (tag).\n"
+            + "Parameters:\n"
+            + "  n/KEYWORD [MORE_KEYWORDS]...    Name keywords\n"
+            + "  e/KEYWORD [MORE_KEYWORDS]...    Email keywords\n"
+            + "  th/KEYWORD [MORE_KEYWORDS]...   Telegram handle keywords\n"
+            + "  tg/TUTORIAL_GROUP [...repeat]   Tutorial group tag, e.g. tg/Tutorial 1\n"
+            + "If no prefixes are provided, the input is treated as name keywords.\n"
+            + "Examples:\n"
+            + "  " + COMMAND_WORD + " alice bob\n"
+            + "  " + COMMAND_WORD + " e/gmail.com\n"
+            + "  " + COMMAND_WORD + " th/@alice tg/Tutorial 1";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonContainsKeywords predicate;
+    private final boolean isVerbose;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    /**
+     * Creates a FindCommand to find persons matching the given predicate.
+     */
+    public FindCommand(PersonContainsKeywords predicate, boolean isVerbose) {
         this.predicate = predicate;
+        this.isVerbose = isVerbose;
     }
 
     @Override
@@ -31,7 +45,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                false, false, isVerbose);
     }
 
     @Override
@@ -46,13 +61,14 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return predicate.equals(otherFindCommand.predicate) && (isVerbose == otherFindCommand.isVerbose);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
             .add("predicate", predicate)
+            .add("isVerbose", isVerbose)
             .toString();
     }
 }

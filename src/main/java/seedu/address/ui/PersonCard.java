@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -41,7 +41,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label grade;
     @FXML
-    private FlowPane tags;
+    private FlowPane tutorialGroupAndTags;
+    @FXML
+    private Label attend;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -53,10 +55,34 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         teleHandle.setText(person.getTeleHandle().value);
+        String tutorialGroup = person.getTutorialGroup().value;
+        if (!tutorialGroup.isEmpty()) {
+            Label tutorialLabel = new Label(tutorialGroup);
+            tutorialLabel.getStyleClass().add("tutorial-label");
+            tutorialGroupAndTags.getChildren().add(tutorialLabel);
+        }
         email.setText(person.getEmail().value);
-        grade.setText(person.getGrade().value);
+        grade.setText(getGradeText());
+        attend.setText(getAttendText());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .forEach(tag -> tutorialGroupAndTags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Returns the average grade text to be displayed.
+     * Verbose subclass can override this method to provide different grade text.
+     */
+    protected String getGradeText() {
+        String overallGrade = person.getOverallGrade().value;
+        return overallGrade.isBlank() ? "No grades yet." : "Overall grade: " + overallGrade;
+    }
+
+    /**
+     * Returns the overall attendance text to be displayed.
+     * Verbose subclass can override this method to provide different attendance text.
+     */
+    protected String getAttendText() {
+        return "Overall attendance: " + person.getOverallAttendance();
     }
 }

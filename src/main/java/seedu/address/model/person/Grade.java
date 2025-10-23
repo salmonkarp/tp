@@ -5,21 +5,23 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's grade in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidGradeConstructor(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
  */
 public class Grade {
 
 
-    public static final String MESSAGE_CONSTRAINTS_CONSTRUCT =
-            "Grade should be a number between 0.00 and 100.00, with exactly 2 decimal places.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Grade should be a number between 0 and 100.";
 
     /**
-     * Strict validation for constructor, exactly 2 decimal places for standardization.
-     * Matches 0.00 to 99.99 or exactly 100.00
+     * Strict validation for constructor, exactly 2 decimal places or an empty String for standardization.
+     * Matches 0.00 to 99.99 or exactly 100.00 or an empty String.
      */
-    public static final String VALIDATION_REGEX_CONSTRUCT = "^(100\\.00|\\d{1,2}\\.\\d{2})$";
+    public static final String VALIDATION_REGEX = "^( |100\\.00|\\d{1,2}\\.\\d{2})$";
 
     public final String value;
+
+    public final float valueFloat;
 
     /**
      * Constructs a {@code Grade}.
@@ -28,19 +30,33 @@ public class Grade {
      */
     public Grade(String value) {
         requireNonNull(value);
-        checkArgument(isValidGradeConstructor(value), MESSAGE_CONSTRAINTS_CONSTRUCT);
+        checkArgument(isValidGrade(value), VALIDATION_REGEX);
         this.value = value;
+        this.valueFloat = value.equals(" ") ? 0.0f : Float.parseFloat(value);
+    }
+
+    /**
+     * Constructs a {@code Grade} from a float.
+     *
+     * @param value A valid grade number between 0.00 and 100.00.
+     */
+    public Grade(float value) {
+        // primitive float cannot be null
+        String valueStr = String.format("%.2f", value);
+        checkArgument(isValidGrade(valueStr), VALIDATION_REGEX);
+        this.value = valueStr;
+        this.valueFloat = value;
     }
 
     /**
      * Returns true if a given string is a valid grade for the constructor.
-     * Valid grade: 0.00 to 100.00 and has exactly 2 decimal places
+     * Valid grade: 0.00 to 100.00 and has exactly 2 decimal places.
      *
      * @param test the grade string to validate
      * @return true if string is a valid grade
      */
-    public static boolean isValidGradeConstructor(String test) {
-        return test.matches(VALIDATION_REGEX_CONSTRUCT);
+    public static boolean isValidGrade(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
