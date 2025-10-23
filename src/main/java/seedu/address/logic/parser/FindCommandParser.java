@@ -71,7 +71,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups), isVerbose);
+        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups),
+                isVerbose);
     }
 
     // Splits each segment into words based on whitespace and flattens the result into a single list
