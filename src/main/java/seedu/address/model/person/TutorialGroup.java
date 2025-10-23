@@ -32,6 +32,13 @@ public class TutorialGroup {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public int getTutorialNumber() {
+        if (value.isEmpty()) {
+            return -1; // Indicate no tutorial group assigned
+        }
+        return Integer.parseInt(value.substring(2)); // Extract number after "TG"
+    }
+
     @Override
     public String toString() {
         return value;
