@@ -21,8 +21,6 @@ Class Phone
 Class AttendMap
 Class GradeMap
 Class Tag
-Class Grade
-enum TutorialClass
 
 Class I #FFFFFF
 }
@@ -48,8 +46,6 @@ Person *--> TeleHandle
 Person *--> AttendMap
 Person *--> GradeMap
 Person *--> "*" Tag
-GradeMap *--> "8" Grade
-AttendMap ..> "11" TutorialClass
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
