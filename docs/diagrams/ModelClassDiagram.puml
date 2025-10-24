@@ -18,7 +18,8 @@ Class TeleHandle
 Class Email
 Class Name
 Class Phone
-class GradeMap
+Class AttendMap
+Class GradeMap
 Class Tag
 
 Class I #FFFFFF
@@ -42,6 +43,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> TeleHandle
+Person *--> AttendMap
 Person *--> GradeMap
 Person *--> "*" Tag
 

@@ -18,5 +18,6 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> TeleHandle
+Person *--> AttendMap
 Person *--> GradeMap
 @enduml
