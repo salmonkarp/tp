@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -37,15 +36,9 @@ public class GradeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns the grade to the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing grade will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_GRADE + "GRADE] "
-            + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]"
-            + "\n"
-            + "The grade must be a number between 0 and 100 inclusive, with up to two decimal places."
-            + "\n"
-            + "The assignment name must be one of the following: "
-            + Arrays.toString(Assignments.getAllAssignments()) + ".\n"
+            + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]" + "\n"
             + "Example: " + COMMAND_WORD + " 1 g/87.50 n/Q1";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Graded Person: %1$s";
