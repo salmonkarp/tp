@@ -31,6 +31,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -92,13 +93,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, TELEHANDLE_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TELEHANDLE));
 
+        // multiple tutorial groups
+        assertParseFailure(parser, TUTORIAL_GROUP_DESC_AMY + validExpectedPersonString,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_GROUP));
+
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY
                         + EMAIL_DESC_AMY + NAME_DESC_AMY + TELEHANDLE_DESC_AMY
                         + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEHANDLE,
-                    PREFIX_PHONE));
+                    PREFIX_PHONE, PREFIX_TUTORIAL_GROUP));
 
         // invalid value followed by valid value
 
