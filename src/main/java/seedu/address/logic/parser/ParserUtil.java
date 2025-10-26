@@ -161,7 +161,7 @@ public class ParserUtil {
      */
     public static Assignments parseAssignment(String assignment) throws ParseException {
         requireNonNull(assignment);
-        String trimmedAssignment = assignment.trim();
+        String trimmedAssignment = assignment.trim().toUpperCase();
 
         // Don't allow empty assignment values, inside command
         if (trimmedAssignment.isEmpty() || !Assignments.isValidAssignment(trimmedAssignment)) {
