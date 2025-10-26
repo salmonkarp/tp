@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -10,7 +12,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.GradeCommand;
 import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Grade;
@@ -37,14 +38,14 @@ public class GradeCommandParserTest {
 
     @Test
     public void parse_missingCompulsoryField_failure() {
-        String expectedMissingIndexSection = Messages.MESSAGE_EMPTY_INDEX;
+        String expectedMissingIndexSection = MESSAGE_EMPTY_INDEX;
         String expectedFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
         String expectedMissingGrade = String.format(
-                Messages.MESSAGE_MISSING_PREFIXES,
+                MESSAGE_MISSING_PREFIXES,
                 PREFIX_GRADE + " "
         ) + "\n\n" + expectedFormatSection;
         String expectedMissingAssignment = String.format(
-                Messages.MESSAGE_MISSING_PREFIXES,
+                MESSAGE_MISSING_PREFIXES,
                 PREFIX_ASSIGNMENT + " "
         ) + "\n\n" + expectedFormatSection;
 

@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.GradeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Assignments;
@@ -53,7 +53,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
                 missingPrefixes.append(PREFIX_ASSIGNMENT.toString()).append(" ");
             }
             String missingPrefixesSection = String.format(
-                    Messages.MESSAGE_MISSING_PREFIXES,
+                    MESSAGE_MISSING_PREFIXES,
                     missingPrefixes
             );
             String commandFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
