@@ -24,12 +24,15 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TELEHANDLE = "rachel";
+    private static final String INVALID_TUTORIAL_GROUP = "TG@1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_TELEHANDLE = "@rachel";
+    private static final String VALID_TUTORIAL_GROUP_1 = "TG01";
+    private static final String VALID_TUTORIAL_GROUP_2 = "01";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -188,24 +191,22 @@ public class ParserUtilTest {
 
     @Test
     public void parseTutorialGroup_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup("")); // empty string
-        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(" ")); // spaces only
-        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup("TG@1")); // invalid characters
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(WHITESPACE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(INVALID_TUTORIAL_GROUP));
     }
 
     @Test
     public void parseTutorialGroup_validValueWithoutWhitespace_returnsTutorialGroup() throws Exception {
-        String validTutorialGroupString1 = "TG01";
-        String validTutorialGroupString2 = "01";
-        TutorialGroup expectedTutorialGroup = new TutorialGroup("TG01");
-        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(validTutorialGroupString1));
-        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(validTutorialGroupString2));
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(VALID_TUTORIAL_GROUP_1));
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(VALID_TUTORIAL_GROUP_2));
     }
 
     @Test
     public void parseTutorialGroup_validValueWithWhitespace_returnsTrimmedTutorialGroup() throws Exception {
-        String tutorialGroupStringWithWhitespace = WHITESPACE + "TG01" + WHITESPACE;
-        TutorialGroup expectedTutorialGroup = new TutorialGroup("TG01");
+        String tutorialGroupStringWithWhitespace = WHITESPACE + VALID_TUTORIAL_GROUP_1 + WHITESPACE;
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
         assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(tutorialGroupStringWithWhitespace));
     }
 
