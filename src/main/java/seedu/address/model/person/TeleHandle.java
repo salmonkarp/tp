@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TeleHandle {
 
-    public static final String MESSAGE_CONSTRAINTS = "TeleHandle starts with @ and does not have any spacing, "
-        + "and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+        " TeleHandle starts with @ and does not have any spacing within the telehandle, "
+            + "and it should not be blank";
 
     /*
      * The first character of the TeleHandle must be a '@' and the TeleHandle must contain at least one character.,
