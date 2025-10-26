@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,15 +89,14 @@ public class AttendCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person attendancePerson = createAttendancePerson(personToEdit);
+        Person personToMarkAttend = lastShownList.get(index.getZeroBased());
+        Person attendancePerson = createAttendancePerson(personToMarkAttend);
 
-        if (!personToEdit.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
+        if (!personToMarkAttend.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, attendancePerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setPerson(personToMarkAttend, attendancePerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(attendancePerson)));
     }
 

@@ -96,15 +96,14 @@ public class GradeCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person gradedPerson = createGradedPerson(personToEdit);
+        Person personToGrade = lastShownList.get(index.getZeroBased());
+        Person gradedPerson = createGradedPerson(personToGrade);
 
-        if (!personToEdit.isSamePerson(gradedPerson) && model.hasPerson(gradedPerson)) {
+        if (!personToGrade.isSamePerson(gradedPerson) && model.hasPerson(gradedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, gradedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setPerson(personToGrade, gradedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(gradedPerson)));
     }
 
