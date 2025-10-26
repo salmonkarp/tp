@@ -1,6 +1,13 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_COMPULSORY_FIELDS;
+import static seedu.address.logic.Messages.MESSAGE_EMAIL;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_COMPULSORY_FIELDS;
+import static seedu.address.logic.Messages.MESSAGE_NAME;
+import static seedu.address.logic.Messages.MESSAGE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_TELEHANDLE;
+import static seedu.address.logic.Messages.MESSAGE_TUTORIAL_GROUP;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -50,8 +57,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
-    private static final String MISSING_COMPULSORY_FIELDS = "Missing compulsory fields: ";
-    private static final String COMPULSORY_FIELDS = "Name, Phone, Email, Telehandle, Tutorial Group.";
     private AddCommandParser parser = new AddCommandParser();
     @Test
     public void parse_allFieldsPresent_success() {
@@ -157,31 +162,31 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-                MISSING_COMPULSORY_FIELDS + "Name." + "\n" + expectedMessage);
+                MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_NAME + "\n" + expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MISSING_COMPULSORY_FIELDS + "Phone." + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_PHONE + "\n" + expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MISSING_COMPULSORY_FIELDS + "Email." + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_EMAIL + "\n" + expectedMessage);
 
         // missing telehandle prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_TELEHANDLE_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MISSING_COMPULSORY_FIELDS + "Telehandle." + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TELEHANDLE + "\n" + expectedMessage);
 
         // missing tutorial group prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + VALID_TAG_TUTORIAL2,
-            MISSING_COMPULSORY_FIELDS + "Tutorial Group." + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TUTORIAL_GROUP + "\n" + expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_TELEHANDLE_BOB,
-            MISSING_COMPULSORY_FIELDS + COMPULSORY_FIELDS + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_COMPULSORY_FIELDS + "\n" + expectedMessage);
     }
 
     @Test
