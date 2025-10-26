@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -29,14 +31,6 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
@@ -44,17 +38,30 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args,
-                    PREFIX_NAME,
-                    PREFIX_PHONE,
-                    PREFIX_EMAIL,
-                    PREFIX_TELEHANDLE,
-                    PREFIX_TUTORIAL_GROUP,
-                    PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_TELEHANDLE,
+                        PREFIX_TUTORIAL_GROUP,
+                        PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEHANDLE, PREFIX_PHONE, PREFIX_EMAIL)
-            || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        Prefix[] compulsoryPrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+            PREFIX_TELEHANDLE, PREFIX_TUTORIAL_GROUP};
+        List<Prefix> missingPrefixes = Stream.of(compulsoryPrefixes)
+                .filter(prefix -> argMultimap.getValue(prefix).isEmpty())
+                .toList();
+
+        if (!missingPrefixes.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
+            String errorMessage = "";
+            if (!missingPrefixes.isEmpty()) {
+                String missingFields = missingPrefixes.stream()
+                        .map(this::getPrefixName)
+                        .collect(Collectors.joining(", "));
+                errorMessage = "Missing compulsory fields: " + missingFields + ".\n";
+            }
+            throw new ParseException(errorMessage
+                + String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEHANDLE);
@@ -81,4 +88,24 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(person);
     }
 
+    /**
+     * Returns the name of the prefix.
+     * @param prefix The prefix to get the name of.
+     * @return The name of the prefix.
+     */
+    private String getPrefixName(Prefix prefix) {
+        if (prefix.equals(PREFIX_NAME)) {
+            return "Name";
+        } else if (prefix.equals(PREFIX_PHONE)) {
+            return "Phone";
+        } else if (prefix.equals(PREFIX_EMAIL)) {
+            return "Email";
+        } else if (prefix.equals(PREFIX_TELEHANDLE)) {
+            return "Telehandle";
+        } else if (prefix.equals(PREFIX_TUTORIAL_GROUP)) {
+            return "Tutorial Group";
+        }
+        // Should not be reached with compulsory prefixes
+        return "";
+    }
 }
