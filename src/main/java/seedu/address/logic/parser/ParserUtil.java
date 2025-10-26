@@ -78,10 +78,11 @@ public class ParserUtil {
      */
     public static TeleHandle parseTeleHandle(String teleHandle) throws ParseException {
         requireNonNull(teleHandle);
-        if (!TeleHandle.isValidTeleHandle(teleHandle)) {
+        String trimmedTeleHandle = teleHandle.trim();
+        if (!TeleHandle.isValidTeleHandle(trimmedTeleHandle)) {
             throw new ParseException(TeleHandle.MESSAGE_CONSTRAINTS);
         }
-        return new TeleHandle(teleHandle);
+        return new TeleHandle(trimmedTeleHandle);
     }
 
     /**

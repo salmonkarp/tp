@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TeleHandle;
 import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
@@ -103,6 +104,19 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseTelehandle_validValueWithoutWhitespace_returnsTelehandle() throws Exception {
+        TeleHandle expectedTelehandle = new TeleHandle(VALID_TELEHANDLE);
+        assertEquals(expectedTelehandle, ParserUtil.parseTeleHandle(VALID_TELEHANDLE));
+    }
+
+    @Test
+    public void parseTelehandle_validValueWithWhitespace_returnsTrimmedTelehandle() throws Exception {
+        String telehandleWithWhitespace = WHITESPACE + VALID_TELEHANDLE + WHITESPACE;
+        TeleHandle expectedTelehandle = new TeleHandle(VALID_TELEHANDLE);
+        assertEquals(expectedTelehandle, ParserUtil.parseTeleHandle(telehandleWithWhitespace));
     }
 
     @Test

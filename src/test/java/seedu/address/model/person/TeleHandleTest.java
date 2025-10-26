@@ -28,7 +28,7 @@ public class TeleHandleTest {
         assertFalse(TeleHandle.isValidTeleHandle("david")); // missing '@' prefix
         assertFalse(TeleHandle.isValidTeleHandle("")); // empty string
 
-        // valid teleHandles
+        // valid teleHandle
         assertTrue(TeleHandle.isValidTeleHandle("@david"));
         assertTrue(TeleHandle.isValidTeleHandle("@-")); // one character
         assertTrue(TeleHandle.isValidTeleHandle("@d4vd420")); // long address
