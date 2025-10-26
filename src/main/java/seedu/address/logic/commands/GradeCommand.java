@@ -34,8 +34,7 @@ public class GradeCommand extends Command {
     public static final String FUZZY_COMMAND_WORD = "gradee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns the grade to the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Assigns the grade to the person identified." + "\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]" + "\n"

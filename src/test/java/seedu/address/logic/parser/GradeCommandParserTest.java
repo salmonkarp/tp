@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.GradeCommand;
 import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Grade;
@@ -36,12 +37,30 @@ public class GradeCommandParserTest {
 
     @Test
     public void parse_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
+        String expectedMissingIndexSection = Messages.MESSAGE_EMPTY_INDEX;
+        String expectedFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
+        String expectedMissingGrade = String.format(
+                Messages.MESSAGE_MISSING_PREFIXES,
+                PREFIX_GRADE + " "
+        ) + "\n\n" + expectedFormatSection;
+        String expectedMissingAssignment = String.format(
+                Messages.MESSAGE_MISSING_PREFIXES,
+                PREFIX_ASSIGNMENT + " "
+        ) + "\n\n" + expectedFormatSection;
 
-        // no parameters
-        assertParseFailure(parser, GradeCommand.COMMAND_WORD, expectedMessage);
+        // no parameters at all
+        assertParseFailure(parser,
+                "",
+                expectedMissingIndexSection + "\n\n" + expectedFormatSection);
 
-        // no index
-        assertParseFailure(parser, GradeCommand.COMMAND_WORD + " " + nonEmptyGrade, expectedMessage);
+        // no grade
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ASSIGNMENT + validAssignment,
+                expectedMissingGrade);
+
+        // no assignment
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_GRADE + nonEmptyGrade,
+                expectedMissingAssignment);
     }
 }
