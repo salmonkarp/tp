@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="800" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="750" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/calculus_icon.png" />
   </icons>
@@ -38,7 +38,14 @@
         </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      
+              <VBox fx:id="personList" minWidth="340" prefWidth="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              </VBox>
+                  <VBox prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <children>
             
                     <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -54,13 +61,6 @@
                     </StackPane>
                      </children>
                   </VBox>
-      
-              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
                </children>
             </HBox>
 
