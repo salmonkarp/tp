@@ -17,18 +17,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TELEHANDLE = "rachel";
+    private static final String INVALID_TUTORIAL_GROUP = "TG@1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_TELEHANDLE = "@rachel";
+    private static final String VALID_TUTORIAL_GROUP_1 = "TG01";
+    private static final String VALID_TUTORIAL_GROUP_2 = "01";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -179,4 +183,31 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseTutorialGroup_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialGroup((String) null));
+    }
+
+    @Test
+    public void parseTutorialGroup_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(WHITESPACE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(INVALID_TUTORIAL_GROUP));
+    }
+
+    @Test
+    public void parseTutorialGroup_validValueWithoutWhitespace_returnsTutorialGroup() throws Exception {
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(VALID_TUTORIAL_GROUP_1));
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(VALID_TUTORIAL_GROUP_2));
+    }
+
+    @Test
+    public void parseTutorialGroup_validValueWithWhitespace_returnsTrimmedTutorialGroup() throws Exception {
+        String tutorialGroupStringWithWhitespace = WHITESPACE + VALID_TUTORIAL_GROUP_1 + WHITESPACE;
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(tutorialGroupStringWithWhitespace));
+    }
+
 }
