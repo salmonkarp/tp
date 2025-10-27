@@ -90,15 +90,14 @@ public class UnattendCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person attendancePerson = createAttendancePerson(personToEdit);
+        Person personToUnattend = lastShownList.get(index.getZeroBased());
+        Person attendancePerson = createAttendancePerson(personToUnattend);
 
-        if (!personToEdit.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
+        if (!personToUnattend.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, attendancePerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setPerson(personToUnattend, attendancePerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(attendancePerson)));
     }
 
