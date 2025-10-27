@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDICES_SIZE_1;
+import static seedu.address.testutil.TypicalIndexes.INDICES_SIZE_3;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ public class AttendCommandTest {
     @Test
     public void equals() {
         AttendCommand commandWithTut1 = new AttendCommand(INDEX_FIRST_PERSON, TutorialClass.t1);
+        AttendCommand commandWithIndicesWithTut1 = new AttendCommand(INDICES_SIZE_3, TutorialClass.t1);
 
         // same values -> returns true
         AttendCommand commandWithSameTut1 = new AttendCommand(INDEX_FIRST_PERSON, TutorialClass.t1);
@@ -33,5 +36,8 @@ public class AttendCommandTest {
 
         // different tutorial class -> returns false
         assertFalse(commandWithTut1.equals(new AttendCommand(INDEX_FIRST_PERSON, TutorialClass.t7)));
+
+        // different indices -> returns false
+        assertFalse(commandWithIndicesWithTut1.equals(new AttendCommand(INDICES_SIZE_1, TutorialClass.t1)));
     }
 }
