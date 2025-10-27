@@ -116,7 +116,6 @@ public class AttendCommand extends Command {
             model.setPerson(personToMarkAttend, attendancePerson);
             successMessage.append(Messages.format(attendancePerson)).append("\n");
         }
-        
         if (indices.size() > 1) {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()));
         } else {
