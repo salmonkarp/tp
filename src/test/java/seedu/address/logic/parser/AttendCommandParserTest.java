@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDICES_SIZE_3;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +27,16 @@ public class AttendCommandParserTest {
         String userInput = targetIndex.getOneBased() + " " + PREFIX_TUTORIALCLASS + validTutClass.name();
 
         AttendCommand expectedCommand = new AttendCommand(targetIndex, validTutClass);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_validIndices_success() {
+        List<Index> indices = INDICES_SIZE_3;
+        TutorialClass validTutClass = TutorialClass.t1;
+        String userInput = indices.get(0).getOneBased() + " " + indices.get(1).getOneBased() + " "
+            + indices.get(2).getOneBased() + " " + PREFIX_TUTORIALCLASS + validTutClass.name();
+        AttendCommand expectedCommand = new AttendCommand(indices, validTutClass);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
