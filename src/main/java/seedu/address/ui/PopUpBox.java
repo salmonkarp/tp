@@ -1,12 +1,13 @@
 package seedu.address.ui;
 
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Popup;
-import java.util.List;
 
 /**
  * A custom pop-up box that displays a list of items.
@@ -14,6 +15,12 @@ import java.util.List;
 public class PopUpBox {
     private Popup popup;
 
+    /**
+     * Constructs a PopUpBox with the specified list of items and colour.
+     *
+     * @param items  the list of items to display in the pop-up
+     * @param colour the colour of the pop-up (currently unused)
+     */
     public PopUpBox(List<String> items, String colour) {
         popup = new Popup();
         popup.setAutoHide(true);
