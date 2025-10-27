@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_ENTERED_MULTIPLE_TUTORIAL_CLASS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX_AND_PREFIXES;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
@@ -69,8 +70,8 @@ public class AttendCommandParser implements Parser<AttendCommand> {
             throw new ParseException(missingPrefixesSection + "\n\n" + commandFormatSection);
         }
 
-        // removed try-catch block here as by right, all the parsing errors will be handled in the respective
-        // ParserUtil methods called below and throw ParseException with relevant messages
+        // Removed try-catch block here as by right, all the parsing errors will be handled in the respective.
+        // ParserUtil methods called below and throw ParseException with relevant messages.
         indices = ParserUtil.parseIndices(argMultimap.getPreamble());
 
         assert !indices.isEmpty();
@@ -79,6 +80,12 @@ public class AttendCommandParser implements Parser<AttendCommand> {
         }
 
         String tutClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
+
+        // If user entered multiple tutorial class after the /c.
+        if (tutClassName.split("\\s+").length > 1) {
+            throw new ParseException(MESSAGE_ENTERED_MULTIPLE_TUTORIAL_CLASS);
+        }
+
         String tutClassNameLower = tutClassName.toLowerCase();
         tutClass = ParserUtil.parseTutorialClass(tutClassNameLower);
 
