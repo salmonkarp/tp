@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDICES_SIZE_1;
+import static seedu.address.testutil.TypicalIndexes.INDICES_SIZE_3;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +16,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Assignments;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -28,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_TUTORIAL_GROUP = "TG@1";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ASSIGNMENT = "Quiz1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -37,6 +41,10 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_ASSIGNMENT_1 = "Q1";
+    private static final String VALID_ASSIGNMENT_2 = "Finals";
+    private static final String VALID_ASSIGNMENT_1_CASE_INSENSITIVE = "q1";
+    private static final String VALID_ASSIGNMENT_2_CASE_INSENSITIVE = "fInALs";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -58,6 +66,18 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_validInput_success() throws Exception {
+        // Indices of size 1
+        assertEquals(INDICES_SIZE_1, ParserUtil.parseIndices("4"));
+
+        // Indices of size 3
+        assertEquals(INDICES_SIZE_3, ParserUtil.parseIndices("5 6 7"));
+
+        // Indices of size 3 with whitespaces
+        assertEquals(INDICES_SIZE_3, ParserUtil.parseIndices("    5    6   7 "));
     }
 
     @Test
@@ -223,5 +243,33 @@ public class ParserUtilTest {
         TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
         assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(tutorialGroupStringWithWhitespace));
     }
+
+    @Test
+    public void parseAssignment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssignment((String) null));
+    }
+
+    @Test
+    public void parseAssignment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(WHITESPACE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(INVALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() throws Exception {
+        assertEquals(Assignments.Q1, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1));
+        assertEquals(Assignments.Finals, ParserUtil.parseAssignment(VALID_ASSIGNMENT_2));
+        assertEquals(Assignments.Q1, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1_CASE_INSENSITIVE));
+        assertEquals(Assignments.Finals, ParserUtil.parseAssignment(VALID_ASSIGNMENT_2_CASE_INSENSITIVE));
+    }
+
+    @Test
+    public void parseAssignment_validValueWithWhitespace_returnsTrimmedAssignment() throws Exception {
+        String assignmentWithWhitespace = WHITESPACE + VALID_ASSIGNMENT_1_CASE_INSENSITIVE + WHITESPACE;
+        assertEquals(Assignments.Q1, ParserUtil.parseAssignment(assignmentWithWhitespace));
+    }
+
+
 
 }

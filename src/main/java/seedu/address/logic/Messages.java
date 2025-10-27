@@ -21,6 +21,9 @@ public class Messages {
     public static final String MESSAGE_TUTORIAL_GROUP = "Tutorial Group.";
     public static final String MESSAGE_MISSING_COMPULSORY_FIELDS = "Missing compulsory fields: ";
     public static final String MESSAGE_COMPULSORY_FIELDS = "Name, Phone, Email, Telehandle, Tutorial Group.";
+    public static final String MESSAGE_EMPTY_INDEX = "The index cannot be empty.";
+    public static final String MESSAGE_MISSING_PREFIXES =
+        "The following required field(s) are missing prefixes: %1$s";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";

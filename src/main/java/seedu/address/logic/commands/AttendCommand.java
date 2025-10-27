@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,17 +34,29 @@ public class AttendCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the attendance of the given tutorial class of the person identified by "
             + "the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX [MORE_INDICES]... (must be a positive integer) "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS\n"
             + "The tutorial class must be one of the following: "
             + Arrays.toString(TutorialClass.getAllTutorialClass()) + ".\n"
-            + "Example: " + COMMAND_WORD + " 1 c/t1";
+            + "Example: " + COMMAND_WORD + " 1 2 3 c/t1";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Attendance marked: %1$s";
+    public static final String MESSAGE_EDIT_PERSONS_SUCCESS = "Attendance marked for people: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final List<Index> indices;
     private final TutorialClass tutClass;
+
+    /**
+     * @param indices of the person in the filtered person list
+     * @param tutClass the tutorial class to be marked as present
+     */
+    public AttendCommand(List<Index> indices, TutorialClass tutClass) {
+        requireAllNonNull(indices, tutClass);
+
+        this.indices = indices;
+        this.tutClass = tutClass;
+    }
 
     /**
      * @param index of the person in the filtered person list
@@ -54,7 +65,7 @@ public class AttendCommand extends Command {
     public AttendCommand(Index index, TutorialClass tutClass) {
         requireAllNonNull(index, tutClass);
 
-        this.index = index;
+        this.indices = List.of(index);
         this.tutClass = tutClass;
     }
 
@@ -86,20 +97,30 @@ public class AttendCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index index : indices) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person attendancePerson = createAttendancePerson(personToEdit);
+        StringBuilder successMessage = new StringBuilder();
 
-        if (!personToEdit.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        for (Index index : indices) {
+            Person personToMarkAttend = lastShownList.get(index.getZeroBased());
+            Person attendancePerson = createAttendancePerson(personToMarkAttend);
+
+            if (!personToMarkAttend.isSamePerson(attendancePerson) && model.hasPerson(attendancePerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setPerson(personToMarkAttend, attendancePerson);
+            successMessage.append(Messages.format(attendancePerson)).append("\n");
         }
-
-        model.setPerson(personToEdit, attendancePerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(attendancePerson)));
+        if (indices.size() > 1) {
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()));
+        } else {
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage.toString()));
+        }
     }
 
     @Override
@@ -114,7 +135,7 @@ public class AttendCommand extends Command {
         }
 
         AttendCommand e = (AttendCommand) other;
-        return index.equals(e.index)
+        return indices.equals(e.indices)
                 && tutClass.equals(e.tutClass);
     }
 

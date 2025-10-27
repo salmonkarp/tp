@@ -115,7 +115,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/T
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
+* `add n/Betsy Crowe e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 Expected output:
 * `New student added:...` with the details of the student added.
@@ -280,16 +280,18 @@ Examples:
 
 Marks a student as attended for a specific tutorial class.
 
-Format: `attend INDEX c/TUTORIAL_NUMBER`
+Format: `attend INDICES... c/TUTORIAL_NUMBER`
 
-* Marks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 1).
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Marks the students at the specified `INDICES` as attended for the given tutorial class (sets attendance value to 1).
+* The indices can be of any length >= 1. 
+* The indices refers to the index number shown in the displayed student list.
+* The indices **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
 * `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd student in the address book.
 * `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
+* `attend 1 2 3 c/t1` marks the attendance for tutorial 1 class of the 1st, 2nd & 3rd student in the address book.
 
 Hints:
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
@@ -342,11 +344,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Features coming soon
-* Delete multiple students in a single command
-* Mark the attendance of multiple students in a single command
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
