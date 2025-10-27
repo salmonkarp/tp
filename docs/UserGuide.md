@@ -115,7 +115,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/T
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
+* `add n/Betsy Crowe e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 Expected output:
 * `New student added:...` with the details of the student added.
