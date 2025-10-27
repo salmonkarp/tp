@@ -21,6 +21,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeleHandle;
+import seedu.address.model.person.TutorialClass;
 import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
@@ -32,6 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_ASSIGNMENT = "Quiz1";
+    private static final String INVALID_TUTORIAL_CLASS = "Tutorial1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -45,6 +47,10 @@ public class ParserUtilTest {
     private static final String VALID_ASSIGNMENT_2 = "Finals";
     private static final String VALID_ASSIGNMENT_1_CASE_INSENSITIVE = "q1";
     private static final String VALID_ASSIGNMENT_2_CASE_INSENSITIVE = "fInALs";
+    private static final String VALID_TUTORIAL_CLASS_1 = "t1";
+    private static final String VALID_TUTORIAL_CLASS_2 = "t2";
+    private static final String VALID_TUTORIAL_CLASS_1_UPPER_CASE = "T1";
+    private static final String VALID_TUTORIAL_CLASS_2_UPPER_CASE = "T2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -270,6 +276,30 @@ public class ParserUtilTest {
         assertEquals(Assignments.Q1, ParserUtil.parseAssignment(assignmentWithWhitespace));
     }
 
+    @Test
+    public void parseTutorialClass_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialClass((String) null));
+    }
 
+    @Test
+    public void parseTutorialClass_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialClass(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialClass(WHITESPACE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialClass(INVALID_TUTORIAL_CLASS));
+    }
+
+    @Test
+    public void parseTutorialClass_validValueWithoutWhitespace_returnsTutorialClass() throws Exception {
+        assertEquals(TutorialClass.t1, ParserUtil.parseTutorialClass(VALID_TUTORIAL_CLASS_1));
+        assertEquals(TutorialClass.t2, ParserUtil.parseTutorialClass(VALID_TUTORIAL_CLASS_2));
+        assertEquals(TutorialClass.t1, ParserUtil.parseTutorialClass(VALID_TUTORIAL_CLASS_1_UPPER_CASE));
+        assertEquals(TutorialClass.t2, ParserUtil.parseTutorialClass(VALID_TUTORIAL_CLASS_2_UPPER_CASE));
+    }
+
+    @Test
+    public void parseTutorialClass_validValueWithWhitespace_returnsTrimmedTutorialClass() throws Exception {
+        String tutorialClasstWithWhitespace = WHITESPACE + VALID_TUTORIAL_CLASS_1_UPPER_CASE + WHITESPACE;
+        assertEquals(TutorialClass.t1, ParserUtil.parseTutorialClass(tutorialClasstWithWhitespace));
+    }
 
 }
