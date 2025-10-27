@@ -77,13 +77,14 @@ public class AttendMap {
         int attendedClasses = 0;
         int totalClasses = TutorialClass.getAllTutorialClass().length;
 
+        if (totalClasses == 0) {
+            return 0f;
+        }
+
         for (TutorialClass tutClass : TutorialClass.getAllTutorialClass()) {
             attendedClasses += attendanceMap.get(tutClass);
         }
 
-        if (totalClasses == 0) {
-            return 0f;
-        }
         return (float) attendedClasses / totalClasses;
     }
 
