@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AttendCommand;
@@ -26,17 +28,17 @@ public class AttendCommandParser implements Parser<AttendCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_TUTORIALCLASS);
 
-        Index index;
+        List<Index> indices;
         TutorialClass tutClass;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-
-            assert index.getOneBased() > 0;
-
-            String tutClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
-            String tutClassNameLower = tutClassName.toLowerCase();
-            tutClass = ParserUtil.parseTutorialClass(tutClassNameLower);
+            indices = ParserUtil.parseIndices(argMultimap.getPreamble());
+            assert !indices.isEmpty();
+            for (Index index : indices) {
+                assert index.getOneBased() > 0;
+            }
+            String tutorialClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
+            tutClass = ParserUtil.parseTutorialClass(tutorialClassName);
         } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AttendCommand.MESSAGE_USAGE), ive);
@@ -44,7 +46,7 @@ public class AttendCommandParser implements Parser<AttendCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIALCLASS);
 
-        return new AttendCommand(index, tutClass);
+        return new AttendCommand(indices, tutClass);
     }
 
 }

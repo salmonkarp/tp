@@ -37,15 +37,13 @@ public class GradeCommand extends Command {
             + ": Assigns the grade to the person identified "
             + "by the index number used in the last person listing. "
             + "Existing grade will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]"
             + "\n"
             + "The grade must be a number between 0 and 100 inclusive, with up to two decimal places."
             + "\n"
             + "The assignment name must be one of the following: "
-            + Arrays.toString(Assignments.getAllAssignments()) + ".\n"
-            + "Example: " + COMMAND_WORD + " 1 g/87.50 n/Q1";
+            + Arrays.toString(Assignments.getAllAssignments()) + ".\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Graded Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
