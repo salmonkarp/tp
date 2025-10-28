@@ -50,7 +50,7 @@ public class FindCommandParserTest {
         List<String> names = List.of("Alice");
         List<String> emails = List.of("gmail.com");
         List<String> tele = List.of("@alice");
-        List<String> tgs = List.of("Tutorial 1");
+        List<String> tgs = List.of("TG01");
 
         FindCommand expected = new FindCommand(
                 new PersonContainsKeywords(names, emails, tele, tgs), false);
@@ -58,8 +58,8 @@ public class FindCommandParserTest {
                 new PersonContainsKeywords(names, emails, tele, tgs), true);
 
         // Note: tele handle prefix is u/
-        String input = " n/Alice e/gmail.com u/@alice tg/Tutorial 1";
-        String input1 = " n/Alice e/gmail.com u/@alice tg/Tutorial 1 " + SUFFIX_VERBOSE;
+        String input = " n/Alice e/gmail.com u/@alice tg/TG01";
+        String input1 = " n/Alice e/gmail.com u/@alice tg/TG01 " + SUFFIX_VERBOSE;
 
         assertParseSuccess(parser, input, expected);
         assertParseSuccess(parser, input1, expected1);

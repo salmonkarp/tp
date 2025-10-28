@@ -21,13 +21,13 @@ public class FindCommand extends Command {
             + "Parameters:\n"
             + "  n/KEYWORD [MORE_KEYWORDS]...    Name keywords\n"
             + "  e/KEYWORD [MORE_KEYWORDS]...    Email keywords\n"
-            + "  th/KEYWORD [MORE_KEYWORDS]...   Telegram handle keywords\n"
-            + "  tg/TUTORIAL_GROUP [...repeat]   Tutorial group tag, e.g. tg/Tutorial 1\n"
+            + "  u/KEYWORD [MORE_KEYWORDS]...    Telegram handle keywords\n"
+            + "  tg/TUTORIAL_GROUP [...repeat]   Tutorial group tag, e.g. tg/TG01\n"
             + "At least 1 prefix must be provided.\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " n/alice bob\n"
             + "  " + COMMAND_WORD + " e/gmail.com\n"
-            + "  " + COMMAND_WORD + " th/@alice tg/Tutorial 1";
+            + "  " + COMMAND_WORD + " u/@alice tg/TG01";
 
     private final PersonContainsKeywords predicate;
     private final boolean isVerbose;
