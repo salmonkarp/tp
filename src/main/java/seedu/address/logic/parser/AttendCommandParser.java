@@ -37,8 +37,9 @@ public class AttendCommandParser implements Parser<AttendCommand> {
             for (Index index : indices) {
                 assert index.getOneBased() > 0;
             }
-            String tutorialClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
-            tutClass = ParserUtil.parseTutorialClass(tutorialClassName);
+            String tutClassName = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
+            String tutClassNameLower = tutClassName.toLowerCase();
+            tutClass = ParserUtil.parseTutorialClass(tutClassNameLower);
         } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AttendCommand.MESSAGE_USAGE), ive);
