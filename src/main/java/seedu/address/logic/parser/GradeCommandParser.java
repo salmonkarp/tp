@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -39,7 +39,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
                 PREFIX_GRADE, PREFIX_ASSIGNMENT);
 
         if (argMultimap.getPreamble().isEmpty()) {
-            String indexEmptySection = String.format(MESSAGE_EMPTY_INDEX);
+            String indexEmptySection = String.format(MESSAGE_MISSING_INDEX);
             String commandFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
             throw new ParseException(indexEmptySection + "\n\n" + commandFormatSection);
         }
