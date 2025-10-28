@@ -130,7 +130,9 @@ Warnings:
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list [/v]`
+
+* If the optional verbose flag `/v` is written at the end, more detailed information (all grades and attendance) of the students will be shown instead of a summary.
 
 ### Editing a person : `edit`
 
