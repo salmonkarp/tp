@@ -43,13 +43,15 @@ public class SortCommand extends Command {
 
     private final Field field;
     private final Order order;
+    private final boolean isVerbose;
 
     /**
      * Creates a SortCommand to sort the students by the specified field and order.
      */
-    public SortCommand(Field field, Order order) {
+    public SortCommand(Field field, Order order, boolean isVerbose) {
         this.field = requireNonNull(field);
         this.order = requireNonNull(order);
+        this.isVerbose = isVerbose;
     }
 
 
@@ -61,7 +63,8 @@ public class SortCommand extends Command {
         model.sortPersonList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 field.toString().toLowerCase(Locale.ROOT),
-                order.toString().toLowerCase(Locale.ROOT)));
+                order.toString().toLowerCase(Locale.ROOT)),
+                false, false, isVerbose);
     }
 
     // Builds a comparator based on the specified field and order
@@ -101,7 +104,7 @@ public class SortCommand extends Command {
             return false;
         }
         SortCommand otherCommand = (SortCommand) other;
-        return field == otherCommand.field && order == otherCommand.order;
+        return field == otherCommand.field && order == otherCommand.order && isVerbose == otherCommand.isVerbose;
     }
 
 }

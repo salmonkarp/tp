@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 
 import java.util.Locale;
 
@@ -14,10 +15,19 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     @Override
     public SortCommand parse(String userInput) throws ParseException {
+        boolean isVerbose = false;
+
         String trimmed = userInput == null ? "" : userInput.trim();
+
+        // if trimmed ends with "/v", treat as verbose and remove it
+        if (trimmed.endsWith(SUFFIX_VERBOSE)) {
+            isVerbose = true;
+            trimmed = trimmed.substring(0, trimmed.length() - SUFFIX_VERBOSE.length());
+        }
+
         // if no arguments, default to sorting by name ascending
         if (trimmed.isEmpty()) {
-            return new SortCommand(SortCommand.Field.NAME, SortCommand.Order.ASC);
+            return new SortCommand(SortCommand.Field.NAME, SortCommand.Order.ASC, isVerbose);
         }
 
         String[] tokens = trimmed.split("\\s+");
@@ -31,7 +41,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         assert field != null : "Field should not be null";
         assert order != null : "Order should not be null";
 
-        return new SortCommand(field, order); // Placeholder return statement
+        return new SortCommand(field, order, isVerbose); // Placeholder return statement
     }
 
     // checks and parses the field to sort by

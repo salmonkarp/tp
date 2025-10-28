@@ -114,7 +114,8 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         ListCommand listCommand = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD);
         ListCommand listCommand1 = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD + " 3");
-        ListCommand verboselistCommand = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD + " " + SUFFIX_VERBOSE);
+        ListCommand verboselistCommand = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD
+                + " " + SUFFIX_VERBOSE);
 
         assertEquals(new ListCommand(false), listCommand);
         assertEquals(new ListCommand(false), listCommand1);
