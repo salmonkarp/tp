@@ -77,15 +77,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        // Fallback behavior: no prefixes -> name keywords
         List<String> keywords = List.of("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(
                 new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), false),
                 command);
         FindCommand command1 = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" "))
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" "))
                         + SUFFIX_VERBOSE);
         assertEquals(new FindCommand(
                 new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), true),
