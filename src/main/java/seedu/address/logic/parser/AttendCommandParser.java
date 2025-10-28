@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_ENTERED_MULTIPLE_TUTORIAL_CLASS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX_AND_PREFIXES;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
@@ -55,7 +55,7 @@ public class AttendCommandParser implements Parser<AttendCommand> {
                         PREFIX_TUTORIALCLASS.getPrefix());
             } else {
                 // No index but prefix is present.
-                checkIndexAndPrefixIfEmptySection = MESSAGE_EMPTY_INDEX;
+                checkIndexAndPrefixIfEmptySection = MESSAGE_MISSING_INDEX;
             }
             throw new ParseException(checkIndexAndPrefixIfEmptySection + "\n\n" + commandFormatSection);
         }
