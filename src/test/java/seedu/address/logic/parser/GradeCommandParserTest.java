@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -36,12 +38,30 @@ public class GradeCommandParserTest {
 
     @Test
     public void parse_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
+        String expectedMissingIndexSection = MESSAGE_MISSING_INDEX;
+        String expectedFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE);
+        String expectedMissingGrade = String.format(
+                MESSAGE_MISSING_PREFIXES,
+                PREFIX_GRADE + " "
+        ) + "\n\n" + expectedFormatSection;
+        String expectedMissingAssignment = String.format(
+                MESSAGE_MISSING_PREFIXES,
+                PREFIX_ASSIGNMENT + " "
+        ) + "\n\n" + expectedFormatSection;
 
-        // no parameters
-        assertParseFailure(parser, GradeCommand.COMMAND_WORD, expectedMessage);
+        // no parameters at all
+        assertParseFailure(parser,
+                "",
+                expectedMissingIndexSection + "\n\n" + expectedFormatSection);
 
-        // no index
-        assertParseFailure(parser, GradeCommand.COMMAND_WORD + " " + nonEmptyGrade, expectedMessage);
+        // no grade
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ASSIGNMENT + validAssignment,
+                expectedMissingGrade);
+
+        // no assignment
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_GRADE + nonEmptyGrade,
+                expectedMissingAssignment);
     }
 }

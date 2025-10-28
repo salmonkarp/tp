@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -77,15 +78,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        // Fallback behavior: no prefixes -> name keywords
         List<String> keywords = List.of("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(
                 new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), false),
                 command);
         FindCommand command1 = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" "))
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" "))
                         + SUFFIX_VERBOSE);
         assertEquals(new FindCommand(
                 new PersonContainsKeywords(keywords, List.of(), List.of(), List.of()), true),
@@ -112,8 +112,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        ListCommand listCommand = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD);
+        ListCommand listCommand1 = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD + " 3");
+        ListCommand verboselistCommand = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD
+                + " " + SUFFIX_VERBOSE);
+
+        assertEquals(new ListCommand(false), listCommand);
+        assertEquals(new ListCommand(false), listCommand1);
+        assertEquals(new ListCommand(true), verboselistCommand);
     }
 
     @Test

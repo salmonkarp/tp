@@ -112,7 +112,7 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonContainsKeywords}.
      */
     private PersonContainsKeywords preparePredicate(String userInput) {
         return new PersonContainsKeywords(List.of(userInput.split("\\s+")), List.of(), List.of(), List.of());

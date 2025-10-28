@@ -30,7 +30,7 @@ public enum Assignments {
      */
     public static boolean isValidAssignment(String test) {
         for (Assignments assignment : Assignments.values()) {
-            if (assignment.name().equals(test)) {
+            if (assignment.name().equalsIgnoreCase(test)) {
                 return true;
             }
         }
@@ -43,7 +43,7 @@ public enum Assignments {
      */
     public static Assignments fromString(String part) {
         for (Assignments gradeType : Assignments.values()) {
-            if (gradeType.name().equals(part)) {
+            if (gradeType.name().equalsIgnoreCase(part)) {
                 return gradeType;
             }
         }

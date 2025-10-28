@@ -31,8 +31,8 @@
             />
             <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
             <TextFlow>
-                <Label text="n/Name" id="sampleCommandLabel"/>
-                <Text text=" - The name of the student or an assignemnt" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Label text="n/NAME" id="sampleCommandLabel"/>
+                <Text text=" - the name of the student or an assignemnt" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
                 <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
@@ -67,12 +67,8 @@
                 <Text text=" - [ORDER] can be either asc(ascending) or desc(descending)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
-                <Label text="g/GRADE" id="sampleCommandLabel"/>
-                <Text text=" - the grade to be given(numerical grade)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-            </TextFlow>
-            <TextFlow>
-                <Label text="tg/TUTORIAL_GROUP" id="sampleCommandLabel"/>
-                <Text text=" - the tutorial group for that student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Label text="/v" id="sampleCommandLabel"/>
+                <Text text=" - verbose flag to display more detailed student information (all grades and attendance)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
 
 
@@ -104,7 +100,7 @@
             <Label text="5. list: Lists all persons." id="commandListLabel"/>
             <TextFlow>
               <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="list" id="sampleCommandLabel"/>
+              <Label text="list [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="6. help: Shows program usage instructions." id="commandListLabel"/>
@@ -128,7 +124,7 @@
             <Label text="9. sort: sorts the list on screen to follow a certain field" id="commandListLabel"/>
             <TextFlow>
                 <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-                <Label text="sort [FIELD] [ORDER]" id="sampleCommandLabel"/>
+                <Label text="sort [FIELD] [ORDER] [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="10. marks a student's attendance for a tutorial session" id="commandListLabel"/>

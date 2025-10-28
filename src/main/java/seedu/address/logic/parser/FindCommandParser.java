@@ -59,16 +59,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 && tutorialGroups.isEmpty();
 
         if (noPrefixedValues) {
-            trimmedArgs = trimmedArgs.trim();
-            String[] keywords = trimmedArgs.split("\\s+");
-            if (keywords.length == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-            nameKeywords = Arrays.asList(keywords);
-        }
-
-        // At least one field must be provided
-        if (nameKeywords.isEmpty() && emailKeywords.isEmpty() && teleKeywords.isEmpty() && tutorialGroups.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 

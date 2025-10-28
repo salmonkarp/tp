@@ -33,7 +33,7 @@ public enum TutorialClass {
      */
     public static boolean isValidTutorialClass(String test) {
         for (TutorialClass tutClass : TutorialClass.values()) {
-            if (tutClass.name().equals(test)) {
+            if (tutClass.name().equalsIgnoreCase(test)) {
                 return true;
             }
         }
@@ -46,7 +46,7 @@ public enum TutorialClass {
      */
     public static TutorialClass fromString(String part) {
         for (TutorialClass tutClass : TutorialClass.values()) {
-            if (tutClass.name().equals(part)) {
+            if (tutClass.name().equalsIgnoreCase(part)) {
                 return tutClass;
             }
         }
