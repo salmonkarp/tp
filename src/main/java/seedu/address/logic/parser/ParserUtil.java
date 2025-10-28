@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELDS;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,7 +39,11 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            if (trimmedIndex.matches(".*\\d.*")) {
+                throw new ParseException(MESSAGE_MISSING_FIELDS);
+            } else {
+                throw new ParseException(MESSAGE_MISSING_INDEX);
+            }
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
