@@ -38,11 +38,11 @@ public class FindCommandParserTest {
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " n/Alice Bob", expectedFindCommand);
-        assertParseSuccess(parser, " n/Alice Bob /v", expectedFindCommand1);
+        assertParseSuccess(parser, " n/Alice Bob " + SUFFIX_VERBOSE, expectedFindCommand1);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t", expectedFindCommand);
-        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t  /v", expectedFindCommand1);
+        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t  " + SUFFIX_VERBOSE, expectedFindCommand1);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class FindCommandParserTest {
 
         // Note: tele handle prefix is u/
         String input = " n/Alice e/gmail.com u/@alice tg/Tutorial 1";
-        String input1 = " n/Alice e/gmail.com u/@alice tg/Tutorial 1 /v";
+        String input1 = " n/Alice e/gmail.com u/@alice tg/Tutorial 1 " + SUFFIX_VERBOSE;
 
         assertParseSuccess(parser, input, expected);
         assertParseSuccess(parser, input1, expected1);
