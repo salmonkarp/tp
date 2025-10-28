@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Command History"
+           style="-fx-font-size: 16px;
+                  -fx-font-weight: bold;
+                  -fx-padding: 4 0 4 0;
+                  -fx-text-fill: #e0e0e0;"
+    />
     <ListView fx:id="commandListView" VBox.vgrow="ALWAYS"/>
 </VBox>
