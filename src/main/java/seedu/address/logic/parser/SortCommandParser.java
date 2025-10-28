@@ -41,7 +41,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         assert field != null : "Field should not be null";
         assert order != null : "Order should not be null";
 
-        return new SortCommand(field, order, isVerbose); // Placeholder return statement
+        return new SortCommand(field, order, isVerbose);
     }
 
     // checks and parses the field to sort by
