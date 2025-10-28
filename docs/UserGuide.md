@@ -152,49 +152,41 @@ Examples:
 *  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name or details: `find`
+### Locating students by details: `find`
 
-Finds persons whose names contain any of the given keywords. 
-These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
+Finds students whose details matches any of the given keywords. 
+These keywords can include **names**, **emails**, **telegram handles** or **tutorial groups**.
 
-Format 1:
-`find KEYWORD [MORE_KEYWORDS] [/v]`<br>
-Searches by name only.
-
-Format 2:
+Format:
 `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]`<br>
-Searches by specific fields. You can combine multiple fields.
+Searches by specific fields. You can combine multiple fields. At least 1 field is needed.
 
 **Behaviour & Tips**:
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * **Partial matches** are supported. e.g. `ann` will match `Annabel`, `Joanna`
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the optional verbose flag `/v` is written at the end, more detailed information of the found persons will be shown instead of a summary.
+* If the optional verbose flag `/v` is written at the end, more detailed information (shows all grades and attendance) of the found students will be shown instead of a summary.
 
 **Expected Output:**<br>
-A list of persons matching your search criteria will be displayed in the main window.
+A list of students matching your search criteria will be displayed in the main window.
 
 Examples:
-* `find John` 
+* `find n/John` 
 <br>returns `john` and `John Doe`
-* `find alex david`
-<br>returns `Alex Yeoh`, `David Li`
-* `find alex bernice /v`
-<br>returns detailed information (shows all grades and attendance) of `Alex Yeoh`  and `Bernice Yu`
+* `find n/alex bernice /v`
+<br>returns detailed information of `Alex Yeoh`  and `Bernice Yu`
 * `find n/Alex e/example.com` 
-<br>returns persons whose names contain `Alex` or whose email addresses contain `example.com`
+<br>returns students whose names contain `Alex` or whose email addresses contain `example.com`
 * `find u/@jake tg/Tutorial2` 
-<br>returns persons whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
+<br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
 
 **Warnings:**
 * If no matches are found, the list will be empty.
 * If wrong format is used (e.g. `find `, with no specifications), an error message will be displayed.
   e.g. `Invalid command format!...` and details of the error.
-
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a student : `delete`
 
