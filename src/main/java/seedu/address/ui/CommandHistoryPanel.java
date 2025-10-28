@@ -40,7 +40,10 @@ public class CommandHistoryPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CommandCard(item).getRoot());
+                CommandCard card = new CommandCard(item);
+                // Fill full row width (subtract a bit for scrollbar/padding)
+                card.getRoot().prefWidthProperty().bind(getListView().widthProperty().subtract(16));
+                setGraphic(card.getRoot());
             }
         }
     }
