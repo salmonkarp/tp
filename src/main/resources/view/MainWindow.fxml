@@ -57,7 +57,7 @@
                     <Insets bottom="5" left="10" right="10" top="5" />
                   </padding>
                 </StackPane>
-                <StackPane fx:id="resultDisplayPlaceHolder" minHeight="50" prefHeight="50" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <StackPane fx:id="commandHistoryPlaceholder" minHeight="50" prefHeight="50" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
