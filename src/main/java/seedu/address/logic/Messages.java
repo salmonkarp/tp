@@ -13,7 +13,14 @@ import seedu.address.model.person.Person;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_EMPTY_INDEX = "The index cannot be empty.";
+    public static final String MESSAGE_MISSING_INDEX = "Missing / Invalid(Non Positive Integer) Index";
+    public static final String MESSAGE_NAME = "Name.";
+    public static final String MESSAGE_PHONE = "Phone.";
+    public static final String MESSAGE_EMAIL = "Email.";
+    public static final String MESSAGE_TELEHANDLE = "Telehandle.";
+    public static final String MESSAGE_TUTORIAL_GROUP = "Tutorial Group.";
+    public static final String MESSAGE_MISSING_COMPULSORY_FIELDS = "Missing compulsory fields: ";
+    public static final String MESSAGE_COMPULSORY_FIELDS = "Name, Phone, Email, Telehandle, Tutorial Group.";
     public static final String MESSAGE_MISSING_PREFIXES =
         "The following required field(s) are missing prefixes: %1$s";
     public static final String MESSAGE_MISSING_INDEX_AND_PREFIXES =
