@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_NO_INPUT;
+import static seedu.address.logic.Messages.MESSAGE_NO_KEYWORD;
+import static seedu.address.logic.Messages.MESSAGE_NO_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -18,14 +20,15 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_NO_INPUT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " Alice", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " n\bob", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " tgg/01", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " Alice", String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n\bob", String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " tgg/01", String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " n/", String.format(MESSAGE_NO_KEYWORD, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
