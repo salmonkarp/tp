@@ -130,7 +130,9 @@ Warnings:
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list [/v]`
+
+* If the optional verbose flag `/v` is written at the end, more detailed information (all grades and attendance) of the students will be shown instead of a summary.
 
 ### Editing a person : `edit`
 
@@ -245,9 +247,9 @@ Examples:
 
 ### Sorting the student list: `sort`
 
-Sorts the person list currently displayed in the address book based on given sort instructions.
+Sorts the student list currently displayed in the address book based on given sort instructions.
 
-Format: `sort [field]`
+Format: `sort [field] [/v]`
 
 Possible `[field]` values:
 * `name`: Sorts alphabetically by student's name.
@@ -262,15 +264,17 @@ Possible `[field]` values:
 * Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
 * The sorting is done in ascending order.
+* If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
 
 **Expected Output:**<br>
-The person list will be reordered according to your chosen field.
+The student list will be reordered according to your chosen field.
 
 Examples:
 * `sort name` sorts the student list in alphabetical order of names.
 * `sort grade` sorts the student list in descending order of average grades.
 * `sort attendance` sorts the student list in descending order of attendance percentage.
 * `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
+* `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows more detailed information of the students.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
@@ -379,7 +383,7 @@ Action | Format, Examples
 **Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
 **Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS] [/v]`<br> `find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD [/v]` <br> e.g., `find James Jake`
-**Sort** | `sort [field]`<br> e.g., `sort grade`
-**List** | `list`
+**Find** | `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
+**Sort** | `sort [field] [/v]`<br> e.g., `sort grade`
+**List** | `list [/v]`
 **Help** | `help`
