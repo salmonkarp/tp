@@ -75,7 +75,7 @@ public class SortCommand extends Command {
             comparator = Comparator.comparing(p -> p.getName().toString().toLowerCase(Locale.ROOT));
             break;
         case TUTORIAL:
-            comparator = Comparator.comparing(p -> p.getTutorialGroup().getTutorialNumber());
+            comparator = Comparator.comparing(p -> p.getTutorialGroup().getTutorialGroupNumber());
             break;
         case GRADE:
             comparator = Comparator.comparing(p -> p.getOverallGrade().valueFloat);

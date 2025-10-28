@@ -58,8 +58,8 @@ public class SortCommandTest {
 
         List<Person> list = model.getFilteredPersonList();
         for (int i = 1; i < list.size(); i++) {
-            int prev = list.get(i - 1).getTutorialGroup().getTutorialNumber();
-            int cur = list.get(i).getTutorialGroup().getTutorialNumber();
+            int prev = list.get(i - 1).getTutorialGroup().getTutorialGroupNumber();
+            int cur = list.get(i).getTutorialGroup().getTutorialGroupNumber();
             assertTrue(prev <= cur);
         }
     }
@@ -72,8 +72,8 @@ public class SortCommandTest {
 
         List<Person> list = model.getFilteredPersonList();
         for (int i = 1; i < list.size(); i++) {
-            int prev = list.get(i - 1).getTutorialGroup().getTutorialNumber();
-            int cur = list.get(i).getTutorialGroup().getTutorialNumber();
+            int prev = list.get(i - 1).getTutorialGroup().getTutorialGroupNumber();
+            int cur = list.get(i).getTutorialGroup().getTutorialGroupNumber();
             assertTrue(prev >= cur);
         }
     }

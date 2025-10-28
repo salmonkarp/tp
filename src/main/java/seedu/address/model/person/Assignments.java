@@ -55,13 +55,13 @@ public enum Assignments {
      */
     public String getDescription() {
         switch (this) {
-        case Q1: return "Quiz 1";
-        case Q2: return "Quiz 2";
-        case Q3: return "Quiz 3";
-        case Q4: return "Quiz 4";
-        case Q5: return "Quiz 5";
-        case Q6: return "Quiz 6";
-        case Q7: return "Quiz 7";
+        case Q1: return "Quiz 1 (Q1)";
+        case Q2: return "Quiz 2 (Q2)";
+        case Q3: return "Quiz 3 (Q3)";
+        case Q4: return "Quiz 4 (Q4)";
+        case Q5: return "Quiz 5 (Q5)";
+        case Q6: return "Quiz 6 (Q6)";
+        case Q7: return "Quiz 7 (Q7)";
         case Finals: return "Finals";
         default: return "";
         }

@@ -32,7 +32,7 @@ public class TutorialGroup {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public int getTutorialNumber() {
+    public int getTutorialGroupNumber() {
         if (value.isEmpty()) {
             return -1; // Indicate no tutorial group assigned
         }

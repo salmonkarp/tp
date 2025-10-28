@@ -48,10 +48,10 @@ public class FindCommandParser implements Parser<FindCommand> {
                         CliSyntax.PREFIX_TUTORIAL_GROUP
                 );
 
-        List<String> nameKeywords = words(argMultimap.getAllValues(CliSyntax.PREFIX_NAME));
-        List<String> emailKeywords = words(argMultimap.getAllValues(CliSyntax.PREFIX_EMAIL));
-        List<String> teleKeywords = words(argMultimap.getAllValues(CliSyntax.PREFIX_TELEHANDLE));
-        List<String> tutorialGroups = values(argMultimap.getAllValues(CliSyntax.PREFIX_TUTORIAL_GROUP));
+        List<String> nameKeywords = splitToWords(argMultimap.getAllValues(CliSyntax.PREFIX_NAME));
+        List<String> emailKeywords = splitToWords(argMultimap.getAllValues(CliSyntax.PREFIX_EMAIL));
+        List<String> teleKeywords = splitToWords(argMultimap.getAllValues(CliSyntax.PREFIX_TELEHANDLE));
+        List<String> tutorialGroups = filterAndTrim(argMultimap.getAllValues(CliSyntax.PREFIX_TUTORIAL_GROUP));
 
         boolean noPrefixedValues = nameKeywords.isEmpty()
                 && emailKeywords.isEmpty()
@@ -67,7 +67,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     // Splits each segment into words based on whitespace and flattens the result into a single list
-    private static List<String> words(List<String> segments) {
+    private static List<String> splitToWords(List<String> segments) {
         if (segments == null || segments.isEmpty()) {
             return List.of();
         }
@@ -84,10 +84,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     // Trims each segment and collects non-empty ones into a list
-    private static List<String> values(List<String> segments) {
+    private static List<String> filterAndTrim(List<String> segments) {
         if (segments == null || segments.isEmpty()) {
             return List.of();
         }
+        // Trim each segment and filter out empty strings
         return segments.stream()
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())

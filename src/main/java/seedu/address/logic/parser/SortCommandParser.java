@@ -51,6 +51,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         switch (fieldStr.toLowerCase(Locale.ROOT)) {
         case "name":
             return SortCommand.Field.NAME;
+        case "tg":
         case "tutorial":
             return SortCommand.Field.TUTORIAL;
         case "grade":
@@ -58,7 +59,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         case "attendance":
             return SortCommand.Field.ATTENDANCE;
         default:
-            throw new ParseException(String.format("Invalid Field!\n" + SortCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("Invalid Field name!\n" + SortCommand.MESSAGE_USAGE));
         }
     }
 
@@ -74,7 +75,10 @@ public class SortCommandParser implements Parser<SortCommand> {
         case "desc":
             return SortCommand.Order.DESC;
         default:
-            throw new ParseException(String.format("Invalid Order!\n" + SortCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    "Invalid sorting order, use only asc or desc!\n"
+                            + SortCommand.MESSAGE_USAGE)
+            );
         }
     }
 }
