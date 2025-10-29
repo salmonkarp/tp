@@ -592,7 +592,7 @@ This includes time spent on design, implementation, testing, documentation, and 
 A small part of the implementation of the Fuzzy Search feature was done through an external library.
 [This library](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/similarity/LevenshteinDistance.html) is from the Apache Commons project and is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-### Difficulty Level
+### Difficulty level
 The difficulty level of this project is considered to be 'Moderate', tending to occasionally 'High' at the earlier stages of development.
 
 This was due to the need to modify the original commands' implementations significantly to fit the new requirements,
@@ -601,7 +601,7 @@ which often had a compound effect on other parts of the codebase, and thus was a
 Furthermore, multiple new object types have been created to represent new complex attributes.
 Given that these attributes (Attendance, Grades) are often non-trivial, they required extensive code and tests to ensure their correctness and robustness.
 
-### Challenges Faced
+### Challenges faced
 Some of the challenges faced during the development of this project include:
 * Initial learning process of the codebase, which was very interconnected prior to making any significant changes.
 * Selecting design choices that would best fit the new requirements while minimizing the impact on existing functionalities and making future extensions easier.
