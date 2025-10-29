@@ -117,9 +117,11 @@ public class AttendCommand extends Command {
             successMessage.append(Messages.format(attendancePerson)).append("\n");
         }
         if (indices.size() > 1) {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()),
+                    false, false, true);
         } else {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage.toString()));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage.toString()),
+                    false, false, true);
         }
     }
 
