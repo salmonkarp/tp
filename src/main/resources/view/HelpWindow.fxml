@@ -32,7 +32,7 @@
             <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
             <TextFlow>
                 <Label text="n/NAME" id="sampleCommandLabel"/>
-                <Text text=" - the name of the student or an assignemnt" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - the name of the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
                 <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
@@ -49,6 +49,10 @@
             <TextFlow>
                 <Label text="g/GRADE" id="sampleCommandLabel"/>
                 <Text text=" - the grade to be given(numerical grade)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="a/ASSIGNMENT_NAME" id="sampleCommandLabel"/>
+                <Text text=" - the assignment name to be marked" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
                 <Label text="tg/TUTORIAL_GROUP" id="sampleCommandLabel"/>
@@ -118,7 +122,7 @@
             <Label text="8. grade: places a numerical grade for a student" id="commandListLabel"/>
             <TextFlow>
               <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="grade INDEX [n/ASSIGNMENT_NUMBER] [g/GRADE]" id="sampleCommandLabel"/>
+              <Label text="grade INDEX [a/ASSIGNMENT_NAME] [g/GRADE]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="9. sort: sorts the list on screen to follow a certain field" id="commandListLabel"/>
