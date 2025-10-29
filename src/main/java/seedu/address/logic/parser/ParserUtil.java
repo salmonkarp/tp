@@ -196,14 +196,23 @@ public class ParserUtil {
      */
     public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
         requireNonNull(tutorialGroup);
-        String trimmedTutorial = tutorialGroup.trim().toUpperCase();
-        if (!trimmedTutorial.startsWith("TG")) {
-            trimmedTutorial = "TG" + trimmedTutorial;
-        }
-        if (!TutorialGroup.isValidTutorial(trimmedTutorial)) {
+        String trimmedTutorialGroup = tutorialGroup.trim().toUpperCase();
+        String storedTutorialGroup = "TG";
+        try {
+            // Parse the numeric part and format it to 2 digits for flexibility
+            if (trimmedTutorialGroup.startsWith("TG")) {
+                String numberPart = trimmedTutorialGroup.substring(2);
+                int parsedNumber = Integer.parseInt(numberPart);
+                storedTutorialGroup += String.format("%02d", parsedNumber);
+            }
+        } catch (NumberFormatException e) {
             throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
-        return new TutorialGroup(trimmedTutorial);
+
+        if (!TutorialGroup.isValidTutorialGroup(storedTutorialGroup)) {
+            throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroup(storedTutorialGroup);
     }
 
     /**

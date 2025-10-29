@@ -36,7 +36,7 @@ public class FindCommandByFieldsTest {
                 .withTeleHandle("@alice")
                 .withPhone("11111111")
                 .withTags("noisy") // tags are independent; predicate uses tutorialGroup field
-                .withTutorialGroup("TG1")
+                .withTutorialGroup("TG01")
                 .build();
 
         bob = new PersonBuilder()
@@ -45,7 +45,7 @@ public class FindCommandByFieldsTest {
                 .withTeleHandle("@bobby")
                 .withPhone("22222222")
                 .withTags("lousy") // same TG as Alice to test multi-match
-                .withTutorialGroup("TG1")
+                .withTutorialGroup("TG01")
                 .build();
 
         carol = new PersonBuilder()
@@ -54,7 +54,7 @@ public class FindCommandByFieldsTest {
                 .withTeleHandle("@carol")
                 .withPhone("33333333")
                 .withTags("excellent")
-                .withTutorialGroup("TG2")
+                .withTutorialGroup("TG02")
                 .build();
 
         AddressBook ab = new AddressBook();
@@ -102,7 +102,7 @@ public class FindCommandByFieldsTest {
     public void execute_tutorialGroup_matchesTwo() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonContainsKeywords predicate = new PersonContainsKeywords(
-                List.of(), List.of(), List.of(), List.of("TG1"));
+                List.of(), List.of(), List.of(), List.of("TG01"));
         expectedModel.updateFilteredPersonList(predicate);
 
         FindCommand command = new FindCommand(predicate, false);
@@ -122,7 +122,7 @@ public class FindCommandByFieldsTest {
                 List.of(),
                 List.of("school.edu"),
                 List.of(),
-                List.of("TG1"));
+                List.of("TG01"));
         expectedModel.updateFilteredPersonList(predicate);
 
         FindCommand command = new FindCommand(predicate, false);
