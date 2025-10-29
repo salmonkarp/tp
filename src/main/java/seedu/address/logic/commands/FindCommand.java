@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -16,18 +20,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String FUZZY_COMMAND_WORD = "findd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds persons by name, email, telegram handle, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds students by name, email, telegram handle, "
             + "or tutorial group (tag).\n"
-            + "Parameters:\n"
-            + "  n/KEYWORD [MORE_KEYWORDS]...    Name keywords\n"
-            + "  e/KEYWORD [MORE_KEYWORDS]...    Email keywords\n"
-            + "  u/KEYWORD [MORE_KEYWORDS]...    Telegram handle keywords\n"
-            + "  tg/TUTORIAL_GROUP [...repeat]   Tutorial group tag, e.g. tg/TG01\n"
-            + "At least 1 prefix must be provided.\n"
-            + "Examples:\n"
-            + "  " + COMMAND_WORD + " n/alice bob\n"
-            + "  " + COMMAND_WORD + " e/gmail.com\n"
-            + "  " + COMMAND_WORD + " u/@alice tg/TG01";
+            + "Parameters:\n  "
+            + PREFIX_NAME + "KEYWORD [MORE_KEYWORDS]...    Name keywords\n  "
+            + PREFIX_EMAIL + "KEYWORD [MORE_KEYWORDS]...    Email keywords\n  "
+            + PREFIX_TELEHANDLE + "KEYWORD [MORE_KEYWORDS]...    Telegram handle keywords\n  "
+            + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP [MORE_KEYWORDS]...   Tutorial group tag, e.g. tg/TG01\n"
+            + "Note:\n  "
+            + "At least 1 prefix + keyword must be provided.\n  "
+            + "Students matching at least one keyword will be returned (i.e. OR search).\n"
+            + "Examples:\n  "
+            + COMMAND_WORD + " " + PREFIX_NAME + "alice bob\n  "
+            + COMMAND_WORD + " " + PREFIX_EMAIL + "gmail.com\n  "
+            + COMMAND_WORD + " " + PREFIX_TELEHANDLE + "@alice " + PREFIX_TUTORIAL_GROUP + "TG01";
 
     private final PersonContainsKeywords predicate;
     private final boolean isVerbose;

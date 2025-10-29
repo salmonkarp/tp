@@ -14,6 +14,12 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_MISSING_INDEX = "Missing index (must be a non-zero positive integer)";
+    public static final String MESSAGE_NO_INPUT =
+            "No input provided. Please provide at least one prefix and keyword. \n%1$s";
+    public static final String MESSAGE_NO_KEYWORD =
+            "No keyword written after prefix. Please write a keyword after the prefix. \n%1$s";
+    public static final String MESSAGE_NO_PREFIX =
+            "No prefix provided. Please use at least one prefix. \n%1$s";
     public static final String MESSAGE_NAME = "Name.";
     public static final String MESSAGE_PHONE = "Phone.";
     public static final String MESSAGE_EMAIL = "Email.";
