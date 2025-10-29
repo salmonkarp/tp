@@ -45,21 +45,24 @@
                 </padding>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox prefHeight="200.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                     <children>
-                    <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane">
-                      <padding>
+              <VBox prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS" styleClass="pane-with-border">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+                <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="stack-pane" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+                <StackPane fx:id="commandHistoryPlaceholder" minHeight="50" prefHeight="50" styleClass="stack-pane" VBox.vgrow="ALWAYS">
+                    <padding>
                         <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-                    <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="stack-pane" VBox.vgrow="ALWAYS">
-                      <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-                     </children>
-                  </VBox>
-               </children>
+                    </padding>
+                </StackPane>
+              </VBox>
+
             </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
