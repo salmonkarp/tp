@@ -185,8 +185,7 @@ Examples:
 
 **Warnings:**
 * If no matches are found, the list will be empty.
-* If wrong format is used (e.g. `find `, with no specifications), an error message will be displayed.
-  e.g. `Invalid command format!...` and details of the error.
+* If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is missing).
 
 ### Deleting a student : `delete`
 
