@@ -46,7 +46,7 @@
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
               <VBox prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS" styleClass="pane-with-border">
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane">
                   <padding>
                     <Insets bottom="5" left="10" right="10" top="5" />
                   </padding>
