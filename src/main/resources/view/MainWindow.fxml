@@ -62,7 +62,7 @@
                     </padding>
                 </StackPane>
               </VBox>
-
+               </children>
             </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
