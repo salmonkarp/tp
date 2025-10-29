@@ -502,7 +502,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
   Expected: Error message explaining the missing field(s) and showing the proper command format.
 
-3. Adding a person who already exists in the AddressBook
+3. Adding a person who already exists (same name) in the AddressBook
     1. Prerequisites: NIL
    1. Test case: `add n/David Li p/98765432 e/john@example.com u/@dave tg/10`
     Expected: Error message: "This person already exists in the address book."
@@ -524,7 +524,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `edit 1 p/91234567 u/@rachel`
        Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
 
-2. Editing a person to create a duplicate
+2. Editing a person to create a duplicate (same name)
     1. Prerequisites: Person who is being duplicated is in the list
     1. Test case: `edit 3 n/Alex Yeoh`
        Expected: Error message: "This person already exists in the address book."
