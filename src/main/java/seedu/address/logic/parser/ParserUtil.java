@@ -39,7 +39,8 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            if (trimmedIndex.matches(".*\\d.*")) {
+            // if there is one an only one digit in the string
+            if (trimmedIndex.matches("^\\D*\\d\\D*$")) {
                 throw new ParseException(MESSAGE_MISSING_FIELDS);
             } else {
                 throw new ParseException(MESSAGE_MISSING_INDEX);
