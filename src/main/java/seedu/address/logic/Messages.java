@@ -14,7 +14,7 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_MISSING_INDEX = "Missing index (must be a non-zero positive integer)";
-    public static final String MESSAGE_MISSING_FIELDS= "Missing fields.";
+    public static final String MESSAGE_MISSING_FIELDS = "Missing fields.";
     public static final String MESSAGE_NAME = "Name.";
     public static final String MESSAGE_PHONE = "Phone.";
     public static final String MESSAGE_EMAIL = "Email.";
