@@ -115,7 +115,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/T
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com u/@john`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
+* `add n/Betsy Crowe e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 Expected output:
 * `New student added:...` with the details of the student added.
@@ -130,7 +130,9 @@ Warnings:
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list [/v]`
+
+* If the optional verbose flag `/v` is written at the end, more detailed information (all grades and attendance) of the students will be shown instead of a summary.
 
 ### Editing a person : `edit`
 
@@ -150,49 +152,40 @@ Examples:
 *  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name or details: `find`
+### Locating students by details: `find`
 
-Finds persons whose names contain any of the given keywords. 
-These keywords can include **names**, **emails**, **Telegram handles** or **tutorial groups**.
+Finds students whose details matches any of the given keywords. 
+These keywords can include **names**, **emails**, **telegram handles** or **tutorial groups**.
 
-Format 1:
-`find KEYWORD [MORE_KEYWORDS] [/v]`<br>
-Searches by name only.
-
-Format 2:
+Format:
 `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]`<br>
-Searches by specific fields. You can combine multiple fields.
+Searches by specific fields. You can combine multiple fields. At least 1 field is needed.
 
 **Behaviour & Tips**:
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * **Partial matches** are supported. e.g. `ann` will match `Annabel`, `Joanna`
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the optional verbose flag `/v` is written at the end, more detailed information of the found persons will be shown instead of a summary.
+* If the optional verbose flag `/v` is written at the end, more detailed information (shows all grades and attendance) of the found students will be shown instead of a summary.
 
 **Expected Output:**<br>
-A list of persons matching your search criteria will be displayed in the main window.
+A list of students matching your search criteria will be displayed in the main window.
 
 Examples:
-* `find John` 
+* `find n/John` 
 <br>returns `john` and `John Doe`
-* `find alex david`
-<br>returns `Alex Yeoh`, `David Li`
-* `find alex bernice /v`
-<br>returns detailed information (shows all grades and attendance) of `Alex Yeoh`  and `Bernice Yu`
+* `find n/alex bernice /v`
+<br>returns detailed information of `Alex Yeoh`  and `Bernice Yu`
 * `find n/Alex e/example.com` 
-<br>returns persons whose names contain `Alex` or whose email addresses contain `example.com`
+<br>returns students whose names contain `Alex` or whose email addresses contain `example.com`
 * `find u/@jake tg/Tutorial2` 
-<br>returns persons whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
+<br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
 
 **Warnings:**
 * If no matches are found, the list will be empty.
-* If wrong format is used (e.g. `find `, with no specifications), an error message will be displayed.
-  e.g. `Invalid command format!...` and details of the error.
-
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is missing).
 
 ### Deleting a student : `delete`
 
@@ -245,9 +238,9 @@ Examples:
 
 ### Sorting the student list: `sort`
 
-Sorts the person list currently displayed in the address book based on given sort instructions.
+Sorts the student list currently displayed in the address book based on given sort instructions.
 
-Format: `sort [field]`
+Format: `sort [field] [/v]`
 
 Possible `[field]` values:
 * `name`: Sorts alphabetically by student's name.
@@ -262,15 +255,17 @@ Possible `[field]` values:
 * Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
 * The sorting is done in ascending order.
+* If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
 
 **Expected Output:**<br>
-The person list will be reordered according to your chosen field.
+The student list will be reordered according to your chosen field.
 
 Examples:
 * `sort name` sorts the student list in alphabetical order of names.
 * `sort grade` sorts the student list in descending order of average grades.
 * `sort attendance` sorts the student list in descending order of attendance percentage.
 * `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
+* `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows more detailed information of the students.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
@@ -280,16 +275,18 @@ Examples:
 
 Marks a student as attended for a specific tutorial class.
 
-Format: `attend INDEX c/TUTORIAL_NUMBER`
+Format: `attend INDICES... c/TUTORIAL_NUMBER`
 
-* Marks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 1).
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Marks the students at the specified `INDICES` as attended for the given tutorial class (sets attendance value to 1).
+* The indices can be of any length >= 1. 
+* The indices refers to the index number shown in the displayed student list.
+* The indices **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
 * `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd student in the address book.
 * `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
+* `attend 1 2 3 c/t1` marks the attendance for tutorial 1 class of the 1st, 2nd & 3rd student in the address book.
 
 Hints:
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
@@ -343,11 +340,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Features coming soon
-* Delete multiple students in a single command
-* Mark the attendance of multiple students in a single command
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -382,7 +374,7 @@ Action | Format, Examples
 **Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
 **Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS] [/v]`<br> `find n/NAME_KEYWORD e/EMAIL_KEYWORD u/TELEHANDLE_KEYWORD tg/TUTORIAL_KEYWORD [/v]` <br> e.g., `find James Jake`
-**Sort** | `sort [field]`<br> e.g., `sort grade`
-**List** | `list`
+**Find** | `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
+**Sort** | `sort [field] [/v]`<br> e.g., `sort grade`
+**List** | `list [/v]`
 **Help** | `help`

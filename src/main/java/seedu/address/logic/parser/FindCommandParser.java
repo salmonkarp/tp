@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_NO_INPUT;
+import static seedu.address.logic.Messages.MESSAGE_NO_KEYWORD;
+import static seedu.address.logic.Messages.MESSAGE_NO_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.SUFFIX_VERBOSE;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_INPUT, FindCommand.MESSAGE_USAGE));
         }
 
         // if trimmedArgs ends with "/v", treat as verbose and remove it
@@ -59,17 +61,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                 && tutorialGroups.isEmpty();
 
         if (noPrefixedValues) {
-            trimmedArgs = trimmedArgs.trim();
-            String[] keywords = trimmedArgs.split("\\s+");
-            if (keywords.length == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            // This handles the case where there are prefixes but no value written after them
+            if (argMultimap.getSize() > 1) {
+                throw new ParseException(
+                    String.format(MESSAGE_NO_KEYWORD, FindCommand.MESSAGE_USAGE));
             }
-            nameKeywords = Arrays.asList(keywords);
-        }
-
-        // At least one field must be provided
-        if (nameKeywords.isEmpty() && emailKeywords.isEmpty() && teleKeywords.isEmpty() && tutorialGroups.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            // This handles the case where there are no prefixes at all
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups),

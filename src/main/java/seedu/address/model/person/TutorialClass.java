@@ -33,7 +33,7 @@ public enum TutorialClass {
      */
     public static boolean isValidTutorialClass(String test) {
         for (TutorialClass tutClass : TutorialClass.values()) {
-            if (tutClass.name().equals(test)) {
+            if (tutClass.name().equalsIgnoreCase(test)) {
                 return true;
             }
         }
@@ -46,7 +46,7 @@ public enum TutorialClass {
      */
     public static TutorialClass fromString(String part) {
         for (TutorialClass tutClass : TutorialClass.values()) {
-            if (tutClass.name().equals(part)) {
+            if (tutClass.name().equalsIgnoreCase(part)) {
                 return tutClass;
             }
         }
@@ -58,17 +58,17 @@ public enum TutorialClass {
      */
     public String getDescription() {
         switch (this) {
-        case t1: return "Tutorial 1";
-        case t2: return "Tutorial 2";
-        case t3: return "Tutorial 3";
-        case t4: return "Tutorial 4";
-        case t5: return "Tutorial 5";
-        case t6: return "Tutorial 6";
-        case t7: return "Tutorial 7";
-        case t8: return "Tutorial 8";
-        case t9: return "Tutorial 9";
-        case t10: return "Tutorial 10";
-        case t11: return "Tutorial 11";
+        case t1: return "Tutorial 1 (t1)";
+        case t2: return "Tutorial 2 (t2)";
+        case t3: return "Tutorial 3 (t3)";
+        case t4: return "Tutorial 4 (t4)";
+        case t5: return "Tutorial 5 (t5)";
+        case t6: return "Tutorial 6 (t6)";
+        case t7: return "Tutorial 7 (t7)";
+        case t8: return "Tutorial 8 (t8)";
+        case t9: return "Tutorial 9 (t9)";
+        case t10: return "Tutorial 10 (t10)";
+        case t11: return "Tutorial 11 (t11)";
         default: return "";
         }
     }
