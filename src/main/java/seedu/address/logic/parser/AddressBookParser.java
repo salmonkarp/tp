@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_AMBIGUOUS_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -106,6 +107,10 @@ public class AddressBookParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
+        case MESSAGE_AMBIGUOUS_COMMAND:
+            throw new ParseException(MESSAGE_AMBIGUOUS_COMMAND);
+
+        // The default case will now only be reached if fuzzyMatch returns a valid command word not explicitly handled
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -120,19 +125,28 @@ public class AddressBookParser {
      * within that threshold.
      *
      * @param commandWord the command word to match
-     * @return the matched keyword (exact or fuzzy)
-     * @throws ParseException if no close match is found
+     * @return the matched keyword (exact or fuzzy), or a message indicating ambiguity or unknown command
      */
-    public String fuzzyMatch(String commandWord) throws ParseException {
+    public String fuzzyMatch(String commandWord) { // Removed throws ParseException
         final LevenshteinDistance levDist = new LevenshteinDistance(MAX_DIST_THRESHOLD);
         if (COMMAND_KEYWORDS.contains(commandWord)) {
             return commandWord;
         }
+        // count of matched commands
+        int count = 0;
+        String fuzzyCommand = "";
         for (String keyword : COMMAND_KEYWORDS) {
+            if (count > 1) {
+                return MESSAGE_AMBIGUOUS_COMMAND; // Return message instead of throwing exception
+            }
             if (levDist.apply(keyword, commandWord) != -1) {
-                return keyword;
+                count++;
+                fuzzyCommand = keyword;
             }
         }
-        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        if (fuzzyCommand.isEmpty()) {
+            return MESSAGE_UNKNOWN_COMMAND; // Return message instead of throwing exception
+        }
+        return fuzzyCommand;
     }
 }

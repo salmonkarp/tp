@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_AMBIGUOUS_COMMAND = "Ambiguous command";
     public static final String MESSAGE_MISSING_INDEX = "Missing index (must be a non-zero positive integer)";
     public static final String MESSAGE_NAME = "Name.";
     public static final String MESSAGE_PHONE = "Phone.";
