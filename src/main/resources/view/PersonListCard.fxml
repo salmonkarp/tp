@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane HBox.hgrow="SOMETIMES">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
@@ -35,4 +35,22 @@
       <Label fx:id="grade" styleClass="cell_small_label" text="\$grade" />
     </VBox>
   </GridPane>
+
+  <HBox spacing="6" alignment="TOP_RIGHT">
+    <padding>
+      <Insets top="5" right="0" bottom="5" left="0" />
+    </padding>
+
+    <!-- Assignments row -->
+    <VBox spacing="6" alignment="TOP_LEFT">
+      <Label text="Assignments:" styleClass="label-bright"/>
+      <FlowPane fx:id="assignmentTags" hgap="6" vgap="6" prefWrapLength="220" />
+    </VBox>
+
+    <!-- Tutorials row -->
+    <VBox spacing="6" alignment="TOP_LEFT">
+      <Label text="Tutorials:" styleClass="label-bright"/>
+      <FlowPane fx:id="attendanceTags" hgap="6" vgap="6" prefWrapLength="220" />
+    </VBox>
+  </HBox>
 </HBox>

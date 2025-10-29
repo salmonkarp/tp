@@ -224,7 +224,7 @@ Expected Output: `Address book has been cleared!`
 
 Assigns a grade to a person in the address book.
 
-Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
+Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 
 * Grades the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -233,8 +233,8 @@ Format: `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`
 * Grade must be a positive integer in the range 0-100 (inclusive).
 
 Examples:
-* `grade 3 n/Q1 g/97`
-* `grade 5 n/Finals g/80`
+* `grade 3 a/Q1 g/97`
+* `grade 5 a/Finals g/80`
 
 ### Sorting the student list: `sort`
 
@@ -370,7 +370,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
+**Grade** | `grade INDEX a/ASSIGNMENT_NAME g/GRADE`<br> e.g., `grade 3 a/Finals g/97`
 **Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
 **Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

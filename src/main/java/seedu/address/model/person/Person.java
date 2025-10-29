@@ -120,6 +120,14 @@ public class Person {
             && otherPerson.getName().equals(getName());
     }
 
+    public boolean hasAttendedTutorial(TutorialClass tutorialId) {
+        return attendMap.isPresent(tutorialId);
+    }
+
+    public Float getAssignmentScore(Assignments assignmentId) {
+        return gradeMap.get(assignmentId).valueFloat;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
