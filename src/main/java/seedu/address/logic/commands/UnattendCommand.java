@@ -40,8 +40,7 @@ public class UnattendCommand extends Command {
             + Arrays.toString(TutorialClass.getAllTutorialClass()) + ".\n"
             + "Example: " + COMMAND_WORD + " 1 c/t1";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS =
-            "Attendance unmarked for Tutorial Class (%1$s) for: \n%2$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Attendance unmarked: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -98,9 +97,7 @@ public class UnattendCommand extends Command {
         }
 
         model.setPerson(personToUnattend, attendancePerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
-                tutClass,
-                Messages.format(attendancePerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(attendancePerson)));
     }
 
     @Override

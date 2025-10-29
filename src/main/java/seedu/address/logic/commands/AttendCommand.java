@@ -40,10 +40,8 @@ public class AttendCommand extends Command {
             + Arrays.toString(TutorialClass.getAllTutorialClass()) + ".\n"
             + "Example: " + COMMAND_WORD + " 1 2 3 c/t1";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS =
-            "Attendance marked for Tutorial Class (%1$s) for: \n%2$s";
-    public static final String MESSAGE_EDIT_PERSONS_SUCCESS =
-            "Attendance marked for Tutorial Class (%1$s) for people: \n%2$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Attendance marked: %1$s";
+    public static final String MESSAGE_EDIT_PERSONS_SUCCESS = "Attendance marked for people: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final List<Index> indices;
@@ -119,9 +117,9 @@ public class AttendCommand extends Command {
             successMessage.append(Messages.format(attendancePerson)).append("\n");
         }
         if (indices.size() > 1) {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, tutClass, successMessage));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()));
         } else {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, tutClass, successMessage));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage.toString()));
         }
     }
 

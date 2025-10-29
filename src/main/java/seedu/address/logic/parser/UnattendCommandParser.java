@@ -28,7 +28,7 @@ public class UnattendCommandParser implements Parser<UnattendCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .allMatch(prefix -> argumentMultimap.getValue(prefix)
-                .isPresent());
+                        .isPresent());
     }
 
     /**
@@ -71,15 +71,14 @@ public class UnattendCommandParser implements Parser<UnattendCommand> {
             throw new ParseException(missingPrefixesSection + "\n\n" + commandFormatSection);
         }
 
-        String[] parts = preamble.split("\\s+");
+        // If user entered multiple indexes after attend.
+        if (preamble.split("\\s+").length > 1) {
+            throw new ParseException(MESSAGE_ENTERED_MULTIPLE_INDEXES);
+        }
 
         // Removed try-catch block here as by right, all the parsing errors will be handled in the respective.
         // ParserUtil methods called below and throw ParseException with relevant messages.
-        index = ParserUtil.parseIndex(parts[0]);
-
-        if (parts.length > 1) {
-            throw new ParseException(MESSAGE_ENTERED_MULTIPLE_INDEXES);
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         assert index.getOneBased() > 0;
 
