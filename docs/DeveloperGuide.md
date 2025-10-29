@@ -583,3 +583,33 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+The total effort spent on active development so far is approximately `>=125` hours.
+This includes time spent on design, implementation, testing, documentation, and project management activities.
+
+A small part of the implementation of the Fuzzy Search feature was done through an external library.
+[This library](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/similarity/LevenshteinDistance.html) is from the Apache Commons project and is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+### Difficulty level
+The difficulty level of this project is considered to be 'Moderate', tending to occasionally 'High' at the earlier stages of development.
+
+This was due to the need to modify the original commands' implementations significantly to fit the new requirements,
+which often had a compound effect on other parts of the codebase, and thus was also difficult to segment amongst members.
+
+Furthermore, multiple new object types have been created to represent new complex attributes.
+Given that these attributes (Attendance, Grades) are often non-trivial, they required extensive code and tests to ensure their correctness and robustness.
+
+### Challenges faced
+Some of the challenges faced during the development of this project include:
+* Initial learning process of the codebase, which was very interconnected prior to making any significant changes.
+* Selecting design choices that would best fit the new requirements while minimizing the impact on existing functionalities and making future extensions easier.
+* Segmenting work effectively among team members, given the interconnected nature of the codebase.
+
+### Achievements
+Some of the general achievements of this project include:
+* Successful implementation of all core MVP requirements.
+* Implementation of additional features such as Fuzzy Search.
+* Aesthetic improvements to the UI to utilize more screen space and enhance user experience.
+* Enhanced CLI experience through addition of a navigable command history.
