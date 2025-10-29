@@ -58,7 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 String missingFields = missingPrefixes.stream()
                         .map(this::getPrefixName)
                         .collect(Collectors.joining(", "));
-                errorMessage = "Missing compulsory fields: " + missingFields + ".\n";
+                errorMessage = "Missing compulsory fields: " + missingFields + ".\n\n";
             }
             throw new ParseException(errorMessage
                 + String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
