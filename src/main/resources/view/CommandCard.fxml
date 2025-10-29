@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" style="-fx-padding: 4;">
+    <TextField fx:id="commandField"
+               editable="false"
+               HBox.hgrow="ALWAYS"
+               maxWidth="Infinity"
+               style="-fx-background-color: transparent;
+                      -fx-text-fill: #e0e0e0;
+                      -fx-padding: 4 8;
+                      -fx-background-insets: 0;
+                      -fx-border-color: transparent;
+                      -fx-font-size: 13px;"
+    />
+</HBox>

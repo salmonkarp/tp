@@ -22,8 +22,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CommandHistoryManager;
 import seedu.address.model.person.Assignments;
 import seedu.address.model.person.TutorialClass;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,12 +40,15 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    private final CommandHistoryManager commandHistoryManager;
+
     private PopUpBox assignmentPopup = null;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandHistoryPanel commandHistoryPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -61,17 +66,21 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane commandHistoryPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, CommandHistoryManager commandHistoryManager) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.commandHistoryManager = commandHistoryManager;
 
         // Add window icon and title
         primaryStage.setTitle("CalcConnect");
@@ -135,6 +144,9 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        commandHistoryPanel = new CommandHistoryPanel(commandHistoryManager.getObservableHistory());
+        commandHistoryPlaceholder.getChildren().add(commandHistoryPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -242,6 +254,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Add to command history
+            if (commandText != null) {
+                String trimmed = commandText.trim();
+                if (!trimmed.isEmpty()) {
+                    commandHistoryManager.add(trimmed);
+                }
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

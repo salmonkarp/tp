@@ -38,28 +38,32 @@
           <Label fx:id="attendanceMenuLabel" onMouseClicked="#handleAttendanceLabelClick" style="-fx-padding:4 8; -fx-font-weight:bold; -fx-cursor:hand; -fx-text-fill: #5989f0;" text="Tutorial Classes" />
         </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-               <children>
+
               <VBox fx:id="personList" minWidth="340" prefWidth="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                     <children>
-                    <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-                      <padding>
+
+              <VBox prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+                <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+                <StackPane fx:id="commandHistoryPlaceholder" minHeight="50" prefHeight="50" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <padding>
                         <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-                    <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                      <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-                     </children>
-                  </VBox>
-               </children>
+                    </padding>
+                </StackPane>
+              </VBox>
+
             </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
