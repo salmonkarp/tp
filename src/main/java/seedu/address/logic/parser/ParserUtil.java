@@ -161,11 +161,6 @@ public class ParserUtil {
             return new Grade(" ");
         }
 
-        // Reject inputs like 30f or 30d
-        final String gradeNumberOnly = "^\\d+(\\.\\d+)?$";
-        if (!trimmedGrade.matches(gradeNumberOnly)) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
-        }
 
         try {
             floatGrade = Float.parseFloat(trimmedGrade);
