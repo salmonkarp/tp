@@ -11,6 +11,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.CommandHistoryManager;
 
 /**
  * The manager of the UI component.
@@ -24,6 +25,8 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+
+    private final CommandHistoryManager commandHistoryManager = new CommandHistoryManager();
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -60,7 +63,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, commandHistoryManager);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
