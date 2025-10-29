@@ -118,9 +118,6 @@ public class AttendCommand extends Command {
 
         }
 
-//        String multiLineDetails = Messages.format(gradedPerson)
-//                .replace("; ", System.lineSeparator());
-
         if (indices.size() > 1) {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage));
         } else {

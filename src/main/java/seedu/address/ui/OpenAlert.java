@@ -1,16 +1,18 @@
 package seedu.address.ui;
 
+import java.util.Optional;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-import java.util.Optional;
-
+/**
+ * A class to open alert dialogs.
+ */
 public class OpenAlert {
     /**
      * Opens an alert dialog with the specified title, header, and content.
      *
      * @param title   The title of the alert dialog.
-     * @param header  The header text of the alert dialog.
      * @param content The content text of the alert dialog.
      */
     public static boolean showAlert(String title, String content) {
