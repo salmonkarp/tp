@@ -490,6 +490,59 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+1. Adding a person while all persons are being shown
+    1. Prerequisites: NIL
+        
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/tg1`
+       Expected: John Doe is added to the bottom of the list. Details of the added contact shown in the status message. Command is reflected in the Command History.
+
+2. Adding a person but missing a compulsory field
+   1. Prerequisites: NIL
+   1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
+  Expected: Error message explaining the missing field(s) and showing the proper command format.
+
+3. Adding a person who already exists in the AddressBook
+    1. Prerequisites: NIL
+   1. Test case: `add n/David Li p/98765432 e/john@example.com u/@dave tg/10`
+    Expected: Error message: "This person already exists in the address book."
+
+4. Adding a person with an invalid field
+    1. Prerequisites: NIL
+    1. Test case: `add n/John Doe p/872hvcfh e/john@example.com u/@john tg/tg01`
+    Expected: Phone numbers should only contain numbers, and it should be at least 3 digits long
+
+5. Adding a person with a duplicate prefix
+   1. Prerequisites: NIL
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/tg1`
+          Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: u/"
+### Editing a person
+1. Editing a person while all persons are being shown
+    1. Prerequisites: At least one person is being shown in the list
+    1. Test case: `edit 1 p/91234567`
+       Expected: The `phone number` of the first person is updated. A success message is displayed.
+    2. Test case: `edit 1 p/91234567 u/@rachel`
+       Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
+
+2. Editing a person to create a duplicate
+    1. Prerequisites: Person who is being duplicated is in the list
+    1. Test case: `edit 3 n/Alex Yeoh`
+       Expected: Error message: "This person already exists in the address book."
+
+3. Editing a person with an invalid index
+    1. Prerequisites: NIL
+    1. Test case: `edit 0 p/91234567`
+       Expected: Error message: "This person already exists in the address book."
+
+4. Editing a person with an invalid field value
+    1. Prerequisites: Person being edited exists in the list
+    1. Test case: `edit 1 u/invalidhandle`
+       Expected: Error message explaining the field constraint violation.
+
+5. Editing a person with a duplicate prefix
+    1. Prerequisites: Person being edited exists in the list
+    1. Test case: `edit 1 p/91234567 p/98765432`
+       Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: p/"
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
