@@ -22,9 +22,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CommandHistoryManager;
 import seedu.address.model.person.Assignments;
 import seedu.address.model.person.TutorialClass;
-import seedu.address.model.CommandHistoryManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
