@@ -116,7 +116,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        String multiLineDetails = Messages.format(personToEdit)
+        String multiLineDetails = Messages.format(editedPerson)
                 .replace("; ", System.lineSeparator());
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails));
