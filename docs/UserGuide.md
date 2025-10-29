@@ -216,9 +216,17 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-Expected Output: `Address book has been cleared!`
+* An alert will be shown to confirm the action before clearing all entries.
+* The command will be aborted if you choose `Cancel` in the confirmation alert.
+* The command will proceed if you choose `OK` in the confirmation alert.
 
-- The address book is blank and has no entries.
+Expected Output(**successful clear**): `Address book has been cleared!`
+
+Expected Output(**aborted clear**): `Clear command cancelled.`
+
+Warnings:
+* Please be cautious when using this command as it will permanently delete all entries in the address book.
+* There is **NO** undo for this command. Use with care!
 
 ### Grading a person: `grade`
 
@@ -344,6 +352,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
+**WARNING**: Most users are advised against doing so, as it is easy to corrupt the data file if you are not careful.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
