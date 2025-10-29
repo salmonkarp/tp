@@ -161,7 +161,7 @@ public class ParserUtil {
             return new Grade(" ");
         }
 
-
+        // Ensure its numeric
         try {
             floatGrade = Float.parseFloat(trimmedGrade);
         } catch (NumberFormatException e) {
