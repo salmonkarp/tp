@@ -576,7 +576,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect grade commands to try: `grade`, `grade x n/Q1 g/100`, `grade 1 n/Q1 g/110`, `grade 1 n/Q5 g/-50`<br>
      Expected: Error details shown in the status message.
 
-2. Grading a person after a find command
+1. Grading a person after a find command
 
    1. Prerequisites: Find a subset of persons using the `find` command. Multiple persons in the filtered list.
 
