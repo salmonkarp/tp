@@ -47,7 +47,7 @@ public class UnattendCommandParser implements Parser<UnattendCommand> {
         boolean arePrefixesMissing = !arePrefixesPresent(argMultimap, PREFIX_TUTORIALCLASS);
         String preamble = argMultimap.getPreamble();
 
-        if (argMultimap.getPreamble().isEmpty()) {
+        if (preamble.isEmpty()) {
             String commandFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnattendCommand.MESSAGE_USAGE);
             String checkIndexAndPrefixIfEmptySection;
             if (arePrefixesMissing) {
