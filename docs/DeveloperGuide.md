@@ -571,7 +571,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `grade [LAST_FILTERED_STUDENT_INDEX] a/fInAlS g/0.0000`<br>
        Expected: Last student's Finals grade in the filtered list is set to 88. Details of the graded contact shown in the status message.
 
-    1. Test case: `grade 2 a/InvalidGrade g/60`<br>
+    1. Test case: `grade 2 a/InvalidAssignment g/60`<br>
        Expected: No person is graded. Error details shown in the status message.
 
     1. Other incorrect grade commands to try: `grade`, `grade x a/Q2 g/75`, `grade 1 a/Q2 g/150`, `grade 1 a/Finals g/-10`<br>
