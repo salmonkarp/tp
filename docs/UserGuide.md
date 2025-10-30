@@ -88,7 +88,7 @@ Examples:
 However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
 For instance, `listee` will not be interpreted as `list`.
 
-Warnings:
+**Warnings:**
 * If command typo is too different
 - Output: `Unknown Command`
 
@@ -105,7 +105,7 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​`
 * `NAME` should only contain alphanumeric characters and spaces. It should not be blank.
 * `PHONE_NUMBER` should only contain numeric characters. It should not be blank.
 * `EMAIL` should be in the format `local-part@domain` and should not be blank.
@@ -120,8 +120,9 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
-Warnings:
-* If a student with the same name already exists in the address book, an error message will be displayed, and the student will not be added.
+**Warnings:**
+* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group)
+* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
 * If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
@@ -151,6 +152,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GRO
 Examples:
 *  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+**Warnings:**
+* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be edited.
+  e.g. `This student already exists in the address book`
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be edited.
+  e.g. `Invalid command format!...` and details of the error.
 
 ### Locating students by details: `find`
 
@@ -208,7 +215,7 @@ Hints:
 Expected output:
 * Student is deleted from the addressbook.
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Clearing all entries : `clear`
@@ -274,7 +281,7 @@ Examples:
 
 ### Marking a student's tutorial attendance: `attend`
 
-Marks a student as attended for a specific tutorial class.
+Mark(s) student(s) as attended for a specific tutorial class.
 
 Format: `attend INDICES... c/TUTORIAL_NUMBER`
 
@@ -295,7 +302,7 @@ Hints:
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Unmarking a student's tutorial attendance: `unattend`
@@ -319,7 +326,7 @@ Hints:
 Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Exiting the program : `exit`
@@ -368,7 +375,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX n/ASSIGNMENT_NUMBER g/GRADE`<br> e.g., `grade 3 n/Assignment 1 g/97`
