@@ -21,6 +21,7 @@ public class Messages {
             "No keyword written after prefix. Please write a keyword after the prefix. \n%1$s";
     public static final String MESSAGE_NO_PREFIX =
             "No prefix provided. Please use at least one prefix. \n%1$s";
+    public static final String MESSAGE_MISSING_FIELDS = "Missing fields.";
     public static final String MESSAGE_NAME = "Name.";
     public static final String MESSAGE_PHONE = "Phone.";
     public static final String MESSAGE_EMAIL = "Email.";
