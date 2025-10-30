@@ -115,10 +115,12 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+        if (otherPerson == null) {
+            return false;
+        }
         String thisPersonEmail = getEmail().toString();
         String otherPersonEmail = otherPerson.getEmail().toString();
-        return otherPerson != null
-            && otherPersonEmail.equalsIgnoreCase(thisPersonEmail);
+        return otherPersonEmail.equalsIgnoreCase(thisPersonEmail);
     }
 
     public boolean hasAttendedTutorial(TutorialClass tutorialId) {
