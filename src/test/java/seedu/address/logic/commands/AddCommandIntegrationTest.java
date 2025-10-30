@@ -33,8 +33,11 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
+        String multiLineDetails = Messages.format(validPerson)
+                .replace("; ", System.lineSeparator());
+
         assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                String.format(AddCommand.MESSAGE_SUCCESS, multiLineDetails),
                 expectedModel);
     }
 

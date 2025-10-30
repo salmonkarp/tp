@@ -103,7 +103,10 @@ public class GradeCommand extends Command {
         }
 
         model.setPerson(personToGrade, gradedPerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(gradedPerson)));
+
+        String multiLineDetails = Messages.format(gradedPerson)
+                .replace("; ", System.lineSeparator());
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails));
     }
 
     @Override

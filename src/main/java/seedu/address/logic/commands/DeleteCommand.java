@@ -43,7 +43,11 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        // Format person details in multiple lines for better readability
+        String multiLineDetails = Messages.format(personToDelete)
+                .replace("; ", System.lineSeparator());
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, multiLineDetails));
     }
 
     @Override
