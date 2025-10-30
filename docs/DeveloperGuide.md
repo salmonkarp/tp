@@ -500,12 +500,15 @@ testers are expected to do more *exploratory* testing.
 2. Adding a person but missing a compulsory field
    1. Prerequisites: NIL
    1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
-  Expected: Error message explaining the missing field(s) and showing the proper command format.
+   Expected: Error message explaining the missing field(s) and showing the proper command format.
 
-3. Adding a person who already exists (same name) in the AddressBook
+3. Adding a person who already exists (same email) in the AddressBook
     1. Prerequisites: NIL
-   1. Test case: `add n/David Li p/98765432 e/john@example.com u/@dave tg/10`
+   1. Test case (lowercase): `add n/David Li p/98765432 e/charlotte@example.com u/@dave tg/10`
     Expected: Error message: "This person already exists in the address book."
+
+   2. Test case (uppercase): `add n/David Li p/98765432 e/CHARLOTTE@EXAMPLE.COM u/@dave tg/10`
+      Expected: Error message: "This person already exists in the address book."
 
 4. Adding a person with an invalid field
     1. Prerequisites: NIL
@@ -526,7 +529,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Editing a person to create a duplicate (same name)
     1. Prerequisites: Person who is being duplicated is in the list
-    1. Test case: `edit 3 n/Alex Yeoh`
+    1. Test case: `edit 3 e/charlotte@example.com`
        Expected: Error message: "This person already exists in the address book."
 
 3. Editing a person with an invalid index
