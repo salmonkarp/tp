@@ -248,9 +248,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the System is **CalcConnect** and the Actor is **MA1521 TA**.
 
-<table>
-  <tr>
-    <td>
+---
 
 **Use case: UC01 - Get Help**
 
@@ -260,10 +258,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
     Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC02 - Show all Students**
 
@@ -273,10 +268,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
     Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC03 - Add Student**
 
@@ -298,10 +290,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
   
       Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC04 - Edit Student Credentials**
 
@@ -325,10 +314,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
   
       Use case resumes at step 1.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC05 - Delete Student**
 
@@ -347,10 +333,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case resumes at step 1.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC06 - Exit Application**
 
@@ -360,10 +343,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
     Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC07 - Clear all Students**
 
@@ -374,10 +354,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
     Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC08 - Assign Grade to Student**
 
@@ -410,10 +387,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC09 - Find Student(s)**
 
@@ -434,10 +408,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC10 - View all students in a Tutorial Group**
 
@@ -458,10 +429,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC11 - Mark Attendance**
 
@@ -490,10 +458,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case resumes at step 2.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC12 - Unmark Attendance**
 
@@ -527,10 +492,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case ends.
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+---
 
 **Use case: UC13 - Sort Students**
 
@@ -546,9 +508,7 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
       Use case ends.
 
-    </td>
-  </tr>
-</table>
+---
 
 ### Non-Functional Requirements
 
