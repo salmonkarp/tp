@@ -293,22 +293,22 @@ Examples:
 * Sorting only affects the current displayed list, not the underlying data.
 * If you enter an invalid field, the command will thrown an error. Only matching fields are accepted.
 
-### Marking a student's tutorial attendance: `attend`
+### Marking a student's tutorial class attendance: `attend`
 
 Mark(s) student(s) as attended for a specific tutorial class.
 
-Format: `attend INDICES... c/TUTORIAL_NUMBER`
+Format: `attend INDICES... c/TUTORIAL_CLASS`
 
 * Marks the students at the specified `INDICES` as attended for the given tutorial class (sets attendance value to 1).
 * The indices can be of any length >= 1. 
-* The indices refers to the index number shown in the displayed student list.
+* The indices refer to the index number shown in the displayed student list.
 * The indices **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
+* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
-* `attend 2 c/t5` marks the attendance for tutorial 5 class of the 2nd student in the address book.
-* `find Betsey` followed by `attend 1 c/t7` marks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
-* `attend 1 2 3 c/t1` marks the attendance for tutorial 1 class of the 1st, 2nd & 3rd student in the address book.
+* `attend 2 c/t5` marks the attendance of the 2nd student in the address book for class tutorial 5.
+* `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
+* `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
 Hints:
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
@@ -317,22 +317,24 @@ Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking
 
 **Warnings:**
-* Entering the wrong format for the command will result in a warning: `Invalid command format!`
+* Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
+    the error followed by `Invalid command format!... ` and details of the error.
+* Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
 
-### Unmarking a student's tutorial attendance: `unattend`
+### Unmarking a student's tutorial class attendance: `unattend`
 
 Unmarks a student as attended for a specific tutorial class.
 
-Format: `unattend INDEX c/TUTORIAL_NUMBER`
+Format: `unattend INDEX c/TUTORIAL_CLASS`
 
 * Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_NUMBER` must be a valid tutorial class identifier from **t1** to **t11**.
+* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**.
 
 Examples:
-* `unattend 2 c/t5` unmarks the attendance for tutorial 5 class of the 2nd student in the address book.
-* `find Betsey` followed by `unattend 1 c/t7` unmarks the attendance for tutorial 7 class of the 1st student in the results of the `find` command.
+* `unattend 2 c/t5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
+* `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
 Hints:
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
@@ -341,7 +343,9 @@ Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
 
 **Warnings:**
-* Entering the wrong format for the command will result in a warning: `Invalid command format!`
+* Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
+  the error followed by `Invalid command format!... ` and details of the error.
+* Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
 
 ### Exiting the program : `exit`
 
@@ -396,8 +400,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX a/ASSIGNMENT_NAME g/GRADE`<br> e.g., `grade 3 a/Finals g/97`
-**Attend** | `attend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 1 c/t5`
-**Unattend** | `unattend INDEX c/TUTORIAL_NUMBER`<br> e.g., `attend 2 c/t9`
+**Attend** | `attend INDICES... c/TUTORIAL_CLASS`<br> e.g., `attend 1 c/t5`
+**Unattend** | `unattend INDEX c/TUTORIAL_CLASS`<br> e.g., `attend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
 **Sort** | `sort [field] [/v]`<br> e.g., `sort grade`
