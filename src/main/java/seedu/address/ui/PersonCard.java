@@ -1,17 +1,13 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Assignments;
-import seedu.address.model.person.Grade;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TutorialClass;
 
 /**
  * A UI component that displays information of a {@code Person}.
@@ -31,6 +27,10 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
+    protected Label assignmentsTitle;
+    @FXML
+    protected Label tutorialsTitle;
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -48,12 +48,6 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tutorialGroupAndTags;
     @FXML
     private Label attend;
-
-    // For Assignments and Tutorial attendance
-    @FXML
-    private FlowPane assignmentTags;
-    @FXML
-    private FlowPane attendanceTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -77,70 +71,22 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tutorialGroupAndTags.getChildren().add(new Label(tag.tagName)));
-
-        populateAssignmentTags();
-        populateTutorialTags();
-    }
-
-    private void populateAssignmentTags() {
-        assignmentTags.getChildren().clear();
-        for (Assignments a : Assignments.values()) {
-            // Requires model API: Optional<Integer> Person#getAssignmentScore(Assignments)
-            Optional<Float> scoreOpt = getAssignmentScoreSafe(a);
-            String labelText = a.getDescription() + " " + scoreOpt.map(s -> s + "/100").orElse("—/100");
-            Label chip = new Label(labelText);
-            chip.getStyleClass().add(scoreOpt.isPresent() ? "assignment-tag-graded" : "assignment-tag-ungraded");
-            assignmentTags.getChildren().add(chip);
-        }
-    }
-
-    private void populateTutorialTags() {
-        attendanceTags.getChildren().clear();
-        for (TutorialClass tc : TutorialClass.values()) {
-            // Requires model API: boolean Person#hasAttended(TutorialClass)
-            boolean attendedVal = hasAttendedSafe(tc);
-            Label chip = new Label(tc.getDescription());
-            chip.getStyleClass().add(attendedVal ? "tutorial-tag-attended" : "tutorial-tag-unattended");
-            attendanceTags.getChildren().add(chip);
-        }
-    }
-
-    // Temporary safe wrappers until model methods exist.
-    private Optional<Float> getAssignmentScoreSafe(Assignments a) {
-        try {
-            Optional<Float> scoreOpt = Optional.of(person.getAssignmentScore(a));
-            Grade emptyGrade = new Grade(" ");
-            if (scoreOpt.get() == emptyGrade.valueFloat) {
-                return Optional.empty();
-            }
-            return scoreOpt;
-        } catch (Exception e) {
-            return Optional.empty();
-        }
-    }
-
-    private boolean hasAttendedSafe(TutorialClass tc) {
-        try {
-            return person.hasAttendedTutorial(tc);
-        } catch (Exception e) {
-            return false;
-        }
+        assignmentsTitle.setText(""); // only shown for verbose view
+        tutorialsTitle.setText(""); // only shown for verbose view
     }
 
     /**
      * Returns the average grade text to be displayed.
-     * Verbose subclass can override this method to provide different grade text.
      */
-    protected String getGradeText() {
+    private String getGradeText() {
         String overallGrade = person.getOverallGrade().value;
         return overallGrade.isBlank() ? "No grades yet." : "Overall grade: " + overallGrade;
     }
 
     /**
      * Returns the overall attendance text to be displayed.
-     * Verbose subclass can override this method to provide different attendance text.
      */
-    protected String getAttendText() {
+    private String getAttendText() {
         return "Overall attendance: " + person.getOverallAttendance();
     }
 }

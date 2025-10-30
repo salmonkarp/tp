@@ -106,7 +106,8 @@ public class GradeCommand extends Command {
 
         String multiLineDetails = Messages.format(gradedPerson)
                 .replace("; ", System.lineSeparator());
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails),
+                false, false, true);
     }
 
     @Override
