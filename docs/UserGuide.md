@@ -110,7 +110,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/T
 * `PHONE_NUMBER` should only contain numeric characters. It should not be blank.
 * `EMAIL` should be in the format `local-part@domain` and should not be blank.
 * `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should not be blank.
-* `TUTORIAL_GROUP` must be in the format `TXX` where `XX` is any sequence of digits e.g. `T01`, `T12`.
+* `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`.
 * `TAG` must only contain either alphanumeric characters or spaces, e.g. `Good Student` is a valid tag.
 
 Examples:
@@ -143,7 +143,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GRO
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can unset a person's tutorial group by typing `tg/` without specifying any tutorial group after it.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s  tags by typing `t/` without
     specifying any tags after it.
@@ -180,7 +179,7 @@ Examples:
 <br>returns detailed information of `Alex Yeoh`  and `Bernice Yu`
 * `find n/Alex e/example.com` 
 <br>returns students whose names contain `Alex` or whose email addresses contain `example.com`
-* `find u/@jake tg/Tutorial2` 
+* `find u/@jake tg/TG02` 
 <br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
 
 **Warnings:**

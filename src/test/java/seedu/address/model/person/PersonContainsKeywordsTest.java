@@ -26,7 +26,7 @@ public class PersonContainsKeywordsTest {
         PersonContainsKeywords withTele =
                 new PersonContainsKeywords(List.of(), List.of(), Collections.singletonList("@handle"), List.of());
         PersonContainsKeywords withTg =
-                new PersonContainsKeywords(List.of(), List.of(), List.of(), Collections.singletonList("TG1"));
+                new PersonContainsKeywords(List.of(), List.of(), List.of(), Collections.singletonList("TG01"));
 
         // same object -> true
         assertTrue(nameOnlyA.equals(nameOnlyA));
@@ -108,11 +108,11 @@ public class PersonContainsKeywordsTest {
     public void test_tutorialGroupContainsKeywords_returnsTrue() {
         Person person = new PersonBuilder()
                 .withName("X")
-                .withTutorialGroup("TG1")
+                .withTutorialGroup("TG01")
                 .build();
 
         PersonContainsKeywords predicate =
-                new PersonContainsKeywords(List.of(), List.of(), List.of(), List.of("TG1"));
+                new PersonContainsKeywords(List.of(), List.of(), List.of(), List.of("TG01"));
         assertTrue(predicate.test(person));
 
         // Substring and case-insensitive
@@ -126,7 +126,7 @@ public class PersonContainsKeywordsTest {
                 .withName("Alice")
                 .withEmail("alice@outlook.com")
                 .withTeleHandle("@alice")
-                .withTutorialGroup("TG2")
+                .withTutorialGroup("TG02")
                 .build();
 
 
@@ -135,19 +135,19 @@ public class PersonContainsKeywordsTest {
                         Arrays.asList("Bob"),
                         Arrays.asList("@nus.edu.sg"),
                         Arrays.asList("@bob"),
-                        Arrays.asList("TG3"));
+                        Arrays.asList("TG03"));
         assertFalse(predicate.test(person));
     }
 
     @Test
     public void toStringMethod() {
         PersonContainsKeywords predicate = new PersonContainsKeywords(
-                Arrays.asList("Alice"), List.of("gmail"), List.of("@al"), List.of("TG1"));
+                Arrays.asList("Alice"), List.of("gmail"), List.of("@al"), List.of("TG01"));
         String expected = PersonContainsKeywords.class.getCanonicalName()
                 + "{nameKeywords=[Alice], "
                 + "emailKeywords=[gmail], "
                 + "teleHandleKeywords=[@al], "
-                + "tutorialGroupKeywords=[TG1]}";
+                + "tutorialGroupKeywords=[TG01]}";
 
         assertEquals(expected, predicate.toString());
     }

@@ -5,14 +5,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's Tutorial Group in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTutorial(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTutorialGroup(String)}
  */
 public class TutorialGroup {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial group should start with 'TG' followed by digits, "
-            + "or be left blank to indicate no tutorial group assigned.";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial group should start with 'TG' "
+            + "followed by digits ranging from 0 to 99.";
 
-    public static final String VALIDATION_REGEX = "(TG\\d+)?";
+    public static final String VALIDATION_REGEX = "TG\\d{2}";
     public static final String DEFAULT_TUTORIAL_GROUP = "";
 
     public final String value;
@@ -24,11 +24,11 @@ public class TutorialGroup {
      */
     public TutorialGroup(String tutorialGroup) {
         requireNonNull(tutorialGroup);
-        checkArgument(isValidTutorial(tutorialGroup), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorialGroup(tutorialGroup), MESSAGE_CONSTRAINTS);
         value = tutorialGroup;
     }
 
-    public static boolean isValidTutorial(String test) {
+    public static boolean isValidTutorialGroup(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
