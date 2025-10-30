@@ -255,7 +255,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             // Add to command history
-            if (commandText != null) {
+            if (commandText != null && !commandResult.getFeedbackToUser().equals("Clear command cancelled.")) {
                 String trimmed = commandText.trim();
                 if (!trimmed.isEmpty()) {
                     commandHistoryManager.add(trimmed);

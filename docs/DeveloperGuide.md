@@ -155,93 +155,32 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Fuzzy Matching ###
+The fuzzy command matching feature is designed to improve the user experience by automatically correcting minor typos in command words.
+This prevents users from having to re-type a command due to a small mistake.
+The implementation is primarily located in the AddressBookParser class.
 
-#### Proposed Implementation
+1. When a user enters a command, the parseCommand(String userInput) method is invoked. It extracts the command word from the input.
+2. This command word is then passed to the private helper method fuzzyMatch(String commandWord).
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("addd ...")` API call as an example.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+![Interactions Inside the Logic Component for the fuzzy matched `addd ...` Command](images/FuzzyMatchSequenceDiagram.png)
+3. The fuzzyMatch method leverages the LevenshteinDistance class from the org.apache.commons.text.similarity library. 
+   This algorithm measures the number of single-character edits (insertions, deletions, or substitutions) required to change one word into another.
+4. A MAX_DIST_THRESHOLD is set to 1, meaning only commands with a Levenshtein distance of 1 from a valid command will be corrected.
+5. The method first checks for a direct, case-sensitive match against a predefined list of COMMAND_KEYWORDS.
+6. If no exact match is found, it calculates the Levenshtein distance between the user's input and each known command keyword. 
+   If it finds a keyword within the distance threshold, that keyword is returned.
+7. If no command keyword is found within the threshold, a ParseException is thrown, indicating an unknown command. Moreover, if two command words are of a similar Levenshtein Distance, an Exception is thrown due to the ambiguous command.
+8. The corrected command word is then used to select the appropriate parser (e.g., AddCommandParser) to handle the command's arguments.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+#### Examples of fuzzy matched commands ####
+`Fuzzy Matched Command` -> `Executed Command`
+1. `addd` -> `add`
+2. `delet` -> `delete`
+3. `liss` -> `list`
+4. `uattend` / `nattend` -> `Exception Thrown (Ambiguous Command)`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -277,40 +216,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                     | I want to …                                                                              | So that I can …                                                                          |
-|----------|--------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `* * *`  | MA1521 TA using the app for the first time | view the list of available basic commands and their general purpose                      | start exploring the app's functionalities                                                |
-| `* * *`  | MA1521 TA                                  | assign student grades for assignments and exams                                          | keep track of the student grades                                                         |
-| `* * *`  | MA1521 TA                                  | view each student's specific credentials                                                 | verify their identity and manage group assignments                                       |
-| `* * *`  | MA1521 TA                                  | create student profiles                                                                  | add students to my tutorial                                                              |
-| `* * *`  | MA1521 TA                                  | delete student profiles                                                                  | remove students from my tutorial                                                         |
-| `* *`    | MA1521 TA                                  | find a specific student's contact details from their name only                           | save time instead of searching students in my tutorial group one-by-one                  |
-| `* *`    | MA1521 TA                                  | mark the attendance of my students                                                       | calculate the students attendance score                                                  |
-| `* *`    | MA1521 TA                                  | view the students I have in each of the multiple classes I conduct                       | find out who are in each of my tutorial groups                                           |
-| `* *`    | MA1521 TA                                  | view a single students performance across assignments and attendance                     | track their progress over time                                                           |
-| `* *`    | MA1521 TA using the app for the first time | tag students to their tutorial groups                                                    | differentiate between my different tutorial groups                                       |
-| `* *`    | MA1521 TA                                  | update student profile                                                                   | edit the records of my students                                                          |
-| `* *`    | MA1521 TA using the app for the first time | see how I use a specific command (arguments, format, etc.)                               | use a command properly                                                                   |
-| `*`      | MA1521 TA                                  | get all my students' emails/phone numbers to my clipboard in one command                 | instantly paste said details into another application (e.g. email)                       |
-| `*`      | MA1521 TA                                  | sort the list of students I have based on alphabetical order                             | obtain specific orderings for admin tasks                                                |
-| `*`      | MA1521 TA                                  | sort the list of students I have based on overall marks                                  | identify a general grade trend as well as students I need to assist more during teaching |
-| `*`      | New MA1521 TA                              | have convenient access to the contact of my Professors                                   | be able to contact and ask them for guidance / support                                   |
-| `*`      | Concerned MA1521 TA                        | generate a table or graphical summary of the student performance across the whole module | identify trends and intervene early when needed                                          |
-| `*`      | Hardworking MA1521 TA                      | filter students by performance band                                                      | tailor my teaching strategies to specific cohorts                                        |
-| `*`      | MA1521 TA                                  | view a summary of grades for an assignment                                               | find out the overall performance of my class                                             |
-| `*`      | CLI Experienced MA1521 TA                  | import previous student data (csv, etc.) into this new application                       | seamlessly continue my workflow without excessive data reformatting                      |
-| `*`      | Intermediate MA1521 TA user                | add pictures / notes about my students                                                   | remember them better and add remarks about them                                          |
-| `*`      | Lazy Experienced CLI user MA1521 TA        | customize commands and create shortcuts                                                  | access frequent tasks more easily and save time                                          |
-| `*`      | Aesthetically oriented MA1521 TA           | change from light / dark mode                                                            | customize the appearance to my preference                                                |
-| `*`      | Aesthetically oriented MA1521 TA           | change colour theme                                                                      | customize the appearance                                                                 |
-| `*`      | Impatient MA1521 TA                        | command responses to appear within 1 second                                              | work quickly and efficiently                                                             |
-| `*`      | forgetful MA1521 TA                        | see the schedule and venues of my classes at a glance                                    | be punctual for my classes                                                               |
-| `*`      | forgetful MA1521 TA                        | set reminders for upcoming classes                                                       | be notified of my classes and not miss them                                              |
-| `*`      | MA1521 TA using the app for the first time | allow the long commands to be broken into multiple parts                                 | be more familiarized with the commands                                                   |
-| `*`      | Markdown-savvy MA1521 TA                   | write and render Markdown in each student's note section                                 | display headings, todos, lists, etc. in a nicely formatted manner                        |
-| `*`      | MA1521 TA using the app for the first time | see if my command is wrong without clearing out the command if i typed it wrongly        | edit my command instead of retyping it                                                   |
-| `*`      | MA1521 TA user either new or experienced   | see a preview of the command before executing the command                                | edit the command if the information is wrong                                             |
-| `*`      | TA who likes using CLI                     | press up/down arrow to traverse through sent command history                             | easily repeat similar commands without copying and pasting every single time             |
+| Priority | As a …                                     | I want to …                                                                       | So that I can …                                                                          |
+|----------|--------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `* * *`  | MA1521 TA using the app for the first time | view the list of available basic commands and their general purpose               | start exploring the app's functionalities                                                |
+| `* * *`  | MA1521 TA                                  | assign student grades for assignments and exams                                   | keep track of the student grades                                                         |
+| `* * *`  | MA1521 TA                                  | view each student's specific credentials                                          | verify their identity and manage group assignments                                       |
+| `* * *`  | MA1521 TA                                  | create student profiles                                                           | add students to my tutorial                                                              |
+| `* * *`  | MA1521 TA                                  | delete student profiles                                                           | remove students from my tutorial                                                         |
+| `* *`    | MA1521 TA                                  | find a specific student's contact details from their name only                    | save time instead of searching students in my tutorial group one-by-one                  |
+| `* *`    | MA1521 TA                                  | mark the attendance of multiple students                                          | calculate the students attendance score                                                  |
+| `* *`    | MA1521 TA                                  | unmark the attendance of a student                                                | fix the attendance in the event where I keyed in wrongly                                 |
+| `* *`    | MA1521 TA                                  | view the students I have in each of the multiple classes I conduct                | find out who are in each of my tutorial groups                                           |
+| `* *`    | MA1521 TA                                  | view a single students performance across assignments and attendance              | track their progress over time                                                           |
+| `* *`    | MA1521 TA using the app for the first time | tag students to their tutorial groups                                             | differentiate between my different tutorial groups                                       |
+| `* *`    | MA1521 TA using the app for the first time | have the system recognize my command despite a small typo                         | efficiently execute commands despite having small typos                                  |
+| `* *`    | MA1521 TA                                  | update student profile                                                            | edit the records of my students                                                          |
+| `* *`    | MA1521 TA using the app for the first time | see how I use a specific command (arguments, format, etc.)                        | use a command properly                                                                   |
+| `* *`    | MA1521 TA                                  | view a summary of grades for an assignment                                        | find out the overall performance of my class                                             |
+| `* *`    | MA1521 TA                                  | sort the list of students I have based on alphabetical order                      | obtain specific orderings for admin tasks                                                |
+| `* *`    | MA1521 TA                                  | sort the list of students I have based on overall marks                           | identify a general grade trend as well as students I need to assist more during teaching |
+| `*`      | MA1521 TA                                  | get all my students' emails/phone numbers to my clipboard in one command          | instantly paste said details into another application (e.g. email)                       |
+| `*`      | CLI Experienced MA1521 TA                  | import previous student data (csv, etc.) into this new application                | seamlessly continue my workflow without excessive data reformatting                      |
+| `*`      | Intermediate MA1521 TA user                | add pictures / notes about my students                                            | remember them better and add remarks about them                                          |
+| `*`      | Aesthetically oriented MA1521 TA           | change colour theme                                                               | customize the appearance                                                                 |
+| `*`      | Impatient MA1521 TA                        | command responses to appear within 1 second                                       | work quickly and efficiently                                                             |
+| `*`      | MA1521 TA using the app for the first time | allow the long commands to be broken into multiple parts                          | be more familiarized with the commands                                                   |
+| `*`      | MA1521 TA using the app for the first time | see if my command is wrong without clearing out the command if i typed it wrongly | edit my command instead of retyping it                                                   |
 
 ### Use cases
 
@@ -559,6 +490,103 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+1. Adding a person while all persons are being shown
+    1. Prerequisites: NIL
+        
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/tg1`
+       Expected: John Doe is added to the bottom of the list. Details of the added contact shown in the status message. Command is reflected in the Command History.
+
+2. Adding a person but missing a compulsory field
+   1. Prerequisites: NIL
+   1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
+   Expected: Error message explaining the missing field(s) and showing the proper command format.
+
+3. Adding a person who already exists (same email) in the AddressBook
+    1. Prerequisites: NIL
+   1. Test case (lowercase): `add n/David Li p/98765432 e/charlotte@example.com u/@dave tg/10`
+    Expected: Error message: "This person already exists in the address book."
+
+   2. Test case (uppercase): `add n/David Li p/98765432 e/CHARLOTTE@EXAMPLE.COM u/@dave tg/10`
+      Expected: Error message: "This person already exists in the address book."
+
+4. Adding a person with an invalid field
+    1. Prerequisites: NIL
+    1. Test case: `add n/John Doe p/872hvcfh e/john@example.com u/@john tg/tg01`
+    Expected: Phone numbers should only contain numbers, and it should be at least 3 digits long
+
+5. Adding a person with a duplicate prefix
+   1. Prerequisites: NIL
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/tg1`
+          Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: u/"
+### Editing a person
+1. Editing a person while all persons are being shown
+    1. Prerequisites: At least one person is being shown in the list
+    1. Test case: `edit 1 p/91234567`
+       Expected: The `Phone Number` of the first person is updated. A success message is displayed.
+    2. Test case: `edit 1 p/91234567 u/@rachel`
+       Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
+
+2. Editing a person to create a duplicate (same email)
+    1. Prerequisites: Person who is being duplicated is in the list
+    1. Test case: `edit 3 e/charlotte@example.com`
+       Expected: Error message: "This person already exists in the address book."
+
+3. Editing a person with an invalid index
+    1. Prerequisites: NIL
+    1. Test case: `edit 0 p/91234567`
+       Expected: Error message: "This person already exists in the address book."
+
+4. Editing a person with an invalid field value
+    1. Prerequisites: Person being edited exists in the list
+    1. Test case: `edit 1 u/invalidhandle`
+       Expected: Error message explaining the field constraint violation.
+
+5. Editing a person with a duplicate prefix
+    1. Prerequisites: Person being edited exists in the list
+    1. Test case: `edit 1 p/91234567 p/98765432`
+       Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: p/"
+
+### Grading a student
+1. Grading a student while all persons are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    1. Test case: `grade 1 a/Q1 g/100`<br>
+       Expected: First student's Q1 grade is set to 100. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade [LAST_STUDENT_INDEX] a/fInAls g/0.0000`<br>
+       Expected: Last student's Finals grade is set to 0. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade 3 a/InvalidGrade g/85.5`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
+    1. Other incorrect grade commands to try: `grade`, `grade x a/Q1 g/100`, `grade 1 a/Q1 g/110`, `grade 1 a/Q5 g/-50`<br>
+       Expected: Error details shown in the status message.
+
+1. Grading a student after a find command
+
+    1. Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+
+    1. Test case: `grade 1 a/Q2 g/100`<br>
+       Expected: First student's Q2 grade in the filtered list is set to 75. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade [LAST_FILTERED_STUDENT_INDEX] a/fInAlS g/0.0000`<br>
+       Expected: Last student's Finals grade in the filtered list is set to 88. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade 2 a/InvalidAssignment g/60`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
+    1. Other incorrect grade commands to try: `grade`, `grade x a/Q2 g/75`, `grade 1 a/Q2 g/150`, `grade 1 a/Finals g/-10`<br>
+       Expected: Error details shown in the status message.
+
+1. Grading a student when list is empty
+
+    1. Prerequisites: Delete all students using the `clear` command.
+
+    1. Test case: `grade 1 n/Q1 g/100`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -583,3 +611,33 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+The total effort spent on active development so far is approximately `>=125` hours.
+This includes time spent on design, implementation, testing, documentation, and project management activities.
+
+A small part of the implementation of the Fuzzy Search feature was done through an external library.
+[This library](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/similarity/LevenshteinDistance.html) is from the Apache Commons project and is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+### Difficulty level
+The difficulty level of this project is considered to be 'Moderate', tending to occasionally 'High' at the earlier stages of development.
+
+This was due to the need to modify the original commands' implementations significantly to fit the new requirements,
+which often had a compound effect on other parts of the codebase, and thus was also difficult to segment amongst members.
+
+Furthermore, multiple new object types have been created to represent new complex attributes.
+Given that these attributes (Attendance, Grades) are often non-trivial, they required extensive code and tests to ensure their correctness and robustness.
+
+### Challenges faced
+Some of the challenges faced during the development of this project include:
+* Initial learning process of the codebase, which was very interconnected prior to making any significant changes.
+* Selecting design choices that would best fit the new requirements while minimizing the impact on existing functionalities and making future extensions easier.
+* Segmenting work effectively among team members, given the interconnected nature of the codebase.
+
+### Achievements
+Some of the general achievements of this project include:
+* Successful implementation of all core MVP requirements.
+* Implementation of additional features such as Fuzzy Search.
+* Aesthetic improvements to the UI to utilize more screen space and enhance user experience.
+* Enhanced CLI experience through addition of a navigable command history.

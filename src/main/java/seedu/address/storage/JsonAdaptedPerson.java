@@ -127,7 +127,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialGroup.class.getSimpleName()));
         }
-        if (!TutorialGroup.isValidTutorial(tutorialGroup)) {
+        if (!TutorialGroup.isValidTutorialGroup(tutorialGroup)) {
             throw new IllegalValueException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
         final TutorialGroup modelTutorialGroup = new TutorialGroup(tutorialGroup);

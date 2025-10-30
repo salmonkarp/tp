@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
@@ -18,13 +20,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        requireNonNull(args);
+
+        // Removed try-catch block here as by right, all the parsing errors will be handled in the respective.
+        // ParserUtil methods called below and throw ParseException with relevant messages.
+        if (args.isBlank()) {
+            String commandFormatSection = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+            throw new ParseException(MESSAGE_MISSING_INDEX + "\n\n" + commandFormatSection);
         }
+
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteCommand(index);
     }
 
 }

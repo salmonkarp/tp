@@ -115,9 +115,12 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
-        return otherPerson != null
-            && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+        String thisPersonEmail = getEmail().toString();
+        String otherPersonEmail = otherPerson.getEmail().toString();
+        return otherPersonEmail.equalsIgnoreCase(thisPersonEmail);
     }
 
     public boolean hasAttendedTutorial(TutorialClass tutorialId) {

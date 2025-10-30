@@ -88,7 +88,7 @@ Examples:
 However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
 For instance, `listee` will not be interpreted as `list`.
 
-Warnings:
+**Warnings:**
 * If command typo is too different
 - Output: `Unknown Command`
 
@@ -105,12 +105,12 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​`
 * `NAME` should only contain alphanumeric characters and spaces. It should not be blank.
 * `PHONE_NUMBER` should only contain numeric characters. It should not be blank.
 * `EMAIL` should be in the format `local-part@domain` and should not be blank.
 * `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should not be blank.
-* `TUTORIAL_GROUP` must be in the format `TXX` where `XX` is any sequence of digits e.g. `T01`, `T12`.
+* `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`.
 * `TAG` must only contain either alphanumeric characters or spaces, e.g. `Good Student` is a valid tag.
 
 Examples:
@@ -120,8 +120,9 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
-Warnings:
-* If a student with the same name already exists in the address book, an error message will be displayed, and the student will not be added.
+**Warnings:**
+* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group)
+* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
 * If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
@@ -143,7 +144,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GRO
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can unset a person's tutorial group by typing `tg/` without specifying any tutorial group after it.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s  tags by typing `t/` without
     specifying any tags after it.
@@ -151,6 +151,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GRO
 Examples:
 *  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+**Warnings:**
+* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be edited.
+  e.g. `This student already exists in the address book`
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be edited.
+  e.g. `Invalid command format!...` and details of the error.
 
 ### Locating students by details: `find`
 
@@ -180,7 +186,7 @@ Examples:
 <br>returns detailed information of `Alex Yeoh`  and `Bernice Yu`
 * `find n/Alex e/example.com` 
 <br>returns students whose names contain `Alex` or whose email addresses contain `example.com`
-* `find u/@jake tg/Tutorial2` 
+* `find u/@jake tg/TG02` 
 <br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
 
 **Warnings:**
@@ -207,7 +213,7 @@ Hints:
 Expected output:
 * Student is deleted from the addressbook.
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Clearing all entries : `clear`
@@ -216,9 +222,17 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-Expected Output: `Address book has been cleared!`
+* An alert will be shown to confirm the action before clearing all entries.
+* The command will be aborted if you choose `Cancel` in the confirmation alert.
+* The command will proceed if you choose `OK` in the confirmation alert.
 
-- The address book is blank and has no entries.
+Expected Output(**successful clear**): `Address book has been cleared!`
+
+Expected Output(**aborted clear**): `Clear command cancelled.`
+
+Warnings:
+* Please be cautious when using this command as it will permanently delete all entries in the address book.
+* There is **NO** undo for this command. Use with care!
 
 ### Grading a person: `grade`
 
@@ -240,7 +254,7 @@ Examples:
 
 Sorts the student list currently displayed in the address book based on given sort instructions.
 
-Format: `sort [field] [/v]`
+Format: `sort [field] [order] [/v]`
 
 Possible `[field]` values:
 * `name`: Sorts alphabetically by student's name.
@@ -248,12 +262,20 @@ Possible `[field]` values:
 * `attendance`: Sorts by attendance percentage (highest first).
 * `tutorial`: Sorts by tutorial group number (lowest first).
 
+Possible `[order]` values:
+* (default): Sorts in **ascending** order.
+* `asc`: Sorts in **ascending** order.
+* `desc`: Sorts in **descending** order.
+
+Note: default means no order parameter is specified.
+
 **Behaviour & Tips**:
 * Sorting by `name` sorts the students in **alphabetical order** of their **names**.
 * Sorting by `grade` sorts the students in **descending order** of their **average grades across all assignments**.
 * Sorting by `attendance` sorts the students in **descending order** of their **attendance percentage**.
 * Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
+* If no `order` is specified, the default sorting order is as specified above.
 * The sorting is done in ascending order.
 * If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
 
@@ -273,7 +295,7 @@ Examples:
 
 ### Marking a student's tutorial attendance: `attend`
 
-Marks a student as attended for a specific tutorial class.
+Mark(s) student(s) as attended for a specific tutorial class.
 
 Format: `attend INDICES... c/TUTORIAL_NUMBER`
 
@@ -294,7 +316,7 @@ Hints:
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Unmarking a student's tutorial attendance: `unattend`
@@ -318,7 +340,7 @@ Hints:
 Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
 
-Warnings:
+**Warnings:**
 * Entering the wrong format for the command will result in a warning: `Invalid command format!`
 
 ### Exiting the program : `exit`
@@ -333,7 +355,10 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
+Advanced users are welcome to update data directly by editing that data file.
+
+**WARNING**: Most users are advised against doing so, as it is easy to corrupt the data file if you are not careful.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -367,7 +392,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX a/ASSIGNMENT_NAME g/GRADE`<br> e.g., `grade 3 a/Finals g/97`

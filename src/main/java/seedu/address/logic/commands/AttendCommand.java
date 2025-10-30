@@ -114,13 +114,15 @@ public class AttendCommand extends Command {
             }
 
             model.setPerson(personToMarkAttend, attendancePerson);
-            successMessage.append(Messages.format(attendancePerson)).append("\n");
+            successMessage.append(Messages.format(attendancePerson).replace("; ", System.lineSeparator()));
+
         }
+
         if (indices.size() > 1) {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage.toString()),
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSONS_SUCCESS, successMessage),
                     false, false, true);
         } else {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage.toString()),
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, successMessage),
                     false, false, true);
         }
     }
