@@ -16,7 +16,7 @@ public class SortCommand extends Command {
     public static final String FUZZY_COMMAND_WORD = "sortt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort students in the address book by a field\n"
-            + "Parameters: FIELD [ORDER]\n"
+            + "Parameters: [FIELD] [ORDER]\n"
             + "Fields: name | tutorial | grade | attendance\n"
             + "Order (optional): asc | desc (default is asc)\n"
             + "Example: " + COMMAND_WORD + " grade desc\n"

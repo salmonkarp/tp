@@ -70,14 +70,14 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a **PDF** version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ### Fuzzy Command Matching
 
-The app includes a fuzzy matching feature for commands to enhance user experience. If you make a small typo when entering a command, the application will attempt to match it to the most similar valid command.
+The app includes a **fuzzy matching** feature for commands to enhance user experience. If you make a small typo when entering a command, the application will attempt to match it to the most similar valid command.
 
-This feature uses the Levenshtein distance algorithm with a maximum allowed distance of **1**. This means that commands with a single character difference (insertion, deletion or substitution) from a valid command will be automatically corrected and executed.
+This feature uses the **Levenshtein distance algorithm** with a maximum allowed distance of **1**. This means that commands with a single character difference (insertion, deletion or substitution) from a valid command will be automatically corrected and executed.
 
 Examples:
 *   If you type `addd`, it will be interpreted as `add`.
@@ -94,7 +94,7 @@ For instance, `listee` will not be interpreted as `list`.
 
 ### Viewing help : `help`
 
-Shows a popup with a help guide of the commands available to users.
+Shows a **popup** with a **help guide** of the commands available to users.
 
 ![help popup](images/helpPopup.jpg)
 
@@ -106,15 +106,15 @@ Format: `help`
 Adds a student to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​`
-* `NAME` should only contain alphanumeric characters and spaces. It should not be blank.
-* `PHONE_NUMBER` should only contain numeric characters. It should not be blank.
-* `EMAIL` should be in the format `local-part@domain` and should not be blank.
-* `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should not be blank.
-* `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`.
-* `TAG` must only contain either alphanumeric characters or spaces, e.g. `Good Student` is a valid tag.
+* `NAME` should only contain **alphanumeric characters and spaces**. It should **NOT** be blank.
+* `PHONE_NUMBER` should **ONLY** contain **numeric characters**. It should **NOT** be blank.
+* `EMAIL` should be in the format `local-part@domain` and should **NOT** be blank.
+* `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should **NOT** be blank.
+* `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`. It should **NOT** be blank.
+* `TAG` must only contain either **alphanumeric characters or spaces**, e.g. `Good Student` is a valid tag.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com u/@john`
+* `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/TG31`
 * `add n/Betsy Crowe e/betsycrowe@example.com u/@betsy p/1234567 tg/TG01 t/Good Student`
 
 Expected output:
@@ -122,9 +122,9 @@ Expected output:
 
 **Warnings:**
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group)
-* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be added.
+* If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
-* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be added.
+* If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
 
 ### Listing all persons : `list`
@@ -133,7 +133,7 @@ Shows a list of all persons in the address book.
 
 Format: `list [/v]`
 
-* If the optional verbose flag `/v` is written at the end, more detailed information (all grades and attendance) of the students will be shown instead of a summary.
+* If the optional verbose flag `/v` is written at the end, more **detailed information** (all grades and attendance) of the students will be shown instead of a summary.
 
 ### Editing a person : `edit`
 
@@ -142,20 +142,22 @@ Edits an existing person in the address book.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least **ONE** of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be **removed** i.e adding of tags is not cumulative.
 * You can remove all the person’s  tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 u/@john` Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 u/@john`<br>
+Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
+*  `edit 2 n/Betsy Crower t/`<br> 
+Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 **Warnings:**
-* If a student with the same email (case insensitive) already exists in the address book, an error message will be displayed, and the student will not be edited.
+* If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
   e.g. `This student already exists in the address book`
-* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an error message will be displayed and the student will not be edited.
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be edited.
   e.g. `Invalid command format!...` and details of the error.
 
 ### Locating students by details: `find`
@@ -211,10 +213,10 @@ Hints:
 * Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
-* Student is deleted from the addressbook.
+* Student is **deleted** from the addressbook.
 
 **Warnings:**
-* Entering the wrong format for the command will result in a warning: `Invalid command format!`
+* Entering the wrong format for the command will result in a **warning**: `Invalid command format!`
 
 ### Clearing all entries : `clear`
 
@@ -223,8 +225,8 @@ Clears all entries from the address book.
 Format: `clear`
 
 * An alert will be shown to confirm the action before clearing all entries.
-* The command will be aborted if you choose `Cancel` in the confirmation alert.
-* The command will proceed if you choose `OK` in the confirmation alert.
+* The command will be **aborted** if you choose `Cancel` in the confirmation alert.
+* The command will **proceed** if you choose `OK` in the confirmation alert.
 
 Expected Output(**successful clear**): `Address book has been cleared!`
 
@@ -236,7 +238,7 @@ Warnings:
 
 ### Grading a person: `grade`
 
-Assigns a grade to a person in the address book.
+Assigns a **grade** to a person in the address book.
 
 Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 
@@ -244,7 +246,7 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Assignment name must be in enum list.
-* Grade must be a positive integer in the range 0-100 (inclusive).
+* Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
 
 Examples:
 * `grade 3 a/Q1 g/97`
@@ -254,15 +256,15 @@ Examples:
 
 Sorts the student list currently displayed in the address book based on given sort instructions.
 
-Format: `sort [field] [order] [/v]`
+Format: `sort [FIELD] [ORDER] [/v]`
 
-Possible `[field]` values:
+Possible `[FIELD]` values:
 * `name`: Sorts alphabetically by student's name.
-* `grade`: Sorts by average grade (highest first).
-* `attendance`: Sorts by attendance percentage (highest first).
+* `grade`: Sorts by average grade (lowest first).
+* `attendance`: Sorts by attendance percentage (lowest first).
 * `tutorial`: Sorts by tutorial group number (lowest first).
 
-Possible `[order]` values:
+Possible `[ORDER]` values:
 * (default): Sorts in **ascending** order.
 * `asc`: Sorts in **ascending** order.
 * `desc`: Sorts in **descending** order.
@@ -271,12 +273,11 @@ Note: default means no order parameter is specified.
 
 **Behaviour & Tips**:
 * Sorting by `name` sorts the students in **alphabetical order** of their **names**.
-* Sorting by `grade` sorts the students in **descending order** of their **average grades across all assignments**.
-* Sorting by `attendance` sorts the students in **descending order** of their **attendance percentage**.
+* Sorting by `grade` sorts the students in **ascending order** of their **average grades across all assignments**.
+* Sorting by `attendance` sorts the students in **ascending order** of their **attendance percentage**.
 * Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
 * If no `order` is specified, the default sorting order is as specified above.
-* The sorting is done in ascending order.
 * If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
 
 **Expected Output:**<br>
@@ -310,8 +311,8 @@ Examples:
 * `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
-Hints:
-* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
+Tips:
+* Use `find` command to **filter** the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking
@@ -328,7 +329,7 @@ Unmarks a student as attended for a specific tutorial class.
 Format: `unattend INDEX c/TUTORIAL_CLASS`
 
 * Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
-* The index refers to the index number shown in the displayed student list.
+* The index refers to the index number shown in the **displayed student list**.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**.
 
@@ -336,7 +337,7 @@ Examples:
 * `unattend 2 c/t5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
-Hints:
+Tips:
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
@@ -349,7 +350,7 @@ Expected output:
 
 ### Exiting the program : `exit`
 
-Exits the program.
+**Exits** the program.
 
 Format: `exit`
 
