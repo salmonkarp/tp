@@ -543,6 +543,47 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Person being edited exists in the list
     1. Test case: `edit 1 p/91234567 p/98765432`
        Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: p/"
+
+### Grading a student
+1. Grading a student while all persons are being shown
+
+    Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    1. Test case: `grade 1 a/Q1 g/100`<br>
+       Expected: First student's Q1 grade is set to 100. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade [LAST_STUDENT_INDEX] a/fInAls g/0.0000`<br>
+       Expected: Last student's Finals grade is set to 0. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade 3 a/InvalidGrade g/85.5`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
+    1. Other incorrect grade commands to try: `grade`, `grade x a/Q1 g/100`, `grade 1 a/Q1 g/110`, `grade 1 a/Q5 g/-50`<br>
+       Expected: Error details shown in the status message.
+
+1. Grading a student after a find command
+
+    Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+
+    1. Test case: `grade 1 a/Q2 g/100`<br>
+       Expected: First student's Q2 grade in the filtered list is set to 75. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade [LAST_FILTERED_STUDENT_INDEX] a/fInAlS g/0.0000`<br>
+       Expected: Last student's Finals grade in the filtered list is set to 88. Details of the graded contact shown in the status message.
+
+    1. Test case: `grade 2 a/InvalidAssignment g/60`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
+    1. Other incorrect grade commands to try: `grade`, `grade x a/Q2 g/75`, `grade 1 a/Q2 g/150`, `grade 1 a/Finals g/-10`<br>
+       Expected: Error details shown in the status message.
+
+1. Grading a student when list is empty
+
+    1. Prerequisites: Delete all students using the `clear` command.
+
+    1. Test case: `grade 1 n/Q1 g/100`<br>
+       Expected: No student is graded. Error details shown in the status message.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
