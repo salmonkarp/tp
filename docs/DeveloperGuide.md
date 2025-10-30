@@ -516,6 +516,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: NIL
    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/tg1`
           Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: u/"
+
 ### Editing a person
 1. Editing a person while all persons are being shown
     1. Prerequisites: At least one person is being shown in the list
@@ -536,7 +537,7 @@ testers are expected to do more *exploratory* testing.
 
 4. Editing a person with an invalid field value
     1. Prerequisites: Person being edited exists in the list
-    1. Test case: `edit 1 u/invalidhandle`
+    1. Test case: `edit 1 u/InvalidHandle`
        Expected: Error message explaining the field constraint violation.
 
 5. Editing a person with a duplicate prefix
@@ -574,7 +575,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `grade 2 a/InvalidAssignment g/60`<br>
        Expected: No student is graded. Error details shown in the status message.
 
-    1. Other incorrect grade commands to try: `grade`, `grade x a/Q2 g/75`, `grade 1 a/Q2 g/150`, `grade 1 a/Finals g/-10`<br>
+    1. Other incorrect grade commands to try: `grade`, `grade InvalidIndex a/Q2 g/75`, `grade 1 a/Q2 g/150`, `grade 1 a/Finals g/-10`<br>
        Expected: Error details shown in the status message.
 
 1. Grading a student when list is empty
@@ -583,6 +584,78 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `grade 1 n/Q1 g/100`<br>
        Expected: No student is graded. Error details shown in the status message.
+
+### Marking a student's tutorial class attendance
+1. Marking a student's tutorial class attendance while all students are being shown
+
+   Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    1. Test case: `attend 1 c/t1`<br>
+       Expected: First student's t1 attendance is set to 1. Details of the attended contact shown in the status message.
+
+    2. Test case: `attend 1 2 3 c/t1`<br>
+       Expected: First, second and third student's t1 attendance is set to 1. Details of the attended contact shown in the status message.
+
+    3. Test case: `attend [LAST_STUDENT_INDEX] c/t2`<br>
+       Expected: Last student's t2 attendance is set to 1. Details of the attended contact shown in the status message.
+
+    4. Test case: `attend 2 c/InvalidTutorialClass`<br>
+       Expected: No student's attendance is marked. Error details shown in the status message.
+
+    5. Other incorrect attend commands to try: `attend`, `attend InvalidIndex c/t1`, `attend 1 InvalidIndex c/t1`<br>
+       Expected: Error details shown in the status message.
+
+1. Marking a student's tutorial class attendance after a find command
+
+   Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+
+    1. Test case: `attend 1 c/t1`<br>
+       Expected: First student's t1 attendance is set to 1. Details of the attended contact shown in the status message.
+
+    2. Test case: `attend 2 c/InvalidTutorialClass`<br>
+        Expected: No student's attendance is marked. Error details shown in the status message.
+
+1. Marking a student's tutorial class when list is empty
+
+    1. Prerequisites: Delete all students using the `clear` command.
+
+    2. Test case: `attend 1 c/t3`<br>
+       Expected: No student's attendance is marked. Error details shown in the status message.
+
+
+### Unmarking a student's tutorial class attendance
+1. Unmarking a student's tutorial class attendance while all students are being shown
+
+   Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    1. Test case: `unattend 1 c/t1`<br>
+       Expected: First student's t1 attendance is set to 0. Details of the unattended contact shown in the status message.
+
+    2. Test case: `unattend [LAST_STUDENT_INDEX] c/t2`<br>
+       Expected: Last student's t2 attendance is set to 0. Details of the unattended contact shown in the status message.
+
+    3. Test case: `unattend 2 c/InvalidTutorialClass`<br>
+       Expected: No student's attendance is unmarked. Error details shown in the status message.
+
+    4. Other incorrect unattend commands to try: `unattend`, `unattend InvalidIndex c/t1`, `unattend 1 c/t1 c/t2`<br>
+       Expected: Error details shown in the status message.
+
+2. Unmarking a student's tutorial class attendance after a find command
+
+   Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+
+    1. Test case: `unattend 1 c/t1`<br>
+       Expected: First student's t1 attendance is set to 0. Details of the unattended contact shown in the status message.
+
+    2. Test case: `unattend 2 c/InvalidTutorialClass`<br>
+       Expected: No student's attendance is unmarked. Error details shown in the status message.
+
+3. Unmarking a student's tutorial class when list is empty
+
+    1. Prerequisites: Delete all students using the `clear` command.
+
+    2. Test case: `unattend 1 c/t3`<br>
+       Expected: No student's attendance is unmarked. Error details shown in the status message.
 
 ### Deleting a person
 
