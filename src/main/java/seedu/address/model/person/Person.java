@@ -117,7 +117,7 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+            && otherPerson.getEmail().toString().equalsIgnoreCase(getEmail().toString());
     }
 
     public boolean hasAttendedTutorial(TutorialClass tutorialId) {
