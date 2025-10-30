@@ -523,7 +523,7 @@ testers are expected to do more *exploratory* testing.
 1. Editing a person while all persons are being shown
     1. Prerequisites: At least one person is being shown in the list
     1. Test case: `edit 1 p/91234567`
-       Expected: The `phone number` of the first person is updated. A success message is displayed.
+       Expected: The `Phone Number` of the first person is updated. A success message is displayed.
     2. Test case: `edit 1 p/91234567 u/@rachel`
        Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
 
@@ -550,7 +550,7 @@ testers are expected to do more *exploratory* testing.
 ### Grading a student
 1. Grading a student while all persons are being shown
 
-    Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     1. Test case: `grade 1 a/Q1 g/100`<br>
        Expected: First student's Q1 grade is set to 100. Details of the graded contact shown in the status message.
@@ -566,7 +566,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Grading a student after a find command
 
-    Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+    1. Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
 
     1. Test case: `grade 1 a/Q2 g/100`<br>
        Expected: First student's Q2 grade in the filtered list is set to 75. Details of the graded contact shown in the status message.
