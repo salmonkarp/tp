@@ -31,121 +31,132 @@
             />
             <Label text="Keywords:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
             <TextFlow>
+                <Label text="INDEX" id="sampleCommandLabel"/>
+                <Text text=" - the index number of the student as currently shown in the addressbook" id="textContent"/>
+            </TextFlow>
+            <TextFlow>
                 <Label text="n/NAME" id="sampleCommandLabel"/>
-                <Text text=" - the name of the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - the name of the student" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="p/PHONE_NUMBER" id="sampleCommandLabel"/>
-                <Text text=" - student's personal phone number" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - student's personal phone number" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="e/EMAIL" id="sampleCommandLabel"/>
-                <Text text=" - student's email address" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - student's email address" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="u/TELEHANDLE" id="sampleCommandLabel"/>
-                <Text text=" - student's telegram handle(e.g. @JohnDoe), must start with @" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - student's telegram handle(e.g. @JohnDoe), must start with @" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="g/GRADE" id="sampleCommandLabel"/>
-                <Text text=" - the grade to be given(numerical grade)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - the grade to be given(numerical grade)" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="a/ASSIGNMENT_NAME" id="sampleCommandLabel"/>
-                <Text text=" - the assignment name to be marked" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - the assignment name to be marked" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="tg/TUTORIAL_GROUP" id="sampleCommandLabel"/>
-                <Text text=" - the tutorial group for that student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - the tutorial group for that student" id="textContent"/>
+            </TextFlow>
+            <TextFlow>
+                <Label text="c/TUTORIAL_CLASS" id="sampleCommandLabel"/>
+                <Text text=" - the tutorial lesson that the student attended" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="t/TAG" id="sampleCommandLabel"/>
-                <Text text=" - any related comment for the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - any related comment for the student" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="[FIELD]" id="sampleCommandLabel"/>
-                <Text text=" - [FIELD] can be name, tutorial, grade or attendance" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - [FIELD] can be name, tutorial, grade or attendance" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="[ORDER]" id="sampleCommandLabel"/>
-                <Text text=" - [ORDER] can be either asc(ascending) or desc(descending)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - [ORDER] can be either asc(ascending) or desc(descending)" id="textContent"/>
             </TextFlow>
             <TextFlow>
                 <Label text="/v" id="sampleCommandLabel"/>
-                <Text text=" - verbose flag to display more detailed student information (all grades and attendance)" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text=" - verbose flag to display more detailed student information (all grades and attendance)" id="textContent"/>
             </TextFlow>
 
+            <TextFlow>
+                <Text text="Note: Words in square brackets are optional." id="textContent"/>
+            </TextFlow>
 
             <Label text="Available commands:" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
 
             <Label text="1. add: Adds a person to the address book." id="commandListLabel" />
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE [tg/TUTORIAL_GROUP] [t/TAG]..." id="sampleCommandLabel"/>
+              <Text text="Format: " id="textContent"/>
+              <Label text="add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]..." id="sampleCommandLabel"/>
             </TextFlow>
             <Label text="2. delete: Deletes a person from the address book." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="delete INDEX" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="3. edit: Edits an existing person in the address book." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]..." id="sampleCommandLabel"/>
             </TextFlow>
 
-            <Label text="4. find: Finds persons by keywords" id="commandListLabel"/>
+            <Label text="4. find: Finds persons by keywords, at least one field must be provided" id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="5. list: Lists all persons." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="list [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="6. help: Shows program usage instructions." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="help" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="7. clear: Clears all entries from the address book(use with caution)." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="clear" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="8. grade: places a numerical grade for a student" id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-              <Label text="grade INDEX [a/ASSIGNMENT_NAME] [g/GRADE]" id="sampleCommandLabel"/>
+              <Text text="Format: " id="textContent"/>
+              <Label text="grade INDEX a/ASSIGNMENT_NAME g/GRADE" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="9. sort: sorts the list on screen to follow a certain field" id="commandListLabel"/>
             <TextFlow>
-                <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text="Format: " id="textContent"/>
                 <Label text="sort [FIELD] [ORDER] [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
-            <Label text="10. marks a student's attendance for a tutorial session" id="commandListLabel"/>
+            <Label text="10. marks a student's attendance for a tutorial session, supports multiple indices" id="commandListLabel"/>
             <TextFlow>
-                <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-                <Label text="attend INDEX c/TUTORIAL_NUMBER" id="sampleCommandLabel"/>
+                <Text text="Format: " id="textContent"/>
+                <Label text="attend INDEX... c/TUTORIAL_NUMBER" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="11. unmarks a student's attendance for a tutorial session" id="commandListLabel"/>
             <TextFlow>
-                <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+                <Text text="Format: " id="textContent"/>
                 <Label text="unattend INDEX c/TUTORIAL_NUMBER" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="12. exit: Exits the application." id="commandListLabel"/>
             <TextFlow>
-              <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+              <Text text="Format: " id="textContent"/>
               <Label text="exit" id="sampleCommandLabel"/>
             </TextFlow>
 
