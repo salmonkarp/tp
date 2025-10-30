@@ -96,7 +96,7 @@ For instance, `listee` will not be interpreted as `list`.
 
 Shows a **popup** with a **help guide** of the commands available to users.
 
-![help popup](images/helpPopup.jpg)
+![help popup](images/helpPopup.png)
 
 Format: `help`
 
@@ -169,8 +169,6 @@ Format:
 `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]`<br>
 Searches by specific fields. You can combine multiple fields. At least 1 field is needed.
 
-**Behaviour & Tips**:
-
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * **Partial matches** are supported. e.g. `ann` will match `Annabel`, `Joanna`
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
@@ -178,7 +176,7 @@ Searches by specific fields. You can combine multiple fields. At least 1 field i
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If the optional verbose flag `/v` is written at the end, more detailed information (shows all grades and attendance) of the found students will be shown instead of a summary.
 
-**Expected Output:**<br>
+Expected Output:<br>
 A list of students matching your search criteria will be displayed in the main window.
 
 Examples:
@@ -213,7 +211,7 @@ Hints:
 * Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
-* Student is **deleted** from the addressbook.
+* Student is **deleted** from the address book.
 
 **Warnings:**
 * Entering the wrong format for the command will result in a **warning**: `Invalid command format!`
@@ -228,11 +226,13 @@ Format: `clear`
 * The command will be **aborted** if you choose `Cancel` in the confirmation alert.
 * The command will **proceed** if you choose `OK` in the confirmation alert.
 
-Expected Output(**successful clear**): `Address book has been cleared!`
+Expected output (**successful clear**):<br>
+`Address book has been cleared!`
 
-Expected Output(**aborted clear**): `Clear command cancelled.`
+Expected output (**aborted clear**):<br>
+`Clear command cancelled.`
 
-Warnings:
+**Warnings**:
 * Please be cautious when using this command as it will permanently delete all entries in the address book.
 * There is **NO** undo for this command. Use with care!
 
@@ -251,6 +251,10 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 Examples:
 * `grade 3 a/Q1 g/97`
 * `grade 5 a/Finals g/80`
+
+Expected output: <br>
+The specified student's grade will be updated with the given value.
+This value will be automatically converted to 2 decimal places.
 
 ### Sorting the student list: `sort`
 
@@ -271,7 +275,6 @@ Possible `[ORDER]` values:
 
 Note: default means no order parameter is specified.
 
-**Behaviour & Tips**:
 * Sorting by `name` sorts the students in **alphabetical order** of their **names**.
 * Sorting by `grade` sorts the students in **ascending order** of their **average grades across all assignments**.
 * Sorting by `attendance` sorts the students in **ascending order** of their **attendance percentage**.
@@ -280,7 +283,7 @@ Note: default means no order parameter is specified.
 * If no `order` is specified, the default sorting order is as specified above.
 * If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
 
-**Expected Output:**<br>
+Expected Output:<br>
 The student list will be reordered according to your chosen field.
 
 Examples:
