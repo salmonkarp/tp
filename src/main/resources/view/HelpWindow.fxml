@@ -59,6 +59,10 @@
                 <Text text=" - the tutorial group for that student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
             <TextFlow>
+                <Label text="c/TUTORIAL_CLASS" id="sampleCommandLabel"/>
+                <Text text=" - the tutorial lesson that the student attended" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
+            </TextFlow>
+            <TextFlow>
                 <Label text="t/TAG" id="sampleCommandLabel"/>
                 <Text text=" - any related comment for the student" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
             </TextFlow>
@@ -131,10 +135,10 @@
                 <Label text="sort [FIELD] [ORDER] [/v]" id="sampleCommandLabel"/>
             </TextFlow>
 
-            <Label text="10. marks a student's attendance for a tutorial session" id="commandListLabel"/>
+            <Label text="10. marks a student's attendance for a tutorial session, supports multiple indices" id="commandListLabel"/>
             <TextFlow>
                 <Text text="Format: " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-fill: white;"/>
-                <Label text="attend INDEX c/TUTORIAL_NUMBER" id="sampleCommandLabel"/>
+                <Label text="attend INDEX... c/TUTORIAL_NUMBER" id="sampleCommandLabel"/>
             </TextFlow>
 
             <Label text="11. unmarks a student's attendance for a tutorial session" id="commandListLabel"/>
