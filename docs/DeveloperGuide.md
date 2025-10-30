@@ -527,7 +527,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `edit 1 p/91234567 u/@rachel`
        Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
 
-2. Editing a person to create a duplicate (same name)
+2. Editing a person to create a duplicate (same email)
     1. Prerequisites: Person who is being duplicated is in the list
     1. Test case: `edit 3 e/charlotte@example.com`
        Expected: Error message: "This person already exists in the address book."
