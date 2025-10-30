@@ -548,6 +548,79 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `edit 1 p/91234567 p/98765432`
        Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: p/"
 
+### Finding students
+1. Finding students by name while all students are being shown
+
+    1. Prerequisites: Have at least 2 students in the list. Finding only 1 person is not meaningful.
+
+    1. Test case: `find n/Alice`<br>
+       Expected: Only students with names containing "Alice" (case-insensitive) are shown in the filtered list.
+
+    1. Test case: `find n/xyz`<br>
+       Expected: Only students with names containing "xyz" (case-insensitive) are shown in the filtered list.
+
+2. Finding students with non-existing keywords while all students are being shown
+
+    1. Prerequisites: NIL
+
+    1. Test case: `find n/NonExistingName`<br>
+       Expected: No students are shown in the filtered list.
+
+3. Finding with multiple fields while all students are being shown
+
+    1. Prerequisites: Have at least 2 students in the list. Finding only 1 person is not meaningful.
+
+    1. Test case: `find n/Alice e/gmail.com`<br>
+       Expected: Only students with names containing "Alice" or emails containing "gmail.com" (case-insensitive) are shown in the filtered list.
+
+### Sorting students
+1. Sorting students while all students are being shown
+
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+
+    1. Test case: `sort name`<br>
+       Expected: Students are sorted in alphabetical order by name. 
+
+    1. Test case: `sort grade`<br>
+       Expected: Students are sorted in ascending order by overall grade. 
+    
+    1. Test case: `sort attendance`<br>
+       Expected: Students are sorted in ascending order by attendance. 
+
+       1. Test case: `sort tutorial`<br>
+          Expected: Students are sorted in numerical ascending order by tutorial group.
+    
+2. Sorting students after a find command
+
+    1. Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
+
+    1. Test case: `sort name`<br>
+       Expected: Filtered students are sorted in alphabetical order by name. 
+
+    1. Test case: `sort grade`<br>
+       Expected: Filtered students are sorted in ascending order by overall grade. 
+
+    1. Test case: `sort attendance`<br>
+       Expected: Filtered students are sorted in ascending order by attendance. 
+
+    1. Test case: `sort tutorial`<br>
+       Expected: Filtered students are sorted in numerical ascending order by tutorial group.
+
+3. Sorting students with invalid field
+
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+
+    1. Test case: `sort invalidField`<br>
+       Expected: No students are sorted. Error details shown in the status message.
+   
+4. Sorting students with invalid order parameter
+
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+
+    1. Test case: `sort name descending`<br>
+       Expected: No students are sorted. Error details shown in the status message.
+
+
 ### Grading a student
 1. Grading a student while all persons are being shown
 
