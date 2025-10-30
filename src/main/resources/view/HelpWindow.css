@@ -16,6 +16,7 @@
 
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 20 20 20 20;
 }
 
 #titleLabel {
@@ -41,4 +42,10 @@
     -fx-background-radius: 4;
     -fx-border-color: #444;
     -fx-border-width: 1;
+}
+
+#textContent {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-fill: white;
 }
