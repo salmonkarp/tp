@@ -99,7 +99,8 @@ public class UnattendCommand extends Command {
         model.setPerson(personToUnattend, attendancePerson);
         String multiLineDetails = Messages.format(personToUnattend)
                 .replace("; ", System.lineSeparator());
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, multiLineDetails),
+                false, false, true);
     }
 
     @Override

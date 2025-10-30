@@ -43,13 +43,13 @@
 
     <!-- Assignments row -->
     <VBox spacing="6" alignment="TOP_LEFT">
-      <Label text="Assignments:" styleClass="label-bright"/>
+      <Label fx:id="assignmentsTitle" styleClass="label-bright" text="\$assignmentsTitle" />
       <FlowPane fx:id="assignmentTags" hgap="6" vgap="6" prefWrapLength="220" />
     </VBox>
 
     <!-- Tutorials row -->
     <VBox spacing="6" alignment="TOP_LEFT">
-      <Label text="Tutorials:" styleClass="label-bright"/>
+      <Label fx:id="tutorialsTitle" styleClass="label-bright" text="\$tutorialsTitle" />
       <FlowPane fx:id="attendanceTags" hgap="6" vgap="6" prefWrapLength="220" />
     </VBox>
   </HBox>

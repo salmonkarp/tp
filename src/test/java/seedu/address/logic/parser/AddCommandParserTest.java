@@ -162,31 +162,31 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-                MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_NAME + "\n" + expectedMessage);
+                MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_NAME + "\n\n" + expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_PHONE + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_PHONE + "\n\n" + expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEHANDLE_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_EMAIL + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_EMAIL + "\n\n" + expectedMessage);
 
         // missing telehandle prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_TELEHANDLE_BOB
                 + TUTORIAL_GROUP_DESC_BOB,
-            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TELEHANDLE + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TELEHANDLE + "\n\n" + expectedMessage);
 
         // missing tutorial group prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEHANDLE_DESC_BOB
                 + VALID_TAG_TUTORIAL2,
-            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TUTORIAL_GROUP + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_TUTORIAL_GROUP + "\n\n" + expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_TELEHANDLE_BOB,
-            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_COMPULSORY_FIELDS + "\n" + expectedMessage);
+            MESSAGE_MISSING_COMPULSORY_FIELDS + MESSAGE_COMPULSORY_FIELDS + "\n\n" + expectedMessage);
     }
 
     @Test

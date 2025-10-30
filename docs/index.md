@@ -8,8 +8,10 @@ title: CalcConnect
 ![Ui](images/Ui.png)
 
 **CalcConnect is a contact management application designed specifically for MA1521 tutors to efficiently organize and manage student information.**
+* The application supports adding, deleting, editing, searching, grading and marking attendance for students within the contact list.
+* `CalcConnect` aims to be a comprehensive solution for MA1521 tutors for all administrative tasks they need to fulfil.
 
-While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+  While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
