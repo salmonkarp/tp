@@ -26,7 +26,7 @@ import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Assigns a grade to an existing person in the address book.
+ * Assigns a grade to an existing student in the address book.
  */
 public class GradeCommand extends Command {
 
@@ -34,7 +34,7 @@ public class GradeCommand extends Command {
     public static final String FUZZY_COMMAND_WORD = "gradee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns the grade to the person identified "
+            + ": Assigns the grade to the student identified "
             + "by the index number used in the last person listing. "
             + "Existing grade will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -47,7 +47,7 @@ public class GradeCommand extends Command {
             + Arrays.toString(Assignments.getAllAssignments()) + ".\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_GRADE + "87.50 " + PREFIX_ASSIGNMENT + "Q1";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Graded Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Graded student: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -55,7 +55,7 @@ public class GradeCommand extends Command {
     private final Assignments assignment;
 
     /**
-     * @param index of the person in the filtered person list to assign the grade to
+     * @param index of the person in the filtered student list to assign the grade to
      * @param grade of the person to be assigned to
      */
     public GradeCommand(Index index, Grade grade, Assignments assignment) {
