@@ -71,14 +71,15 @@ public class UnattendCommandParser implements Parser<UnattendCommand> {
             throw new ParseException(missingPrefixesSection + "\n\n" + commandFormatSection);
         }
 
-        // If user entered multiple indexes after attend.
-        if (preamble.split("\\s+").length > 1) {
-            throw new ParseException(MESSAGE_ENTERED_MULTIPLE_INDEXES);
-        }
+        String[] parts = preamble.split("\\s+");
 
         // Removed try-catch block here as by right, all the parsing errors will be handled in the respective.
         // ParserUtil methods called below and throw ParseException with relevant messages.
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        index = ParserUtil.parseIndex(parts[0]);
+
+        if (parts.length > 1) {
+            throw new ParseException(MESSAGE_ENTERED_MULTIPLE_INDEXES);
+        }
 
         assert index.getOneBased() > 0;
 
