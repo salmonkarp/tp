@@ -121,7 +121,8 @@ Expected output:
 * `New student added:...` with the details of the student added.
 
 **Warnings:**
-* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group)
+* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
+  e.g. `Invalid command format!...` and details of the error.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
 * If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
