@@ -10,7 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -189,9 +193,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the Tutorial Classes types popup or focuses on it if it's already opened.
+     * Opens the Assignment types popup or focuses on it if it's already opened.
      */
-
     private void showAssignmentPopup() {
         List<String> items = Arrays.stream(Assignments.values())
                 .map(a -> a.getDescription())
@@ -204,6 +207,9 @@ public class MainWindow extends UiPart<Stage> {
         assignmentPopup.show(source, x, y);
     }
 
+    /**
+     * Opens the Tutorial Classes types popup or focuses on it if it's already opened.
+     */
     private void showAttendancePopup() {
         List<String> items = Arrays.stream(TutorialClass.values())
                 .map(tc -> tc.getDescription())
@@ -216,6 +222,9 @@ public class MainWindow extends UiPart<Stage> {
         assignmentPopup.show(source, x, y);
     }
 
+    /**
+     * Opens the Assignment types popup or focuses on it if it's already opened.
+     */
     @FXML
     public void handleAssignmentLabelClick(MouseEvent event) {
         if (assignmentPopup != null && assignmentPopup.isShowing()) {
@@ -227,6 +236,7 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
+    // Handles F2 key press for Assignment popup
     private void handleAssignmentLabelPress() {
         if (assignmentPopup != null && assignmentPopup.isShowing()) {
             assignmentPopup.hide();
@@ -248,6 +258,7 @@ public class MainWindow extends UiPart<Stage> {
         showAttendancePopup();
     }
 
+    // Handles F3 key press for Tutorial Classes popup
     private void handleAttendanceLabelPress() {
         if (assignmentPopup != null && assignmentPopup.isShowing()) {
             assignmentPopup.hide();
