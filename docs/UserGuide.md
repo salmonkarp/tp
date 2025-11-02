@@ -296,8 +296,8 @@ Examples:
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
-* The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid.
-* If you enter an invalid field, the command will thrown an error. Only matching fields are accepted.
+* The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid and will return an error stating `Invalid Field name!`.
+* If you enter an invalid field, the command will throw an error. Only matching fields are accepted.
 
 ### Marking a student's tutorial class attendance: `attend`
 

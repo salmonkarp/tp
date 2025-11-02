@@ -123,6 +123,7 @@ public class Person {
         return otherPersonEmail.equalsIgnoreCase(thisPersonEmail);
     }
 
+    // Model methods used by UI
     public boolean hasAttendedTutorial(TutorialClass tutorialId) {
         return attendMap.isPresent(tutorialId);
     }
