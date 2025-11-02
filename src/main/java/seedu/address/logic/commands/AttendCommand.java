@@ -32,8 +32,8 @@ public class AttendCommand extends Command {
     public static final String FUZZY_COMMAND_WORD = "attendd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the given tutorial class of the person identified by "
-            + "the index number used in the displayed person list.\n"
+            + ": Marks the attendance of the given tutorial class of the student identified by "
+            + "the index number used in the displayed student list.\n"
             + "Parameters: INDEX [MORE_INDICES]... (must be a positive integer) "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS\n"
             + "The tutorial class must be one of the following: "
@@ -43,8 +43,8 @@ public class AttendCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS =
             "Attendance marked for Tutorial Class (%1$s) for: \n%2$s";
     public static final String MESSAGE_EDIT_PERSONS_SUCCESS =
-            "Attendance marked for Tutorial Class (%1$s) for people: \n%2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+            "Attendance marked for Tutorial Class (%1$s) for student: \n%2$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     private final List<Index> indices;
     private final TutorialClass tutClass;
