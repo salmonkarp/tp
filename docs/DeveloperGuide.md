@@ -562,68 +562,68 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a person
-1. Adding a person while all persons are being shown
+### Adding a student
+1. Adding a student while all students are being shown
     1. Prerequisites: NIL
         
     1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/tg1`
        Expected: John Doe is added to the bottom of the list. Details of the added contact shown in the status message. Command is reflected in the Command History.
 
-2. Adding a person but missing a compulsory field
+2. Adding a student but missing a compulsory field
    1. Prerequisites: NIL
    1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
    Expected: Error message explaining the missing field(s) and showing the proper command format.
 
-3. Adding a person who already exists (same email) in the AddressBook
+3. Adding a student who already exists (same email) in the AddressBook
     1. Prerequisites: NIL
    1. Test case (lowercase): `add n/David Li p/98765432 e/charlotte@example.com u/@dave tg/10`
-    Expected: Error message: "This person already exists in the address book."
+    Expected: Error message: "This student already exists in the address book."
 
    2. Test case (uppercase): `add n/David Li p/98765432 e/CHARLOTTE@EXAMPLE.COM u/@dave tg/10`
-      Expected: Error message: "This person already exists in the address book."
+      Expected: Error message: "This student already exists in the address book."
 
-4. Adding a person with an invalid field
+4. Adding a student with an invalid field
     1. Prerequisites: NIL
     1. Test case: `add n/John Doe p/872hvcfh e/john@example.com u/@john tg/tg01`
     Expected: Phone numbers should only contain numbers, and it should be at least 3 digits long
 
-5. Adding a person with a duplicate prefix
+5. Adding a student with a duplicate prefix
    1. Prerequisites: NIL
    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/tg1`
           Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: u/"
 
-### Editing a person
-1. Editing a person while all persons are being shown
-    1. Prerequisites: At least one person is being shown in the list
+### Editing a student
+1. Editing a student while all students are being shown
+    1. Prerequisites: At least one student is being shown in the list
     1. Test case: `edit 1 p/91234567`
-       Expected: The `Phone Number` of the first person is updated. A success message is displayed.
+       Expected: The `Phone Number` of the first student is updated. A success message is displayed.
     2. Test case: `edit 1 p/91234567 u/@rachel`
-       Expected: The `Phone Number` and `Telegram Handle` of the first person is updated. A success message is displayed.
+       Expected: The `Phone Number` and `Telegram Handle` of the first student is updated. A success message is displayed.
 
-2. Editing a person to create a duplicate (same email)
-    1. Prerequisites: Person who is being duplicated is in the list
+2. Editing a student to create a duplicate (same email)
+    1. Prerequisites: Student who is being duplicated is in the list
     1. Test case: `edit 3 e/charlotte@example.com`
-       Expected: Error message: "This person already exists in the address book."
+       Expected: Error message: "This student already exists in the address book."
 
-3. Editing a person with an invalid index
+3. Editing a student with an invalid index
     1. Prerequisites: NIL
     1. Test case: `edit 0 p/91234567`
-       Expected: Error message: "This person already exists in the address book."
+       Expected: Error message: "This student already exists in the address book."
 
-4. Editing a person with an invalid field value
-    1. Prerequisites: Person being edited exists in the list
+4. Editing a student with an invalid field value
+    1. Prerequisites: Student being edited exists in the list
     1. Test case: `edit 1 u/InvalidHandle`
        Expected: Error message explaining the field constraint violation.
 
-5. Editing a person with a duplicate prefix
-    1. Prerequisites: Person being edited exists in the list
+5. Editing a student with a duplicate prefix
+    1. Prerequisites: Student being edited exists in the list
     1. Test case: `edit 1 p/91234567 p/98765432`
        Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: p/"
 
 ### Finding students
 1. Finding students by name while all students are being shown
 
-    1. Prerequisites: Have at least 2 students in the list. Finding only 1 person is not meaningful.
+    1. Prerequisites: Have at least 2 students in the list. Finding only 1 student is not meaningful.
 
     1. Test case: `find n/Alice`<br>
        Expected: Only students with names containing "Alice" (case-insensitive) are shown in the filtered list.
@@ -640,7 +640,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Finding with multiple fields while all students are being shown
 
-    1. Prerequisites: Have at least 2 students in the list. Finding only 1 person is not meaningful.
+    1. Prerequisites: Have at least 2 students in the list. Finding only 1 student is not meaningful.
 
     1. Test case: `find n/Alice e/gmail.com`<br>
        Expected: Only students with names containing "Alice" or emails containing "gmail.com" (case-insensitive) are shown in the filtered list.
@@ -648,7 +648,7 @@ testers are expected to do more *exploratory* testing.
 ### Sorting students
 1. Sorting students while all students are being shown
 
-    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 student is not meaningful.
 
     1. Test case: `sort name`<br>
        Expected: Students are sorted in alphabetical order by name. 
@@ -680,21 +680,21 @@ testers are expected to do more *exploratory* testing.
 
 3. Sorting students with invalid field
 
-    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 student is not meaningful.
 
     1. Test case: `sort invalidField`<br>
        Expected: No students are sorted. Error details shown in the status message.
    
 4. Sorting students with invalid order parameter
 
-    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 person is not meaningful.
+    1. Prerequisites: Have at least 2 students in the list. Sorting only 1 student is not meaningful.
 
     1. Test case: `sort name descending`<br>
        Expected: No students are sorted. Error details shown in the status message.
 
 
 ### Grading a student
-1. Grading a student while all persons are being shown
+1. Grading a student while all students are being shown
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
@@ -805,17 +805,17 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `unattend 1 c/t3`<br>
        Expected: No student's attendance is unmarked. Error details shown in the status message.
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
