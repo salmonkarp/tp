@@ -289,13 +289,14 @@ The student list will be reordered according to your chosen field.
 
 Examples:
 * `sort name` sorts the student list in alphabetical order of names.
-* `sort grade` sorts the student list in descending order of average grades.
-* `sort attendance` sorts the student list in descending order of attendance percentage.
+* `sort grade` sorts the student list in ascending order of average grades.
+* `sort attendance` sorts the student list in ascending order of attendance percentage.
 * `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
 * `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows more detailed information of the students.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
+* The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid.
 * If you enter an invalid field, the command will thrown an error. Only matching fields are accepted.
 
 ### Marking a student's tutorial class attendance: `attend`
