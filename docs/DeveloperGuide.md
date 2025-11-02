@@ -701,7 +701,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `grade 1 a/Q1 g/100`<br>
        Expected: First student's Q1 grade is set to 100. Details of the graded contact shown in the status message.
 
-    1. Test case: `grade [LAST_STUDENT_INDEX] a/fInAls g/0.0000`<br>
+    1. Test case: `grade [LAST_STUDENT_INDEX] a/finals g/0.0000`<br>
        Expected: Last student's Finals grade is set to 0. Details of the graded contact shown in the status message.
 
     1. Test case: `grade 3 a/InvalidGrade g/85.5`<br>
@@ -715,10 +715,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Find a subset of students using the `find` command. Multiple students in the filtered list.
 
     1. Test case: `grade 1 a/Q2 g/100`<br>
-       Expected: First student's Q2 grade in the filtered list is set to 75. Details of the graded contact shown in the status message.
+       Expected: First student's Q2 grade in the filtered list is set to 100. Details of the graded contact shown in the status message.
 
-    1. Test case: `grade [LAST_FILTERED_STUDENT_INDEX] a/fInAlS g/0.0000`<br>
-       Expected: Last student's Finals grade in the filtered list is set to 88. Details of the graded contact shown in the status message.
+    1. Test case: `grade [LAST_FILTERED_STUDENT_INDEX] a/finals g/0.0000`<br>
+       Expected: Last student's Finals grade in the filtered list is set to 0. Details of the graded contact shown in the status message.
 
     1. Test case: `grade 2 a/InvalidAssignment g/60`<br>
        Expected: No student is graded. Error details shown in the status message.
