@@ -48,6 +48,14 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## CalcConnect Key Bindings
+The following key bindings are available in CalcConnect to enhance user experience and accessibility:
+
+Key Combination | Action
+----------------|----------------------
+`F1`| Open the Help Window
+`F2`| Opens a Popup for the list of Assignments
+`F3`| Opens a Popup for the list of Tutorial Classes
 
 ## Features
 
@@ -248,6 +256,9 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 * Assignment name must be in enum list.
 * Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
 
+Tips: 
+* You can press `F2` to view the list of assignments.
+
 Examples:
 * `grade 3 a/Q1 g/97`
 * `grade 5 a/Finals g/80`
@@ -315,6 +326,7 @@ Examples:
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
 Tips:
+* You can press `F3` to view the list of tutorial classes.
 * Use `find` command to **filter** the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
@@ -341,6 +353,7 @@ Examples:
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
 Tips:
+* You can press `F3` to view the list of tutorial classes.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
