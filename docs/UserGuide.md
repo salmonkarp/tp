@@ -120,6 +120,8 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
+<img src="images/addBetsyCrowe.png" alt="Example add Betsy" width="10%" height="10%">
+
 **Warnings:**
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
@@ -257,6 +259,9 @@ Expected output: <br>
 The specified student's grade will be updated with the given value.
 This value will be automatically converted to 2 decimal places.
 
+`grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
+<img src="images/gradeCharlotte.png" alt="Example add Betsy" width="25%" height="25%">
+
 ### Sorting the student list: `sort`
 
 Sorts the student list currently displayed in the address book based on given sort instructions.
@@ -320,7 +325,10 @@ Tips:
 * Use `find` command to **filter** the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
-* `Attendance: x/11`, x increases by 1 after each successful attendance marking
+* `Attendance: x/11`, x increases by 1 after each successful attendance marking, until it reaches 11.
+* `attend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
+
+<img src="images/attendMultiple.png" alt="Example add Betsy" width="25%" height="25%">
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
@@ -346,7 +354,8 @@ Tips:
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
-* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
+* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking, until it reaches 0.
+* `unattend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
