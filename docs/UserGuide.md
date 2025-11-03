@@ -107,7 +107,7 @@ Adds a student to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​`
 * `NAME` should only contain **alphanumeric characters and spaces**. It should **NOT** be blank.
-* `PHONE_NUMBER` should **ONLY** contain **numeric characters**. It should **NOT** be blank.
+* `PHONE_NUMBER` should **ONLY** contain **numeric characters**. Spacings and dashes are allowed. It should **NOT** be blank.
 * `EMAIL` should be in the format `local-part@domain` and should **NOT** be blank.
 * `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should **NOT** be blank.
 * `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`. It should **NOT** be blank.
