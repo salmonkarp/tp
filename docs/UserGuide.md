@@ -53,10 +53,13 @@ The following key bindings are available in CalcConnect to enhance user experien
 
 Key Combination | Action
 ----------------|----------------------
-`F1`| Open the Help Window
-`F2`| Opens a Popup for the list of Assignments
-`F3`| Opens a Popup for the list of Tutorial Classes
+`F1` or `fn + F1`| Open the Help Window
+`F2` or `fn + F2`| Opens a Popup for the list of Assignments
+`F3` or `fn + F3`| Opens a Popup for the list of Tutorial Classes
 
+`fn` key is needed for Mac(default) users, or laptop users whose function keys are set to perform special features by default.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -70,7 +73,7 @@ Key Combination | Action
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Good Student` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Good Student`, `t/Good Student t/Smart` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. blank), `t/Good Student`, `t/Good Student t/Smart` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -108,6 +111,9 @@ Shows a **popup** with a **help guide** of the commands available to users.
 
 Format: `help`
 
+Tips:
+* You can use `alt + tab` (Windows) / `Command + ~` (Mac) / `Ctrl + tab` (Linux) to switch between the main window and the help window.
+* You can exit without using the mouse by pressing or `Alt + F4` (Windows)
 
 ### Adding a student: `add`
 
