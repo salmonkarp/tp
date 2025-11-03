@@ -349,10 +349,18 @@ For all use cases below, the System is **CalcConnect** and the Actor is **MA1521
 
 **MSS:**
 1.  TA requests to clear all students in the address book.
-2.  CalcConnect clears all students in the address book.
-3.  CalcConnect displays the updated address book.
+2.  CalcConnect asks for confirmation from TA.
+3.  TA confirms the action.
+4.  CalcConnect clears all students in the address book.
+5.  CalcConnect displays the empty address book.
 
     Use case ends.
+
+**Extensions:**
+* 3a. TA cancels the action.
+    * 3a1. CalcConnect does not clear and returns to the previous state.
+
+      Use case ends.
 
 ---
 
