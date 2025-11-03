@@ -42,7 +42,7 @@ public class UnattendCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS =
             "Attendance unmarked for Tutorial Class (%1$s) for: \n%2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     private final Index index;
     private final TutorialClass tutClass;
