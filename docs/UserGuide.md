@@ -122,7 +122,7 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
-<img src="images/addBetsyCrowe.png" alt="Example add Betsy" width="10%" height="10%">
+![addBetsyCrowe.png](images/addBetsyCrowe.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
 
@@ -278,7 +278,7 @@ Expected output: <br>
 * Entering an invalid GRADE will result in an error message specifying what is a valid grade.
 
 `grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
-<img src="images/gradeCharlotte.png" alt="Example add Betsy" width="25%" height="25%">
+![gradeCharlotte.png](images/gradeCharlotte.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
 
@@ -350,7 +350,7 @@ Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking, until it reaches 11.
 * `attend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
-<img src="images/attendMultiple.png" alt="Example add Betsy" width="25%" height="25%">
+![attendMultiple.png](images/attendMultiple.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
 
