@@ -39,7 +39,7 @@ public class SampleDataUtil {
                 new TutorialGroup("TG03"),
                 new GradeMap(),
                 new AttendMap(),
-                getTagSet("Tutorial3")),
+                getTagSet("Hardworking Student")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new TeleHandle("@david"),
                 new TutorialGroup("TG01"),
