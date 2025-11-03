@@ -233,10 +233,10 @@ Format: `clear`
 * The command will **proceed** if you choose `OK` in the confirmation alert.
 
 Expected output (**successful clear**):<br>
-`Address book has been cleared!`
+* `Address book has been cleared!`
 
 Expected output (**aborted clear**):<br>
-`Clear command cancelled.`
+* `Clear command cancelled.`
 
 **Warnings**:
 * Please be cautious when using this command as it will permanently delete all entries in the address book.
@@ -261,8 +261,14 @@ Examples:
 * `grade 5 a/finals g/` removes the grade for finals of the 5th student in the address book.
 
 Expected output: <br>
-The specified student's grade will be updated with the given value.
-This value will be automatically converted to 2 decimal places.
+* The specified student's grade will be updated with the given value.
+* This value will be automatically converted to 2 decimal places.
+
+**Warnings:**
+* Entering the wrong format for the command (e.g. missing Index or prefix a/ or g/) will result in an error message specifying
+  the error followed by `Invalid command format!... ` with more details of the command.
+* Entering an invalid ASSIGNMENT_NAME will result in an error message specifying the different assignment names.
+* Entering an invalid GRADE will result in an error message specifying what is a valid grade.
 
 `grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
 <img src="images/gradeCharlotte.png" alt="Example add Betsy" width="25%" height="25%">
@@ -329,7 +335,7 @@ Examples:
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
 Tips:
-* Use `find` command to **filter** the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
+* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking, until it reaches 11.
@@ -339,7 +345,7 @@ Expected output:
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
-    the error followed by `Invalid command format!... ` and details of the error.
+    the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
 
 ### Unmarking a student's tutorial class attendance: `unattend`
@@ -349,15 +355,16 @@ Unmarks a student as attended for a specific tutorial class.
 Format: `unattend INDEX c/TUTORIAL_CLASS`
 
 * Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
-* The index refers to the index number shown in the **displayed student list**.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**, case-insensitive.
 
 Examples:
-* `unattend 2 c/t5`, `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
+* `unattend 2 c/t5` or `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
 Tips:
+* Running `attend 1 c/t5` followed by `unattend 1 c/t5` will undo the first command.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
@@ -366,7 +373,7 @@ Expected output:
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
-  the error followed by `Invalid command format!... ` and details of the error.
+  the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
 
 ### Exiting the program : `exit`
