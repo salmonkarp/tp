@@ -551,9 +551,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
+    Prerequisites: Java 17 or above installed on the system. Can be checked by running the command `java -version`.
+
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Launch the terminal from that folder
+   
+   1. Enter the command `java -jar CalcConnect.jar`
+       Expected: Application launches with appropriate default size.
 
 1. Saving window preferences
 
@@ -566,30 +571,30 @@ testers are expected to do more *exploratory* testing.
 1. Adding a person while all persons are being shown
     1. Prerequisites: NIL
         
-    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/tg1`
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john tg/TG01`
        Expected: John Doe is added to the bottom of the list. Details of the added contact shown in the status message. Command is reflected in the Command History.
 
 2. Adding a person but missing a compulsory field
    1. Prerequisites: NIL
-   1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/tg1`
+   1. Test case: `add n/John Doe p/98765432 e/john@example.com tg/TG01`
    Expected: Error message explaining the missing field(s) and showing the proper command format.
 
-3. Adding a person who already exists (same email) in the AddressBook
-    1. Prerequisites: NIL
-   1. Test case (lowercase): `add n/David Li p/98765432 e/charlotte@example.com u/@dave tg/10`
+3. Adding a person who already exists (same email) in the list of students
+    1. Prerequisites: Another person with the same email already in the list of students.
+   1. Test case (lowercase): `add n/David Li p/98765432 e/charlotte@example.com u/@dave tg/TG10`
     Expected: Error message: "This person already exists in the address book."
 
-   2. Test case (uppercase): `add n/David Li p/98765432 e/CHARLOTTE@EXAMPLE.COM u/@dave tg/10`
+   2. Test case (uppercase): `add n/David Li p/98765432 e/CHARLOTTE@EXAMPLE.COM u/@dave tg/TG10`
       Expected: Error message: "This person already exists in the address book."
 
 4. Adding a person with an invalid field
     1. Prerequisites: NIL
-    1. Test case: `add n/John Doe p/872hvcfh e/john@example.com u/@john tg/tg01`
+    1. Test case: `add n/John Doe p/872hvcfh e/john@example.com u/@john tg/TG01`
     Expected: Phone numbers should only contain numbers, and it should be at least 3 digits long
 
 5. Adding a person with a duplicate prefix
    1. Prerequisites: NIL
-   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/tg1`
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com u/@john u/@johnny tg/TG01`
           Expected: The prefixes which are duplicated will be shown. "The following prefix(es) can only be used once: u/"
 
 ### Editing a person
@@ -730,7 +735,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Delete all students using the `clear` command.
 
-    1. Test case: `grade 1 n/Q1 g/100`<br>
+    1. Test case: `grade 1 a/Q1 g/100`<br>
        Expected: No student is graded. Error details shown in the status message.
 
 ### Marking a student's tutorial class attendance
@@ -812,10 +817,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
