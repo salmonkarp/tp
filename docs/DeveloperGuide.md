@@ -20,6 +20,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -195,6 +197,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
