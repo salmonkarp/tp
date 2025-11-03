@@ -24,7 +24,7 @@ import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Unmark attendance for an existing person in the address book.
+ * Unmark attendance for an existing student in the address book.
  */
 public class UnattendCommand extends Command {
 
@@ -48,7 +48,7 @@ public class UnattendCommand extends Command {
     private final TutorialClass tutClass;
 
     /**
-     * @param index of the person in the filtered person list
+     * @param index of the student in the filtered student list
      * @param tutClass the tutorial class to be marked as absent
      */
     public UnattendCommand(Index index, TutorialClass tutClass) {

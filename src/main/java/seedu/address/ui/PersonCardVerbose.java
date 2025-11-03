@@ -68,12 +68,11 @@ public class PersonCardVerbose extends PersonCard {
      */
     private Optional<Float> getAssignmentScoreSafe(Assignments a) {
         try {
-            Optional<Float> scoreOpt = Optional.of(person.getAssignmentScore(a));
-            Grade emptyGrade = new Grade(" ");
-            if (scoreOpt.get() == emptyGrade.valueFloat) {
+            Grade grade = person.getGradeMap().get(a);
+            if (grade == null || " ".equals(grade.toString())) {
                 return Optional.empty();
             }
-            return scoreOpt;
+            return Optional.of(grade.valueFloat);
         } catch (Exception e) {
             return Optional.empty();
         }

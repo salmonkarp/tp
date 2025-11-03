@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_ENTERED_MULTIPLE_INDEXES;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
 
@@ -28,8 +30,6 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero positive integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -38,12 +38,19 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        String[] parts = trimmedIndex.split("\\s+");
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            // if there is one an only one digit in the string
-            if (trimmedIndex.matches("^\\D*\\d\\D*$")) {
-                throw new ParseException(MESSAGE_MISSING_FIELDS);
-            } else {
+            if (trimmedIndex.isEmpty()) {
                 throw new ParseException(MESSAGE_MISSING_INDEX);
+            } else {
+                if (parts.length > 1) {
+                    // if there is one an only one digit in the string
+                    if (trimmedIndex.matches("^\\D*\\d\\D*$")) {
+                        throw new ParseException(MESSAGE_MISSING_FIELDS);
+                    }
+                    throw new ParseException(MESSAGE_ENTERED_MULTIPLE_INDEXES);
+                }
+                throw new ParseException(MESSAGE_INVALID_INDEX);
             }
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));

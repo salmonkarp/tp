@@ -24,7 +24,7 @@ import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Marks attendance for an existing person in the address book.
+ * Marks attendance for an existing student in the address book.
  */
 public class AttendCommand extends Command {
 
@@ -43,14 +43,14 @@ public class AttendCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS =
             "Attendance marked for Tutorial Class (%1$s) for: \n%2$s";
     public static final String MESSAGE_EDIT_PERSONS_SUCCESS =
-            "Attendance marked for Tutorial Class (%1$s) for student: \n%2$s";
+            "Attendance marked for Tutorial Class (%1$s) for students: \n%2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     private final List<Index> indices;
     private final TutorialClass tutClass;
 
     /**
-     * @param indices of the person in the filtered person list
+     * @param indices of the student in the student list
      * @param tutClass the tutorial class to be marked as present
      */
     public AttendCommand(List<Index> indices, TutorialClass tutClass) {
@@ -61,7 +61,7 @@ public class AttendCommand extends Command {
     }
 
     /**
-     * @param index of the person in the filtered person list
+     * @param index of the student in the filtered student list
      * @param tutClass the tutorial class to be marked as present
      */
     public AttendCommand(Index index, TutorialClass tutClass) {
