@@ -245,12 +245,12 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 * Grades the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Assignment name must be in enum list.
+* Assignment name must be one of [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Finals], case-insensitive.
 * Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
 
 Examples:
 * `grade 3 a/Q1 g/97`
-* `grade 5 a/Finals g/80`
+* `grade 5 a/finals g/80`
 
 Expected output: <br>
 The specified student's grade will be updated with the given value.
