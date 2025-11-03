@@ -217,7 +217,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
@@ -343,7 +343,7 @@ Examples:
 * `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
@@ -373,7 +373,7 @@ Examples:
 * `unattend 2 c/t5` or `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * Running `attend 1 c/t5` followed by `unattend 1 c/t5` will undo the first command.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
