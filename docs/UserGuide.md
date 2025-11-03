@@ -144,7 +144,6 @@ Expected output:
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
-* If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
 * If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or Telegram Handle not starting with `@`), an **error message** will be displayed and the student will not be added.
 
 ### Listing all students : `list`
@@ -291,19 +290,15 @@ Expected output: <br>
 * The specified student's grade will be updated with the given value.
 * This value will be automatically converted to 2 decimal places.
 
+`grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
+![gradeCharlotte.png](images/gradeCharlotte.png)
+
 :exclamation: **Warnings:**
 
 * Entering the wrong format for the command (e.g. missing Index or prefix a/ or g/) will result in an error message specifying
   the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid ASSIGNMENT_NAME will result in an error message specifying the different assignment names.
 * Entering an invalid GRADE will result in an error message specifying what is a valid grade.
-
-`grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
-![gradeCharlotte.png](images/gradeCharlotte.png)
-
-:exclamation: **Warnings:**
-
-* Entering an invalid or missing index, assignment name or grade will result in a specific error message.
 
 ### Sorting the student list: `sort`
 
