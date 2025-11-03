@@ -19,20 +19,20 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 1. **Windows** and **Linux** users: Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08B-4/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08B-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the **home folder** for your address book.
+3. Copy the file to the folder you want to use as the **home folder** for your address book.
 
-1. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
+4. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
    ![OpenInTerminalWindows](images/OpenCMD.png)
 
-2. For Mac and Linux users, open the Terminal app and use the `cd` command to change the current directory to the folder you put the jar file in.
+5. For Mac and Linux users, open the Terminal app and use the `cd` command to change the current directory to the folder you put the jar file in.
 
-2. Use the `java -jar CalcConnect.jar` command to run the application.<br>
+6. Use the `java -jar CalcConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+7. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -45,7 +45,7 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## CalcConnect Key Bindings
@@ -99,7 +99,8 @@ Examples:
 However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
 For instance, `listee` will not be interpreted as `list`.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * If command typo is too different
 - Output: `Unknown Command`
 
@@ -135,9 +136,10 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
-<img src="images/addBetsyCrowe.png" alt="Example add Betsy" width="10%" height="10%">
+![addBetsyCrowe.png](images/addBetsyCrowe.png)
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
@@ -174,7 +176,8 @@ Edits the name of the 2nd student to be `Betsy Crower` and clears all existing t
 Expected output:
 * `Edited Student:...` with the details of the student edited.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
   e.g. `This student already exists in the address book`
 * If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or Telegram Handle not starting with `@`), an **error message** will be displayed and the student will not be edited.
@@ -209,7 +212,8 @@ Examples:
 Expected Output:<br>
 * A list of students matching your search criteria will be displayed in the main window.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * If no matches are found, the list will be empty.
 * If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is invalid/missing).
 
@@ -227,13 +231,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
 * Student is **deleted** from the address book.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
 * Please be careful when using this command as the deletion is **PERMANENT** and there is no **undo**.
 * Entering the wrong format or an invalid index for the command will result in a specific warning.
 
@@ -253,7 +257,8 @@ Expected output (**successful clear**):<br>
 Expected output (**aborted clear**):<br>
 * `Clear command cancelled.`
 
-**Warnings**:
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Please be cautious when using this command as it will permanently delete all entries in the address book.
 * There is **NO** undo for this command. Use with care!
 
@@ -282,16 +287,18 @@ Expected output: <br>
 * The specified student's grade will be updated with the given value.
 * This value will be automatically converted to 2 decimal places.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Entering the wrong format for the command (e.g. missing Index or prefix a/ or g/) will result in an error message specifying
   the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid ASSIGNMENT_NAME will result in an error message specifying the different assignment names.
 * Entering an invalid GRADE will result in an error message specifying what is a valid grade.
 
 `grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
-<img src="images/gradeCharlotte.png" alt="Example add Betsy" width="25%" height="25%">
+![gradeCharlotte.png](images/gradeCharlotte.png)
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Entering an invalid or missing index, assignment name or grade will result in a specific error message.
 
 ### Sorting the student list: `sort`
@@ -330,7 +337,8 @@ Examples:
 Expected Output:<br>
 The student list will be reordered according to your chosen field.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Sorting only affects the current displayed list, not the underlying data.
 * The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid and will return an error stating `Invalid Field name!`.
 * If you enter an invalid field, the command will throw an error. Only matching fields are accepted.
@@ -352,17 +360,18 @@ Examples:
 * `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * You can press `F3` to view the list of tutorial classes.
-* Use `find` command to **filter** the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
+* Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
 * `Attendance: x/11`, x increases by 1 after each successful attendance marking, until it reaches 11.
 * `attend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
-<img src="images/attendMultiple.png" alt="Example add Betsy" width="25%" height="25%">
+![attendMultiple.png](images/attendMultiple.png)
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
     the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
@@ -382,7 +391,7 @@ Examples:
 * `unattend 2 c/t5` or `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
-Tips:
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
 * You can press `F3` to view the list of tutorial classes.
 * Running `attend 1 c/t5` followed by `unattend 1 c/t5` will undo the first command.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
@@ -391,7 +400,8 @@ Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking, until it reaches 0.
 * `unattend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
-**Warnings:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
   the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid TUTORIAL_CLASS will result in an error message specifying the different tutorial class.
@@ -408,7 +418,7 @@ CalcConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CalcConnect data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
+CalcConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
 **WARNING**: Most users are advised against doing so, as it is easy to corrupt the data file if you are not careful.
