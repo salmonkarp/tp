@@ -43,7 +43,7 @@ public class AttendCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS =
             "Attendance marked for Tutorial Class (%1$s) for: \n%2$s";
     public static final String MESSAGE_EDIT_PERSONS_SUCCESS =
-            "Attendance marked for Tutorial Class (%1$s) for student: \n%2$s";
+            "Attendance marked for Tutorial Class (%1$s) for students: \n%2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     private final List<Index> indices;
