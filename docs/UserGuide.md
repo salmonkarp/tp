@@ -88,7 +88,7 @@ Examples:
 However, if the typo is too different from any valid command (a Levenshtein distance greater than 1), you will receive an "unknown command" error.
 For instance, `listee` will not be interpreted as `list`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * If command typo is too different
 - Output: `Unknown Command`
@@ -124,7 +124,7 @@ Expected output:
 
 ![addBetsyCrowe.png](images/addBetsyCrowe.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
@@ -162,7 +162,7 @@ Edits the name of the 2nd student to be `Betsy Crower` and clears all existing t
 Expected output:
 * `Edited Student:...` with the details of the student edited.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
   e.g. `This student already exists in the address book`
@@ -198,7 +198,7 @@ Examples:
 Expected Output:<br>
 * A list of students matching your search criteria will be displayed in the main window.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * If no matches are found, the list will be empty.
 * If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is invalid/missing).
@@ -217,13 +217,14 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
+:bulb: **Tips:**
+
 * Use `find` command to locate the student to delete then use the `delete` command to delete the relevant student.
 
 Expected output:
 * Student is **deleted** from the address book.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Entering the wrong format or an invalid index for the command will result in a specific warning.
 
@@ -243,7 +244,7 @@ Expected output (**successful clear**):<br>
 Expected output (**aborted clear**):<br>
 * `Clear command cancelled.`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Please be cautious when using this command as it will permanently delete all entries in the address book.
 * There is **NO** undo for this command. Use with care!
@@ -270,7 +271,7 @@ Expected output: <br>
 * The specified student's grade will be updated with the given value.
 * This value will be automatically converted to 2 decimal places.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Entering the wrong format for the command (e.g. missing Index or prefix a/ or g/) will result in an error message specifying
   the error followed by `Invalid command format!... ` with more details of the command.
@@ -280,7 +281,7 @@ Expected output: <br>
 `grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
 ![gradeCharlotte.png](images/gradeCharlotte.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Entering an invalid or missing index, assignment name or grade will result in a specific error message.
 
@@ -320,7 +321,7 @@ Examples:
 Expected Output:<br>
 The student list will be reordered according to your chosen field.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Sorting only affects the current displayed list, not the underlying data.
 * The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid and will return an error stating `Invalid Field name!`.
@@ -343,7 +344,8 @@ Examples:
 * `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
+:bulb: **Tips:**
+
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
@@ -352,7 +354,7 @@ Expected output:
 
 ![attendMultiple.png](images/attendMultiple.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
     the error followed by `Invalid command format!... ` with more details of the command.
@@ -373,7 +375,8 @@ Examples:
 * `unattend 2 c/t5` or `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**<br>
+:bulb: **Tips:**
+
 * Running `attend 1 c/t5` followed by `unattend 1 c/t5` will undo the first command.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
@@ -381,7 +384,7 @@ Expected output:
 * `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking, until it reaches 0.
 * `unattend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warnings:**<br>
+:exclamation: **Warnings:**
 
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
   the error followed by `Invalid command format!... ` with more details of the command.
