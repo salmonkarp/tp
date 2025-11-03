@@ -80,7 +80,7 @@
             </TextFlow>
             <TextFlow>
                 <Label text="/v" id="sampleCommandLabel"/>
-                <Text text=" - verbose flag to display more detailed student information (all grades and attendance)" id="textContent"/>
+                <Text text=" - verbose flag to display all assignment grades and tutorial attendances" id="textContent"/>
             </TextFlow>
 
             <TextFlow>
