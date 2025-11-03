@@ -231,6 +231,8 @@ Expected output:
 
 **Warnings:**
 * Entering the wrong format for the command will result in a **warning**: `Invalid command format!`
+* Please be careful when using this command as the deletion is **PERMANENT** and there is no **undo**.
+
 
 ### Clearing all entries : `clear`
 
