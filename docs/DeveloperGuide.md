@@ -659,8 +659,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sort attendance`<br>
        Expected: Students are sorted in ascending order by attendance. 
 
-       1. Test case: `sort tutorial`<br>
-          Expected: Students are sorted in numerical ascending order by tutorial group.
+    1. Test case: `sort tutorial`<br>
+       Expected: Students are sorted in numerical ascending order by tutorial group.
     
 2. Sorting students after a find command
 

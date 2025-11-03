@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsKeywords;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all stuentss in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -39,7 +39,7 @@ public class FindCommand extends Command {
     private final boolean isVerbose;
 
     /**
-     * Creates a FindCommand to find persons matching the given predicate.
+     * Creates a FindCommand to find students matching the given predicate.
      */
     public FindCommand(PersonContainsKeywords predicate, boolean isVerbose) {
         this.predicate = predicate;

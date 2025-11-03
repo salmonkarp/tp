@@ -24,7 +24,7 @@ import seedu.address.model.person.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
- * Marks attendance for an existing person in the address book.
+ * Marks attendance for an existing student in the address book.
  */
 public class AttendCommand extends Command {
 
@@ -32,8 +32,8 @@ public class AttendCommand extends Command {
     public static final String FUZZY_COMMAND_WORD = "attendd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the given tutorial class of the person identified by "
-            + "the index number used in the displayed person list.\n"
+            + ": Marks the attendance of the given tutorial class of the student identified by "
+            + "the index number used in the displayed student list.\n"
             + "Parameters: INDEX [MORE_INDICES]... (must be a positive integer) "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS\n"
             + "The tutorial class must be one of the following: "
@@ -50,7 +50,7 @@ public class AttendCommand extends Command {
     private final TutorialClass tutClass;
 
     /**
-     * @param indices of the person in the filtered person list
+     * @param indices of the student in the student list
      * @param tutClass the tutorial class to be marked as present
      */
     public AttendCommand(List<Index> indices, TutorialClass tutClass) {
@@ -61,7 +61,7 @@ public class AttendCommand extends Command {
     }
 
     /**
-     * @param index of the person in the filtered person list
+     * @param index of the student in the filtered student list
      * @param tutClass the tutorial class to be marked as present
      */
     public AttendCommand(Index index, TutorialClass tutClass) {

@@ -121,38 +121,39 @@ Expected output:
 * `New student added:...` with the details of the student added.
 
 **Warnings:**
-* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group)
+* If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
+  e.g. `Invalid command format!...` and details of the error.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
 * If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
   e.g. `Invalid command format!...` and details of the error.
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all students in the address book.
 
 Format: `list [/v]`
 
 * If the optional verbose flag `/v` is written at the end, more **detailed information** (all grades and attendance) of the students will be shown instead of a summary.
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least **ONE** of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be **removed** i.e adding of tags is not cumulative.
-* You can remove all the person’s  tags by typing `t/` without
+* When editing tags, the existing tags of the student will be **removed** i.e adding of tags is not cumulative.
+* You can remove all the student’s  tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 u/@john`<br>
-Edits the phone number and Telegram Handle of the 1st person to be `91234567` and `@john` respectively.
+Edits the phone number and Telegram Handle of the 1st student to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/`<br> 
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 **Warnings:**
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
@@ -236,14 +237,14 @@ Expected output (**aborted clear**):<br>
 * Please be cautious when using this command as it will permanently delete all entries in the address book.
 * There is **NO** undo for this command. Use with care!
 
-### Grading a person: `grade`
+### Grading a student: `grade`
 
-Assigns a **grade** to a person in the address book.
+Assigns a **grade** to a student in the address book.
 
 Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 
-* Grades the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Grades the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Assignment name must be in enum list.
 * Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
@@ -288,14 +289,15 @@ The student list will be reordered according to your chosen field.
 
 Examples:
 * `sort name` sorts the student list in alphabetical order of names.
-* `sort grade` sorts the student list in descending order of average grades.
-* `sort attendance` sorts the student list in descending order of attendance percentage.
+* `sort grade` sorts the student list in ascending order of average grades.
+* `sort attendance` sorts the student list in ascending order of attendance percentage.
 * `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
 * `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows more detailed information of the students.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
-* If you enter an invalid field, the command will thrown an error. Only matching fields are accepted.
+* The parameters FIELD and ORDER **cannot** be swapped, i.e. `sort desc name` is invalid and will return an error stating `Invalid Field name!`.
+* If you enter an invalid field, the command will throw an error. Only matching fields are accepted.
 
 ### Marking a student's tutorial class attendance: `attend`
 
