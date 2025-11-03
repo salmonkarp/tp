@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_ENTERED_MULTIPLE_TUTORIAL_CLASS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_MISSING_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -57,7 +57,7 @@ public class AttendCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         String userInput = "a " + PREFIX_TUTORIALCLASS + "t1";
-        String expectedMessage = MESSAGE_MISSING_INDEX;
+        String expectedMessage = MESSAGE_INVALID_INDEX;
         assertParseFailure(parser, userInput, expectedMessage);
     }
 
