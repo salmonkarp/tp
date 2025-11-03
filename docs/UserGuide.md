@@ -21,7 +21,7 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08B-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the **home folder** for your AddressBook.
+1. Copy the file to the folder you want to use as the **home folder** for your address book.
 
 1. Go into the folder you put the jar file in, right-click anywhere in the folder space and select **Open in Terminal** (Windows).
    ![OpenInTerminalWindows](images/OpenCMD.png)
@@ -121,13 +121,14 @@ Examples:
 Expected output:
 * `New student added:...` with the details of the student added.
 
+<img src="images/addBetsyCrowe.png" alt="Example add Betsy" width="10%" height="10%">
+
 **Warnings:**
 * If any of the compulsory fields (Name, Phone Number, Email, Telegram Handle, Tutorial Group) are missing, an **error message** will be displayed and the student will not be added.
-  e.g. `Invalid command format!...` and details of the error.
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
+* If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
 * If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or Telegram Handle not starting with `@`), an **error message** will be displayed and the student will not be added.
-  e.g. `Invalid command format!...` and details of the error.
 
 ### Listing all students : `list`
 
@@ -135,7 +136,7 @@ Shows a list of all students in the address book.
 
 Format: `list [/v]`
 
-* If the optional verbose flag `/v` is written at the end, more **detailed information** (all grades and attendance) of the students will be shown instead of a summary.
+* If the optional verbose flag `/v` is written at the end, all assignment grades and tutorial attendances will be displayed.
 
 ### Editing a student : `edit`
 
@@ -155,6 +156,9 @@ Examples:
 Edits the phone number and Telegram Handle of the 1st student to be `91234567` and `@john` respectively.
 *  `edit 2 n/Betsy Crower t/`<br> 
 Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
+Expected output:
+* `Edited Student:...` with the details of the student edited.
 
 **Warnings:**
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
@@ -176,10 +180,7 @@ Searches by specific fields. You can combine multiple fields. At least 1 field i
 * The **order** of the keywords **does not matter**. e.g. `Hans Bo` will match `Bo Hans`
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the optional verbose flag `/v` is written at the end, more detailed information (shows all grades and attendance) of the found students will be shown instead of a summary.
-
-Expected output:<br>
-* A list of students matching your search criteria will be displayed in the main window.
+* If the optional verbose flag `/v` is written at the end, all assignment grades and tutorial attendances will be displayed.
 
 Examples:
 * `find n/John` 
@@ -189,11 +190,14 @@ Examples:
 * `find n/Alex e/example.com` 
 <br>returns students whose names contain `Alex` or whose email addresses contain `example.com`
 * `find u/@jake tg/TG02` 
-<br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial2`
+<br>returns students whose `Telegram handle` contains `@jake` or who are in `Tutorial 2`
+
+Expected Output:<br>
+* A list of students matching your search criteria will be displayed in the main window.
 
 **Warnings:**
 * If no matches are found, the list will be empty.
-* If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is missing).
+* If wrong format is used (e.g. `find`, `find John`, `find n/`), a specific error message will be displayed (specifies if it is the input, keyword or prefix that is invalid/missing).
 
 ### Deleting a student : `delete`
 
@@ -216,7 +220,7 @@ Expected output:
 * Student is **deleted** from the address book.
 
 **Warnings:**
-* Entering the wrong format for the command will result in a **warning**: `Invalid command format!`
+* Entering the wrong format or an invalid index for the command will result in a specific warning.
 
 ### Clearing all entries : `clear`
 
@@ -249,10 +253,12 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * Assignment name must be one of [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Finals], case-insensitive.
 * Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
+* Leaving the grade field empty (`g/`) will result in the assignment being marked as **not graded**.
 
 Examples:
 * `grade 3 a/Q1 g/97`
 * `grade 5 a/finals g/80`
+* `grade 5 a/finals g/` removes the grade for finals of the 5th student in the address book.
 
 Expected output: <br>
 * The specified student's grade will be updated with the given value.
@@ -263,6 +269,12 @@ Expected output: <br>
   the error followed by `Invalid command format!... ` with more details of the command.
 * Entering an invalid ASSIGNMENT_NAME will result in an error message specifying the different assignment names.
 * Entering an invalid GRADE will result in an error message specifying what is a valid grade.
+
+`grade` commands show the verbose UI by default. Red assignments indicate not graded and blue assignments indicate graded.<br>
+<img src="images/gradeCharlotte.png" alt="Example add Betsy" width="25%" height="25%">
+
+**Warnings:**
+* Entering an invalid or missing index, assignment name or grade will result in a specific error message.
 
 ### Sorting the student list: `sort`
 
@@ -277,11 +289,10 @@ Possible `[FIELD]` values:
 * `tutorial`: Sorts by tutorial group number (lowest first).
 
 Possible `[ORDER]` values:
-* (default): Sorts in **ascending** order.
-* `asc`: Sorts in **ascending** order.
+* `asc`: Sorts in **ascending** order (default if ORDER not provided).
 * `desc`: Sorts in **descending** order.
 
-Note: default means no order parameter is specified.
+<br>
 
 * Sorting by `name` sorts the students in **alphabetical order** of their **names**.
 * Sorting by `grade` sorts the students in **ascending order** of their **average grades across all assignments**.
@@ -289,17 +300,17 @@ Note: default means no order parameter is specified.
 * Sorting by `tutorial` sorts the students in **ascending numerical order** of their **tutorial group numbers**.
 * If no `field` is specified, the default sorting field is `name`.
 * If no `order` is specified, the default sorting order is as specified above.
-* If the optional verbose flag `/v` is written at the end, more detailed information of the found students will be shown instead of a summary.
+* If the optional verbose flag `/v` is written at the end, all assignment grades and tutorial attendances will be displayed.
 
 Examples:
 * `sort name` sorts the student list in alphabetical order of names.
 * `sort grade` sorts the student list in ascending order of average grades.
 * `sort attendance` sorts the student list in ascending order of attendance percentage.
 * `sort tutorial` sorts the student list in ascending order of tutorial group numbers.
-* `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows more detailed information of the students.
+* `sort tutorial /v` sorts the student list in ascending order of tutorial group numbers and shows all assignment grades and tutorial attendances.
 
-Expected output:
-* The student list will be reordered according to your chosen field.
+Expected Output:<br>
+The student list will be reordered according to your chosen field.
 
 **Warnings:**
 * Sorting only affects the current displayed list, not the underlying data.
@@ -327,7 +338,10 @@ Tips:
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
-* `Attendance: x/11`, x increases by 1 after each successful attendance marking
+* `Attendance: x/11`, x increases by 1 after each successful attendance marking, until it reaches 11.
+* `attend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
+
+<img src="images/attendMultiple.png" alt="Example add Betsy" width="25%" height="25%">
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
@@ -354,7 +368,8 @@ Tips:
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
 Expected output:
-* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking
+* `Attendance: x/11`, x decreases by 1 after each successful attendance unmarking, until it reaches 0.
+* `unattend` commands show the verbose UI by default. Red tutorials indicate not attended and green tutorials indicate attended.
 
 **Warnings:**
 * Entering the wrong format for the command (e.g. missing Index or prefix c/) will result in an error message specifying
@@ -369,18 +384,18 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CalcConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
+CalcConnect data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
 **WARNING**: Most users are advised against doing so, as it is easy to corrupt the data file if you are not careful.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, CalcConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause CalcConnect to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -410,14 +425,14 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com u/@james t/Good Student`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/91696700 e/jamesho@example.com u/@james tg/TG01 t/Good Student`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX a/ASSIGNMENT_NAME g/GRADE`<br> e.g., `grade 3 a/Finals g/97`
 **Attend** | `attend INDICES... c/TUTORIAL_CLASS`<br> e.g., `attend 1 c/t5`
 **Unattend** | `unattend INDEX c/TUTORIAL_CLASS`<br> e.g., `unattend 2 c/t9`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
-**Sort** | `sort [field] [/v]`<br> e.g., `sort grade`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> *at  least one field must be provided*
+**Find** | `find [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [u/TELEHANDLE_KEYWORD]... [tg/TUTORIAL_KEYWORD]... [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
+**Sort** | `sort [FIELD] [ORDER] [/v]`<br> e.g., `sort grade asc`
 **List** | `list [/v]`
 **Help** | `help`
