@@ -70,8 +70,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
         }
         List<String> allTutorialGroups = new ArrayList<>(tutorialGroups);
-        List<String> tutorialGroupAdditions = getTutorialGroupAdditions(tutorialGroups);
-        allTutorialGroups.addAll(tutorialGroupAdditions);
+        allTutorialGroups.addAll(getTutorialGroupAdditions(tutorialGroups));
         return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, allTutorialGroups),
                 isVerbose);
     }
@@ -80,7 +79,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> tutorialGroupAdditions = new ArrayList<>();
         for (String tutorialGroup : tutorialGroups) {
             if (tutorialGroup.length() == 3 && tutorialGroup.toUpperCase().startsWith("TG")) {
-                try {
+                try { // only those in the exact format TGX will need to be 'padded'
                     String numberPart = tutorialGroup.substring(2);
                     int parsedNumber = Integer.parseInt(numberPart);
                     tutorialGroupAdditions.add("TG" + String.format("%02d", parsedNumber));
