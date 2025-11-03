@@ -96,9 +96,10 @@ For instance, `listee` will not be interpreted as `list`.
 
 Shows a **popup** with a **help guide** of the commands available to users.
 
+![help popup](images/helpPopup.png)
+
 Format: `help`
 
-![help popup](images/helpPopup.png)
 
 ### Adding a student: `add`
 
@@ -106,9 +107,10 @@ Adds a student to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL u/TELEHANDLE tg/TUTORIAL_GROUP [t/TAG]…​`
 * `NAME` should only contain **alphanumeric characters and spaces**. It should **NOT** be blank.
-* `PHONE_NUMBER` should **ONLY** contain **numeric characters**. It should **NOT** be blank.
+* `PHONE_NUMBER` should **ONLY** contain **numeric characters**. Spacings and dashes are allowed. It should **NOT** be blank.
 * `EMAIL` should be in the format `local-part@domain` and should **NOT** be blank.
-* `TELEHANDLE` should start with `@` followed by alphanumeric characters. It should **NOT** be blank.
+* `TELEHANDLE` should start with `@` followed by keyboard characters. It should **NOT** be blank and **NOT** have spacings. 
+(Telehandle and Telegram Handle are interchangable terms for the User Guide)
 * `TUTORIAL_GROUP` must be in the format `TGXX` where `XX` is any integer from 0 to 99 e.g. `TG01`, `TG12`. It should **NOT** be blank.
 * `TAG` must only contain either **alphanumeric characters or spaces**, e.g. `Good Student` is a valid tag.
 
@@ -126,6 +128,7 @@ Expected output:
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be added.
   e.g. `This student already exists in the address book`
 * If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be added.
+* If any of the fields contain **invalid values** (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or Telegram Handle not starting with `@`), an **error message** will be displayed and the student will not be added.
 
 ### Listing all students : `list`
 
@@ -160,7 +163,7 @@ Expected output:
 **Warnings:**
 * If a student with the **same email** (case insensitive) already exists in the address book, an **error message** will be displayed, and the student will not be edited.
   e.g. `This student already exists in the address book`
-* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or telehandle not starting with `@`), an **error message** will be displayed and the student will not be edited.
+* If any of the fields contain invalid values (e.g. empty name, phone number with non-numeric characters, improperly formatted email, or Telegram Handle not starting with `@`), an **error message** will be displayed and the student will not be edited.
   e.g. `Invalid command format!...` and details of the error.
 
 ### Locating students by details: `find`

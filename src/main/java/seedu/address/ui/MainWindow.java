@@ -10,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -57,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Label assignmentMenuLabel;
+
+    @FXML
+    private Label attendanceMenuLabel;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -132,6 +137,15 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (new KeyCodeCombination(KeyCode.F2).match(event)) {
+                handleAssignmentLabelPress();
+                event.consume();
+            } else if (new KeyCodeCombination(KeyCode.F3).match(event)) {
+                handleAttendanceLabelPress();
+                event.consume();
+            }
+        });
     }
 
     /**
@@ -179,7 +193,37 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the Assignment types popup or focuses on it if it's already opened.
+     */
+    private void showAssignmentPopup() {
+        List<String> items = Arrays.stream(Assignments.values())
+                .map(a -> a.getDescription())
+                .toList();
+        assignmentPopup = new PopUpBox(items, "#97979c");
+        // Below dictates where the popup shows relative to the label
+        Node source = assignmentMenuLabel;
+        double x = source.localToScreen(0, 0).getX();
+        double y = source.localToScreen(0, ((Region) source).getBoundsInLocal().getHeight()).getY();
+        assignmentPopup.show(source, x, y);
+    }
+
+    /**
      * Opens the Tutorial Classes types popup or focuses on it if it's already opened.
+     */
+    private void showAttendancePopup() {
+        List<String> items = Arrays.stream(TutorialClass.values())
+                .map(tc -> tc.getDescription())
+                .toList();
+        assignmentPopup = new PopUpBox(items, "#97979c");
+        // Below dictates where the popup shows relative to the label
+        Node source = attendanceMenuLabel;
+        double x = source.localToScreen(0, 0).getX();
+        double y = source.localToScreen(0, ((Region) source).getBoundsInLocal().getHeight()).getY();
+        assignmentPopup.show(source, x, y);
+    }
+
+    /**
+     * Opens the Assignment types popup or focuses on it if it's already opened.
      */
     @FXML
     public void handleAssignmentLabelClick(MouseEvent event) {
@@ -188,16 +232,17 @@ public class MainWindow extends UiPart<Stage> {
             event.consume(); // important: prevent the event from causing a show again
             return;
         }
-        List<String> items = Arrays.stream(Assignments.values())
-                .map(a -> a.getDescription())
-                .toList();
-        assignmentPopup = new PopUpBox(items, "#97979c");
-        // Below dictates where the popup shows relative to the label
-        Node source = (Node) event.getSource();
-        double x = source.localToScreen(0, 0).getX();
-        double y = source.localToScreen(0, ((Region) source).getBoundsInLocal().getHeight()).getY();
-        assignmentPopup.show(source, x, y);
+        showAssignmentPopup();
 
+    }
+
+    // Handles F2 key press for Assignment popup
+    private void handleAssignmentLabelPress() {
+        if (assignmentPopup != null && assignmentPopup.isShowing()) {
+            assignmentPopup.hide();
+            return;
+        }
+        showAssignmentPopup();
     }
 
     /**
@@ -210,17 +255,16 @@ public class MainWindow extends UiPart<Stage> {
             event.consume(); // important: prevent the event from causing a show again
             return;
         }
-        List<String> items = Arrays.stream(TutorialClass.values())
-                .map(tc -> tc.getDescription())
-                .toList();
-        assignmentPopup = new PopUpBox(items, "#97979c");
-        // Below dictates where the popup shows relative to the label
-        Node source = (Node) event.getSource();
-        double x = source.localToScreen(0, 0).getX();
-        double y = source.localToScreen(0, ((Region) source).getBoundsInLocal().getHeight()).getY();
-        assignmentPopup.show(source, x, y);
+        showAttendancePopup();
+    }
 
-
+    // Handles F3 key press for Tutorial Classes popup
+    private void handleAttendanceLabelPress() {
+        if (assignmentPopup != null && assignmentPopup.isShowing()) {
+            assignmentPopup.hide();
+            return;
+        }
+        showAttendancePopup();
     }
 
     void show() {
