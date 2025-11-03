@@ -69,9 +69,28 @@ public class FindCommandParser implements Parser<FindCommand> {
             // This handles the case where there are no prefixes at all
             throw new ParseException(String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
         }
-
-        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, tutorialGroups),
+        List<String> allTutorialGroups = new ArrayList<>(getTutorialGroupAdditions(tutorialGroups));
+        return new FindCommand(new PersonContainsKeywords(nameKeywords, emailKeywords, teleKeywords, allTutorialGroups),
                 isVerbose);
+    }
+
+    private static List<String> getTutorialGroupAdditions(List<String> tutorialGroups) {
+        List<String> tutorialGroupAdditions = new ArrayList<>();
+        for (String tutorialGroup : tutorialGroups) {
+            if (tutorialGroup.length() == 3 && tutorialGroup.toUpperCase().startsWith("TG")) {
+                try { // only those in the exact format TGX will need to be 'padded'
+                    String numberPart = tutorialGroup.substring(2);
+                    int parsedNumber = Integer.parseInt(numberPart);
+                    System.out.println("TG" + String.format("%02d", parsedNumber));
+                    tutorialGroupAdditions.add("TG" + String.format("%02d", parsedNumber));
+                } catch (Exception e) {
+                    continue; // invalid value, thus just skip
+                }
+            } else if (tutorialGroup.length() == 4 && tutorialGroup.toUpperCase().startsWith("TG")) {
+                tutorialGroupAdditions.add(tutorialGroup);
+            }
+        }
+        return tutorialGroupAdditions;
     }
 
     // Splits each segment into words based on whitespace and flattens the result into a single list

@@ -48,7 +48,18 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
 8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## CalcConnect Key Bindings
+The following key bindings are available in CalcConnect to enhance user experience and accessibility:
 
+Key Combination | Action
+----------------|----------------------
+`F1` or `fn + F1`| Open the Help Window
+`F2` or `fn + F2`| Opens a Popup for the list of Assignments
+`F3` or `fn + F3`| Opens a Popup for the list of Tutorial Classes
+
+`fn` key is needed for Mac(default) users, or laptop users whose function keys are set to perform special features by default.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -62,7 +73,7 @@ CalcConnect is designed for **MA1521 TAs** who are technologically inclined. Whi
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Good Student` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Good Student`, `t/Good Student t/Smart` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. blank), `t/Good Student`, `t/Good Student t/Smart` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -101,6 +112,10 @@ Shows a **popup** with a **help guide** of the commands available to users.
 
 Format: `help`
 
+:bulb: **Tips:**
+
+* You can use `alt + tab` (Windows) / `Command + ~` (Mac) / `Ctrl + tab` (Linux) to switch between the main window and the help window.
+* You can exit without using the mouse by pressing or `Alt + F4` (Windows)
 
 ### Adding a student: `add`
 
@@ -226,6 +241,7 @@ Expected output:
 
 :exclamation: **Warnings:**
 
+* Please be careful when using this command as the deletion is **PERMANENT** and there is no **undo**.
 * Entering the wrong format or an invalid index for the command will result in a specific warning.
 
 ### Clearing all entries : `clear`
@@ -261,6 +277,10 @@ Format: `grade INDEX a/ASSIGNMENT_NAME g/GRADE`
 * Assignment name must be one of [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Finals], case-insensitive.
 * Grade must be a **positive real number**(up to 2 decimal places) in the range 0-100 (inclusive).
 * Leaving the grade field empty (`g/`) will result in the assignment being marked as **not graded**.
+
+:bulb: **Tips:**
+
+* You can press `F2` to view the list of assignments.
 
 Examples:
 * `grade 3 a/Q1 g/97`
@@ -346,6 +366,7 @@ Examples:
 
 :bulb: **Tips:**
 
+* You can press `F3` to view the list of tutorial classes.
 * Use `find` command to filter the relevant tutorials then the `attend` command to mark the attendance of the relevant student.
 
 Expected output:
@@ -377,6 +398,7 @@ Examples:
 
 :bulb: **Tips:**
 
+* You can press `F3` to view the list of tutorial classes.
 * Running `attend 1 c/t5` followed by `unattend 1 c/t5` will undo the first command.
 * Use `find` command to filter the relevant tutorials then the `unattend` command to unmark the attendance of the relevant student.
 
