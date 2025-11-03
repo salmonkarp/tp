@@ -30,12 +30,12 @@
             <Menu mnemonicParsing="false" text="File">
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Help [F1]">
               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
             </Menu>
           </MenuBar>
-          <Label fx:id="assignmentMenuLabel" onMouseClicked="#handleAssignmentLabelClick" style="-fx-padding:4 8; -fx-font-weight:bold; -fx-cursor:hand; -fx-text-fill: #5989f0;" text="Assignments" />
-          <Label fx:id="attendanceMenuLabel" onMouseClicked="#handleAttendanceLabelClick" style="-fx-padding:4 8; -fx-font-weight:bold; -fx-cursor:hand; -fx-text-fill: #5989f0;" text="Tutorial Classes" />
+          <Label fx:id="assignmentMenuLabel" onMouseClicked="#handleAssignmentLabelClick" style="-fx-padding:4 8; -fx-font-weight:bold; -fx-cursor:hand; -fx-text-fill: #5989f0;" text="Assignments [F2]" />
+          <Label fx:id="attendanceMenuLabel" onMouseClicked="#handleAttendanceLabelClick" style="-fx-padding:4 8; -fx-font-weight:bold; -fx-cursor:hand; -fx-text-fill: #5989f0;" text="Tutorial Classes [F3]" />
         </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                <children>
