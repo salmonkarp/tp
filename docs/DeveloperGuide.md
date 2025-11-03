@@ -629,7 +629,7 @@ testers are expected to do more *exploratory* testing.
 3. Editing a student with an invalid index
     1. Prerequisites: NIL
     1. Test case: `edit 0 p/91234567`
-       Expected: Error message: "This student already exists in the address book."
+       Expected: Error message: "Invalid index provided, index must be a non-zero positive integer."
 
 4. Editing a student with an invalid field value
     1. Prerequisites: Student being edited exists in the list
@@ -870,3 +870,33 @@ Some of the general achievements of this project include:
 * Implementation of additional features such as Fuzzy Search.
 * Aesthetic improvements to the UI to utilize more screen space and enhance user experience.
 * Enhanced CLI experience through addition of a navigable command history.
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Disallow using attend command on a student who has already attended that tutorial session**: Currently, we allow for students to be marked as **attended** an unlimited number of times. After the first `attend` command, subsequent commands to mark the student as having attended simply changes **nothing**. We plan to throw an `error` if the tutor attempts to mark a student who has already been marked beforehand (already attended that session).
+
+
+2. **Enhance the UI to handle ridiculously long student credentials**: The UI currently allows for a reasonably long name to be displayed. However, it is possible for a student with a name like `Hubert Blaine Wolfe­schlegel­stein­hausen­berger­dorff` to be wrapped with a ‘...’ instead. We plan to have a toggle function to show the full name/credentials within the result display.
+
+
+3. **Allow special characters for student names**: The current validation for a student’s name is too strict. We plan to allow more characters like `s/o` (Tamil naming), `Zoë`, etc. to allow for greater flexibility in a student’s name.
+
+
+4. **Show an error message when the user tries to set attendance for someone who has already attended the class, or unset the attendance for someone who did not attend the class**: Currently, we freely allow the user to perform said operation, despite it not affecting the student record. We plan to warn the user when they do such an operation, to not mislead the user on the state of the student record.
+
+
+5. **The error message between `add` is not consistent with the error messages of `grade`, `attend` and `unattend`**. When missing parameters are provided for `add`, the names of the parameters are listed out (e.g. `Name, Phone,` etc.). However, other commands like `grade` list out the missing prefixes instead (e.g. `g/ a/`). We plan to change the error message for `add` to display the missing prefixes instead of the names.
+
+
+6. **The error message between `grade` is not consistent with the error messages of `attend` and `unattend`**. When only `grade` is typed out, the error message shows `Missing index` while when only `attend` or `unattend` is typed out, the error message shows `Missing index and required prefix(es): c/`. We plan to change the error message for `grade` to follow `attend` and `unattend` by displaying all the missing parameters the user missed out.
+
+
+7. **Reduce repeated output text length for repeated indices**. The current output when multiple indices are inputted into the `attend` command repeats the information of each student. We plan to make it such that a concise output message is produced instead when the attendance of multiple students are marked at once.
+
+
+8. **Add support for multiple indices in `unattend` command.** The current `unattend` command only accepts one index in the command line. To improve feature consistency, we plan to modify the `unattend` command such that similar to the `attend` command it allows for multiple inputs as arguments to mark those indices as unattended.
+
+
+9. **Adding an additional function to undo commands**: Currently, there are warnings to ensure tutors do not accidentally `delete` their students or `clear` the whole addressbook. However, these accidents may happen despite the **strongest warnings**. So, we plan to implement a command or function to `undo` the previous command
