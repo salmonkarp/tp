@@ -399,7 +399,7 @@ CalcConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CalcConnect data are saved automatically as a JSON file `[JAR file location]/data/CalcConnect.json`. 
+CalcConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
 **WARNING**: Most users are advised against doing so, as it is easy to corrupt the data file if you are not careful.
