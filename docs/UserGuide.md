@@ -309,10 +309,10 @@ Format: `attend INDICES... c/TUTORIAL_CLASS`
 * The indices can be of any length >= 1. 
 * The indices refer to the index number shown in the displayed student list.
 * The indices **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**.
+* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**, case-insensitive.
 
 Examples:
-* `attend 2 c/t5` marks the attendance of the 2nd student in the address book for class tutorial 5.
+* `attend 2 c/t5` or `attend 2 c/T5` marks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `attend 1 c/t7` marks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 * `attend 1 2 3 c/t1` marks the attendance for class tutorial 1 of the 1st, 2nd and 3rd student in the address book.
 
@@ -336,10 +336,10 @@ Format: `unattend INDEX c/TUTORIAL_CLASS`
 * Unmarks the student at the specified `INDEX` as attended for the given tutorial class (sets attendance value to 0).
 * The index refers to the index number shown in the **displayed student list**.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**.
+* `TUTORIAL_CLASS` must be a valid tutorial class identifier from **t1** to **t11**, case-insensitive.
 
 Examples:
-* `unattend 2 c/t5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
+* `unattend 2 c/t5`, `unattend 2 c/T5` unmarks the attendance of the 2nd student in the address book for class tutorial 5.
 * `find n/Bernice` followed by `unattend 1 c/t7` unmarks the attendance for class tutorial 7 of the 1st student in the results of the `find` command.
 
 Tips:
@@ -407,7 +407,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Grade** | `grade INDEX a/ASSIGNMENT_NAME g/GRADE`<br> e.g., `grade 3 a/Finals g/97`
 **Attend** | `attend INDICES... c/TUTORIAL_CLASS`<br> e.g., `attend 1 c/t5`
-**Unattend** | `unattend INDEX c/TUTORIAL_CLASS`<br> e.g., `attend 2 c/t9`
+**Unattend** | `unattend INDEX c/TUTORIAL_CLASS`<br> e.g., `unattend 2 c/t9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [u/TELEHANDLE] [tg/TUTORIAL_GROUP] [t/tag]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [n/NAME_KEYWORD] [e/EMAIL_KEYWORD] [u/TELEHANDLE_KEYWORD] [tg/TUTORIAL_KEYWORD] [/v]` <br> e.g., `find n/Alex` <br> *at  least one field must be provided*
 **Sort** | `sort [field] [/v]`<br> e.g., `sort grade`
